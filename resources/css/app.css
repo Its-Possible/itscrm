@@ -1,0 +1,8 @@
+@import '_base.css';
+
+aside#app-sidebar {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+

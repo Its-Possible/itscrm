@@ -1,0 +1,52 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "font-awesome/css/font-awesome.min.css";
+@import "remixicon/fonts/remixicon.css";
+
+.input-group {
+    margin: 30px 0;
+}
+
+.form-control {
+    padding: 16px 16px;
+    border-radius: 0;
+}
+
+.btn {
+    padding: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 0;
+}
+
+.btn-primary {
+    color: #fff;
+    font-weight: bold;
+    background: #6A40DB;
+    border: 2px solid #6A40DB;
+}
+
+.btn-primary:hover {
+    color: #6A40DB;
+    background: #fff;
+    border: 2px solid #6A40DB;
+}
+
+.btn-social {
+    width: 100%;
+    background: #fff;
+    color: #6A40DB;
+    border: 1px solid #6A40DB;
+}
+
+.btn-social:hover {
+    width: 100%;
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+h5 {
+    color: rgba(200, 200, 200, 1);
+    font-size: 1.1rem;
+    font-weight: normal;
+}
