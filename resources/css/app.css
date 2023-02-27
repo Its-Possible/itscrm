@@ -3,6 +3,89 @@
 aside#app-sidebar {
     padding: 0;
     margin: 0;
-    width: 100%;
+    height: 100vh;
+    border-right: 1px solid #eee;
 }
 
+nav#app-nav {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    background: #F7F7F7;
+    text-align: center;
+}
+
+nav#app-nav > a {
+    color: #6A40DB;
+    padding: 16px 22px;
+    display: block;
+    text-align: center;
+    font-size: 1.45rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+nav#app-nav > a:hover,
+nav#app-nav > a.active {
+    background: #6A40DB;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+section#app-sidebar-header-user {
+    padding: 0;
+    margin: 40px 0;
+}
+
+section#app-sidebar-header-user div#app-sidebar-header-user-avatar {
+    margin: 0 auto;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background-image: url("https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1066&q=80");
+    background-size: cover;
+    background-position: center, center;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+section#app-sidebar-header-user div#app-sidebar-header-user-status {
+    margin: 0 auto;
+    position: absolute;
+    right: 10px;
+    bottom: 3px;
+    width: 22px;
+    height: 22px;
+    background: green;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+
+section#app-sidebar-header-user div#app-sidebar-header-user-name {
+    margin-top: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.35em;
+}
+
+section#app-sidebar-header-user nav#app-sidebar-header-user-links {
+    margin: 30px auto;
+    text-align: center;
+}
+
+section#app-sidebar-header-user nav#app-sidebar-header-user-links a {
+    margin: 0 8px;
+    color: #666;
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+
+section#app-sidebar-header-user hr {
+    margin: 10px auto;
+}
+
+nav#app-nav {
+    background: #F7F7F7;
+    height: 100vh;
+}

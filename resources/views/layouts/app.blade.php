@@ -13,18 +13,39 @@
     <div id="app">
         <div class="container-fluid">
             <div class="row">
-                <aside id="app-sidebar" class="col col-md-3 col-lg-2 bg-dark">
-                    <header id="app-sidebar-header">
-                        <div class="row">
-                            <div class="col col-md-10 offset-1">
-                                kjdhfjsakhfdksdajfh
-                            </div>
-                        </div>
-                    </header>
+                <aside id="app-sidebar" class="col-md-3">
+                    <div class="row">
+                        <nav id="app-nav" class="col-md-2">
+                            <a href="#" class="active"><i class="ri ri-home-2-line"></i></a>
+                            <a href="#"><i class="ri ri-user-2-line"></i></a>
+                            <a href="#"><i class="ri ri-article-line"></i></a>
+                            <a href="#"><i class="ri ri-mail-line"></i></a>
+                            <a href="#"><i class="ri ri-smartphone-line"></i></a>
+                            <a href="#"><i class="ri ri-tools-line"></i></a>
+                        </nav>
+                        <header id="app-sidebar-header" class="col-md-10">
+                            <section id="app-sidebar-header-user">
+                                <div id="app-sidebar-header-user-avatar">
+                                    <div id="app-sidebar-header-user-status"></div>
+                                </div>
+                                <div id="app-sidebar-header-user-name">Eduardo Bessa</div>
+                                <nav id="app-sidebar-header-user-links">
+                                    <a href="#"><i class="ri ri-facebook-line"></i></a>
+                                    <a href="#"><i class="ri ri-instagram-line"></i></a>
+                                    <a href="#"><i class="ri ri-twitter-line"></i></a>
+                                </nav>
+                            </section>
+                        </header>
+                    </div>
                 </aside>
-                <main id="app-main" class="col col-md-9 col-lg-9">
-                    @yield('content')
-                </main>
+                <div id="app-container" class="col-md-9">
+                    <header id="app-header">
+                        <input type="text" placeholder="Pesquisar" />
+                    </header>
+                    <main id="app-main">
+                        @yield('content')
+                    </main>
+                </div>
             </div>
         </div>
     </div>
