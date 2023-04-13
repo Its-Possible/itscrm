@@ -33,6 +33,7 @@ Route::middleware('guest')->prefix('auth')->group(function () {
     Route::get('sign-in', [LoginViewController::class, 'login'])->name('crm.auth.sign-in');
     Route::post('sign-in', [LoginApiController::class, 'authenticate'])->name('crm.auth.sign-in.submit');
     Route::get('sign-up', [RegisterViewController::class, 'show'])->name('crm.auth.sign-up');
+    Route::get('activate-account/{token}', [RegisterViewController::class, 'activateAccount'])->name('crm.auth.activate-account');
 });
 
 Route::prefix('app')->group(function () {

@@ -2,10 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Models\ActivationAccount;
+
 class CustomerRepository
 {
-    public function all()
-    {
 
-    }
 }
