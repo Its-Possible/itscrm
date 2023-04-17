@@ -1,5 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.app.base', ['page' => 'home', 'title' => 'Inicio'])
 
 @section('content')
-    <h1>Home page</h1>
+    <section clasS="col-md-11 py-5">
+       <h1>Inicio</h1>
+    </section>
 @endsection

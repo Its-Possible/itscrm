@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->unsigned();
+            $table->string('title');
+            $table->string('message'); // Save with html tags
+            $table->datetime('read_at')->nullable();
             $table->timestamps();
         });
     }

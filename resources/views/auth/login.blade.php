@@ -1,4 +1,4 @@
-@extends('layouts.basic')
+@extends('layouts.app.auth')
 
 @section('content')
     <div class="container-fluid">

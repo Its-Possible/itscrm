@@ -18,13 +18,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->get('/', function () {
-    return redirect()->route('crm.home');
+    return redirect()->route('app.home');
 });
 
-Route::middleware('auth')->prefix('app')->group(function () {
-    Route::get('/', [PageStaticViewController::class, 'home'])->name('crm.home');
-    Route::get('/home', [PageStaticViewController::class, 'home'])->name('crm.home');
-    Route::get('/auth/sign-out', [LoginApiController::class, 'logout'])->name('crm.auth.sign-out');
+Route::middleware('auth')->prefix('app')->name('app.')->group(function () {
+    Route::get('/', [PageStaticViewController::class, 'home'])->name('index');
+    Route::get('/home', [PageStaticViewController::class, 'home'])->name('home');
+    Route::get('/statistics', [PageStaticViewController::class, 'index'])->name('statistics');
+    Route::get('/customers', [PageStaticViewController::class, 'index'])->name('customers');
+    Route::get('/campaigns', [PageStaticViewController::class, 'index'])->name('campaigns');
+    Route::get('/posts', [PageStaticViewController::class, 'index'])->name('posts');
+    Route::get('/auth/sign-out', [LoginApiController::class, 'logout'])->name('auth.sign-out');
 });
 
 
@@ -34,8 +38,4 @@ Route::middleware('guest')->prefix('auth')->group(function () {
     Route::post('sign-in', [LoginApiController::class, 'authenticate'])->name('crm.auth.sign-in.submit');
     Route::get('sign-up', [RegisterViewController::class, 'show'])->name('crm.auth.sign-up');
     Route::get('activate-account/{token}', [RegisterViewController::class, 'activateAccount'])->name('crm.auth.activate-account');
-});
-
-Route::prefix('app')->group(function () {
-    Route::get('home', [PageStaticViewController::class, 'home'])->name('crm.app.home');
 });

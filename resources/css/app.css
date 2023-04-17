@@ -1,91 +1,155 @@
 @import '_base.css';
 
-aside#app-sidebar {
+* {
     padding: 0;
     margin: 0;
-    height: 100vh;
-    border-right: 1px solid #eee;
-}
-
-nav#app-nav {
-    padding: 0;
-    margin: 0;
-    height: 100vh;
-    background: #F7F7F7;
-    text-align: center;
-}
-
-nav#app-nav > a {
-    color: #6A40DB;
-    padding: 16px 22px;
-    display: block;
-    text-align: center;
-    font-size: 1.45rem;
+    outline: none;
+    border: none;
     text-decoration: none;
-    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #F8F8F8;
+}
+
+#app {
+    display: flex;
+}
+
+#app-sidebar {
+    padding: 0;
+    margin: 0;
+    width: 4vw;
+    height: 100vh;
+    background: #8BC185;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    z-index: 1;
+}
+
+#app-main {
+    width: 96vw;
+    background: rgba(240,240,240,1);
+}
+
+#app-sidebar-header-brand {
+    padding: 22px 22px;
     text-align: center;
 }
 
-nav#app-nav > a:hover,
-nav#app-nav > a.active {
-    background: #6A40DB;
+#app-sidebar-header-brand a {
     color: #fff;
-    transition: all 0.3s ease;
-}
-
-section#app-sidebar-header-user {
-    padding: 0;
-    margin: 40px 0;
-}
-
-section#app-sidebar-header-user div#app-sidebar-header-user-avatar {
-    margin: 0 auto;
-    position: relative;
-    width: 120px;
-    height: 120px;
-    background-image: url("https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1066&q=80");
-    background-size: cover;
-    background-position: center, center;
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-}
-
-section#app-sidebar-header-user div#app-sidebar-header-user-status {
-    margin: 0 auto;
-    position: absolute;
-    right: 10px;
-    bottom: 3px;
-    width: 22px;
-    height: 22px;
-    background: green;
-    border-radius: 50%;
-    border: 3px solid #fff;
-}
-
-section#app-sidebar-header-user div#app-sidebar-header-user-name {
-    margin-top: 30px;
-    text-align: center;
     font-weight: bold;
-    font-size: 1.35em;
-}
-
-section#app-sidebar-header-user nav#app-sidebar-header-user-links {
-    margin: 30px auto;
-    text-align: center;
-}
-
-section#app-sidebar-header-user nav#app-sidebar-header-user-links a {
-    margin: 0 8px;
-    color: #666;
+    font-family: "PT Sans", sans-serif;
     text-decoration: none;
-    font-size: 1.3rem;
 }
 
-section#app-sidebar-header-user hr {
-    margin: 10px auto;
+
+#app-sidebar-navigation {
+    position: relative;
+    width: 100%;
+    height: 50vh;
 }
 
-nav#app-nav {
-    background: #F7F7F7;
-    height: 100vh;
+#app-sidebar-navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    list-style: none;
+}
+
+#app-sidebar-navigation .navigation-item {
+    position: relative;
+    right: 32px;
+    width: 77px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: block;
+    background: transparent;
+    transition: background 0.3s ease;
+}
+
+#app-sidebar-navigation .navigation-item:hover,
+#app-sidebar-navigation .navigation-item.active {
+    cursor: pointer;
+    background: #fff;
+    transition: background 0.3s ease;
+}
+
+#app-sidebar-navigation .navigation-item:hover a,
+#app-sidebar-navigation .navigation-item.active a {
+    color: #8BC185;
+    transition: color 0.3s ease;
+}
+
+#app-sidebar-navigation .navigation-item a {
+    color: #fff;
+    padding: 32px;
+    width: 100%;
+    display: block;
+    text-decoration: none;
+}
+
+#app-sidebar-navigation .navigation-item a i {
+    font-size: 22px;
+}
+
+#main-content {
+    padding: 0;
+    margin: 0;
+}
+
+#app-header {
+    padding: 8px 22px;
+    margin: 0;
+    height: 60px;
+    background: transparent;
+}
+
+#app-header-search {
+    position: relative;
+}
+
+#app-header input[type="text"] {
+    margin-top: 15px;
+    width: 100%;
+    height: 100%;
+    padding: 0 22px;
+    border-radius: 12px;
+    background: #ddd;
+    font-size: 16px;
+    color: #333;
+    border: 0;
+}
+
+#app-header button#btn-search-submit {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+#app-header button#btn-search-submit i {
+    font-size: 22px;
+    color: #333;
+}
+
+#app-header button#btn-theme {
+    position: relative;
+    top: 15px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 6px rgba(0,0,0,.25); ;
 }
