@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: itspossible-crm-web
+    image: itspossible/web-apache-dev
+    networks:
+      - itspossible-crm
+    ports:
+      - 80:80
+    volumes:
+      .:/var/www/html
+    restart: always
+    environment:
+      - VIRTUAL_HOST=crm.test

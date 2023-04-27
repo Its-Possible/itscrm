@@ -14,12 +14,22 @@
                 </li>
                 <li class="navigation-item">
                     <a href="#">
-                        <i class="ri ri-user-fill"></i>
+                        <i class="ri ri-shopping-cart-2-fill"></i>
+                    </a>
+                </li>
+                <li class="navigation-item">
+                    <a href="#">
+                        <i class="ri ri-money-dollar-circle-fill"></i>
                     </a>
                 </li>
                 <li class="navigation-item">
                     <a href="#">
                         <i class="ri ri-mail-fill"></i>
+                    </a>
+                </li>
+                <li class="navigation-item">
+                    <a href="#">
+                        <i class="ri ri-superscript-2"></i>
                     </a>
                 </li>
             </ul>
