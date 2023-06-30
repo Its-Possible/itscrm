@@ -24,11 +24,11 @@ Route::middleware('auth')->get('/', function () {
 Route::middleware('auth')->prefix('app')->name('app.')->group(function () {
     Route::get('/', [PageStaticViewController::class, 'home'])->name('index');
     Route::get('/home', [PageStaticViewController::class, 'home'])->name('home');
-    Route::get('/statistics', [PageStaticViewController::class, 'index'])->name('statistics');
-    Route::get('/customers', [PageStaticViewController::class, 'index'])->name('customers');
-    Route::get('/campaigns', [PageStaticViewController::class, 'index'])->name('campaigns');
-    Route::get('/posts', [PageStaticViewController::class, 'index'])->name('posts');
-    Route::get('/auth/sign-out', [LoginApiController::class, 'logout'])->name('auth.sign-out');
+
+    // Marketing route group
+    Route::prefix('/marketing')->name('marketing.')->group(function () {
+        Route::get('/', [PageStaticViewController::class, 'marketing'])->name('home');
+    });
 });
 
 
