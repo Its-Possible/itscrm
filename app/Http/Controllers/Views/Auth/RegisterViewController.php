@@ -26,7 +26,7 @@ class RegisterViewController extends Controller
         $activation_account = $this->activationAccountRepository->WhereTokenIs($token);
 
         if($activation_account->status !== ActivationAccountInterface::STATUS_ACTIVE) {
-            return redirect()->route('crm.auth.sign-in')->with('error', 'Activation account link is expired.');
+            return redirect()->route('its.auth.sign-in')->with('error', 'Activation account link is expired.');
         }
 
         // Activate account and change status to used
@@ -38,6 +38,6 @@ class RegisterViewController extends Controller
         $activation_account->status = ActivationAccountInterface::STATUS_USED;
         $activation_account->save();
 
-        return redirect()->route('crm.auth.sign-in')->with('success', 'Conta ativada com sucesso.');
+        return redirect()->route('its.auth.sign-in')->with('success', 'Conta ativada com sucesso.');
     }
 }

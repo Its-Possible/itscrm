@@ -30,7 +30,11 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
     Route::get('/statistics', [StatisticViewController::class, 'index'])->name('statistics');
     Route::get('/leads', [CustomerViewController::class, 'index'])->name('leads');
     Route::get('/emails', [CustomerViewController::class, 'index'])->name('emails');
-    Route::get('/customers', [CustomerViewController::class, 'index'])->name('customers');
+    Route::prefix('/customers')->name('customers.')->group(function () {
+        Route::get('/',  [CustomerViewController::class, 'index'])->name('index');
+        Route::get('/create',  [CustomerViewController::class, 'create'])->name('create');
+        Route::get('/import',  [CustomerViewController::class, 'import'])->name('import');
+    });
     Route::get('/projects', [CustomerViewController::class, 'index'])->name('projects');
     Route::get('/services', [CustomerViewController::class, 'index'])->name('services');
 

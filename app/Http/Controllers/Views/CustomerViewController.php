@@ -32,17 +32,15 @@ class CustomerViewController extends Controller
     /**<
      * Show the form for creating a new resource.
      */
-    public function create(): Response
+    public function create()
     {
         //
+        return view('pages.customers.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
+    public function import()
     {
-        //
+        return view('pages.customers.import');
     }
 
     /**

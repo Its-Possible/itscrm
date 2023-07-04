@@ -73,7 +73,7 @@
             </aside>
         </div>
     </div>
-    <form id="auth-submit" name="auth-submit" action="{{ route('crm.auth.sign-in.submit') }}" method="post">
+    <form id="auth-submit" name="auth-submit" action="{{ route('its.auth.sign-in.submit') }}" method="post">
         @csrf
     </form>
 @endsection

@@ -44,10 +44,10 @@ class LoginApiController extends Controller
                 session()->regenerate();
 
                 if (auth()->user()->status === UserInterface::STATUS_ACTIVE) {
-                    return (session()->has('url.intended')) ? redirect(session()->get('url.intended')) : redirect()->route('crm.app.home');
+                    return (session()->has('url.intended')) ? redirect(session()->get('url.intended')) : redirect()->route('its.app.home');
                 }
 
-                return redirect()->route('crm.auth.sign-in')->withErrors(['account' => 'A sua conta não esta ativa.']);
+                return redirect()->route('its.auth.sign-in')->withErrors(['account' => 'A sua conta não esta ativa.']);
             }
 
             $user = User::where('username', $request->input('username'))
@@ -77,10 +77,10 @@ class LoginApiController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
         } else {
-            return redirect()->route('crm.auth.sign-in');
+            return redirect()->route('its.auth.sign-in');
         }
 
-        return redirect()->route('crm.auth.sign-in');
+        return redirect()->route('its.auth.sign-in');
     }
 
 }

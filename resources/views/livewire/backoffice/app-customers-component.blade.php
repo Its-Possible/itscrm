@@ -1,11 +1,11 @@
 <div>
-    <div class="row mb-3">
+    <div class="row mb-4" x-data="customers">
         <div class="col-md-5 offset-2">
             <h1 class="mt-3 mb-3">Clientes</h1>
         </div>
         <div class="col-md-3 text-right pt-3">
-            <button class="btn btn-filter inverter">Adicionar Cliente</button>
-            <button class="btn btn-filter">Importar</button>
+            <a class="btn btn-filter inverter" href="{{ route('its.app.customers.create') }}">Adicionar Cliente</a>
+            <button class="btn btn-filter" @click="open = true">Importar</button>
         </div>
     </div>
     <div class="row mb-3">
@@ -77,4 +77,14 @@
         <div class="col-md-8 offset-2">
         </div>
     </div>
+
+    <section id="its-app-customers-import"
+             role="dialog"
+             tabindex="-1"
+             x-show="isModalOpen"
+             x-on:click.away="open = false"
+             x-cloak
+             x-transition>
+        askldhfkjhsadkfjhdashf
+    </section>
 </div>
