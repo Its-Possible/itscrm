@@ -4,10 +4,10 @@ use Illuminate\Support\Facades\Crypt;
 
 function encrypt_data($value): string
 {
-    return Crypt::encrypt($value);
+    return Crypt::encryptString($value);
 }
 
 function decrypt_data($value): string
 {
-    return Crypt::decrypt($value);
+    return !is_null($value) ? Crypt::decryptString($value) : "";
 }

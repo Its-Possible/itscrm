@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
     {
 
         $user = new User();
-        $user->firstname = Crypt::encrypt("Webmaster");
-        $user->lastname = Crypt::encrypt("");
+        $user->firstname = encrypt_data("Webmaster");
+        $user->lastname = encrypt_data("master");
         $user->username = "webmaster";
         $user->email = "webmaster@localhost";
         $user->password = bcrypt("password");
@@ -32,9 +32,10 @@ class UserSeeder extends Seeder
         //Send email to webmaster@localhost
         $user->notify(new ActivactionAccountNotification);
 
+
         $user = new User();
-        $user->firstname = Crypt::encrypt("Administrador");
-        $user->lastname = Crypt::encrypt("");
+        $user->firstname = encrypt_data("Administrador");
+        $user->lastname = encrypt_data("admin");
         $user->username = "administrador";
         $user->email = "admin@localhost";
         $user->password = bcrypt("password");
@@ -50,8 +51,8 @@ class UserSeeder extends Seeder
         //
         if(env('APP_DEBUG')) {
             $user = new User();
-            $user->firstname = Crypt::encrypt("Eduardo");
-            $user->lastname = Crypt::encrypt("Bessa");
+            $user->firstname = encrypt_data("Eduardo");
+            $user->lastname = encrypt_data("Bessa");
             $user->username = "eduardo.bessa";
             $user->email = "eduardo.bessa@localhost";
             $user->password = bcrypt("password");

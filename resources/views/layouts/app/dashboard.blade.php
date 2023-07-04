@@ -15,7 +15,7 @@
 <body>
 <div id="app">
     <header id="app-header">
-        <nav class="navbar navbar-expand-lg bg-transparent">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">{{ config('app.name') }}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

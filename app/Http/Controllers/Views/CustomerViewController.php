@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Views;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Repositories\CustomerRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -22,15 +23,13 @@ class CustomerViewController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index()
     {
         //
-        $contacts = $this->customerRepository->all();
-
-        return response()->json($contacts);
+        return view('pages.customers.index');
     }
 
-    /**
+    /**<
      * Show the form for creating a new resource.
      */
     public function create(): Response

@@ -50,3 +50,53 @@ h5 {
     font-size: 1.1rem;
     font-weight: normal;
 }
+
+.text-bold {
+    font-weight: bold;
+}
+
+.btn-filter {
+    margin: 8px;
+    color: #19202E;
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid #19202E;
+    background: #fff;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+.btn-filter:hover {
+    margin: 8px;
+    color: #fff;
+    background: #19202E;
+    border: 1px solid #19202E;
+}
+
+.btn-filter.inverter {
+    margin: 8px;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid #19202E;
+    background: #19202E;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+.btn-filter.inverter:hover {
+    margin: 8px;
+    color: #19202E;
+    background: #fff;
+    border: 1px solid #19202E;
+}
+
+.btn-filter span {
+    color: #909DAE;
+}
+
+.text-right {
+    text-align: right;
+}

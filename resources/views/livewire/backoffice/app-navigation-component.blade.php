@@ -2,39 +2,49 @@
     <nav id="app-navigation">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-10 offset-1">
+                <div class="col-md-8 offset-2">
                     <ul>
-                        <li class="@if($page === 'alerts') active @endif" wire:click="setPage('alerts')">
-                            Alerts
+                        <li class="@if(Route::current()->getName() === 'its.app.alerts') active @endif">
+                            Alertas
                             <span
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3
                                 <span class="visually-hidden">unread messages</span>
                             </span>
                         </li>
-                        <li class="@if($page === 'statistics') active @endif" wire:click="setPage('statistics')">
-                            Statístics
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">4
-                                <span class="visually-hidden">unread messages</span>
-                            </span>
+                        <li class="@if(Route::current()->getName() === 'its.app.statistics') active @endif">
+                            <a href="{{ route('its.app.statistics') }}">
+                                Estatísticas
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">4
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+
                         </li>
-                        <li class="@if($page === 'leads') active @endif" wire:click="setPage('leads')">Leads</li>
-                        <li class="@if($page === 'mails') active @endif" wire:click="setPage('mails')">E-mails</li>
-                        <li class="@if($page === 'customers') active @endif" wire:click="setPage('customers')">
-                            Customers
+                        <li class="@if(Route::current()->getName() === 'its.app.leads') active @endif">Leads</li>
+                        <li class="@if(Route::current()->getName() === 'its.app.mails') active @endif">E-mails</li>
+                        <li class="@if(Route::current()->getName() === 'its.app.customers') active @endif">
+                            <a href="{{ route('its.app.customers') }}">
+                                Clientes
+                            </a>
                         </li>
-                        <li class="@if($page === 'projects') active @endif" wire:click="setPage('projects')">Projects
+                        <li class="@if(Route::current()->getName() === 'its.app.projects') active @endif">Projetos
                         </li>
-                        <li class="@if($page === 'services') active @endif" wire:click="setPage('services')">Services
+                        <li class="@if(Route::current()->getName() === 'its.app.services') active @endif">Serviços
+
                         </li>
                     </ul>
                 </div>
                 <div wire:loading.delay.shortest>...</div>
-                @switch($page)
-                    @case('statistics')
-                        <div wire:loading.remove>
-                            <div class="row">
-                                <livewire:backoffice.components.app-statistics-component/>
-                            </div>
+                @switch(Route::current()->getName())
+                    @case('its.app.statistics')
+                        <div class="row">
+                            <livewire:backoffice.components.app-statistics-component />
+                        </div>
+                        @break
+                    @case('its.app.customers')
+                        <div class="row">
+                            <livewire:backoffice.components.app-customers-component />
                         </div>
                         @break
                 @endswitch

@@ -32,7 +32,7 @@ class ActivactionAccountNotification extends Notification
 
     public function subject($notifiable): string
     {
-        return 'Bem-vindo ' . Crypt::decrypt($notifiable->firstname) . '!';
+        return 'Bem-vindo ' . decrypt_data($notifiable->firstname) . '!';
     }
 
     /**
@@ -42,7 +42,7 @@ class ActivactionAccountNotification extends Notification
     {
         return (new MailMessage)
             ->subject($this->subject($notifiable))
-            ->line('Olá ' . Crypt::decrypt($notifiable->firstname) . '!')
+            ->line('Olá ' . decrypt_data($notifiable->firstname) . '!')
             ->line('Nós recebemos um pedido de registo na nossa aplicação, e para confirmar o seu registo, e ativar a sua conta, por favor clique no botão abaixo.')
             ->action('Confirmar o meu registo, e ativar a minha conta', url('/auth/activate-account/' . $notifiable->ActivationAccount->token . '/'))
             ->line('Caso não tenha feito este pedido, por favor ignore este email.')

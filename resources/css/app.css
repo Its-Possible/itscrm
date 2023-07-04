@@ -11,9 +11,10 @@
 }
 
 #app-header {
-    color: #fff;
+    color: rgb(28, 29, 86);;
     height: 350px;
-    background: rgb(28, 29, 86);
+    /*background: rgb(28, 29, 86);*/
+    background: #d8e4fb;
     background-size: 100% auto;
 }
 
@@ -23,22 +24,32 @@
 
 #app-navigation ul {
     list-style: none;
-    border-bottom: 1px solid rgba(250, 255, 254, 0.3);
+    border-bottom: 1px solid rgba(28, 29, 86, 0.5);
 }
 
 #app-navigation ul li {
     padding: 14px 22px;
     position: relative;
     display: inline-block;
-    font-size: .8rem;
+    font-size: .95rem;
     border-bottom: 2px solid transparent;
+    font-family: "Roboto", sans-serif;
 }
 
 #app-navigation ul li:hover,
 #app-navigation ul li.active {
     cursor: pointer;
-    color: rgb(250, 255, 254);
-    border-bottom: 2px solid rgb(250, 255, 254);
+    color: rgb(28, 29, 86);;
+    border-bottom: 2px solid rgb(28, 29, 86);;
+}
+
+#app-navigation ul li.active {
+    font-weight: bold;
+}
+
+#app-navigation ul li a {
+    color: rgb(28, 29, 86);;
+    text-decoration: none;
 }
 
 .app-navigation-square {
@@ -90,6 +101,64 @@
 }
 
 #app-main {
+    position: relative;
+    top: 18vh;
     min-height: 50vh;
-    background: rgba(239, 239, 239, 0.5);
+}
+
+#its-app-users-table {
+    border: 0;
+    border-radius: 8px;
+}
+
+#its-app-users-table thead {
+    font-size: 14px;
+}
+
+#its-app-users-table thead th {
+    padding: 2px 16px;
+    color: #909DAE;
+    background: #F0F5F9;
+    font-family: "Roboto", sans-serif;
+    vertical-align: middle;
+    border: 0;
+    font-weight: normal;
+}
+
+#its-app-users-table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+#its-app-users-table thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
+#its-app-users-table tbody td {
+    padding: 2px 16px;
+    vertical-align: middle;
+    border: 0;
+    font-family: "PT Sans", sans-serif;
+    background: #fff;
+}
+
+#its-app-users-table tbody td img {
+    margin-right: 15px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+#its-app-users-table thead th input[type="checkbox"],
+#its-app-users-table tbody td input[type="checkbox"] {
+    margin-top: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 16px !important;
+    border: 0;
+}
+
+
+#its-app-users-table tbody td small {
+    color: #bbb;
+    font-weight: normal;
 }
