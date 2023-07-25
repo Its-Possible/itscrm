@@ -182,12 +182,19 @@ html, body {
 }
 
 #its-app-customers-import {
-    display: flex;
-    visibility: hidden;
-    align-items: center;
-    justify-content: center;
     position: fixed;
-    z-index: 10;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(0,0,0,0.75);
+}
+
+#its-app-customers-import-content {
+    padding: 18px;
+    margin: 20vh auto;
+    width: 50%;
+    height: 60vh;
+    background: #fff;
+    border-radius: 6px;
 }

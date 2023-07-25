@@ -198,7 +198,8 @@ return [
         App\Providers\GoogleOAuthServiceProvider::class,
         App\Providers\FacebookOAuthServiceProvider::class,
         App\Providers\MailchimpOAuthServiceProvider::class,
-        App\Providers\GithubOAuthServiceProvider::class
+        App\Providers\GithubOAuthServiceProvider::class,
+        App\Providers\BrevoServiceProvider::class,
 
 
     ],

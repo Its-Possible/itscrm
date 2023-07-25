@@ -3,6 +3,8 @@
 export default () => ({
     open: false,
 
-    fileupload() {
+    test() {
+        this.open = true;
+        console.log(this.open);
     }
 });

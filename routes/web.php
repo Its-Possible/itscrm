@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\LoginApiController;
 use App\Http\Controllers\Views\Auth\LoginViewController;
 use App\Http\Controllers\Views\Auth\RegisterViewController;
 use App\Http\Controllers\Views\CustomerViewController;
+use App\Http\Controllers\Views\MailViewController;
 use App\Http\Controllers\Views\PageStaticViewController;
 use App\Http\Controllers\Views\StatisticViewController;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->get('/', function () {
-    return redirect()->route('app.home');
+    return redirect()->route('its.app.home');
 });
 
 Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
@@ -29,7 +30,11 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
     Route::get('/alerts', [PageStaticViewController::class, 'home'])->name('alerts');
     Route::get('/statistics', [StatisticViewController::class, 'index'])->name('statistics');
     Route::get('/leads', [CustomerViewController::class, 'index'])->name('leads');
-    Route::get('/emails', [CustomerViewController::class, 'index'])->name('emails');
+
+    Route::prefix('/mails')->name('mails.')->group(function () {
+        Route::get('/', [MailViewController::class, 'index'])->name('index');
+    });
+
     Route::prefix('/customers')->name('customers.')->group(function () {
         Route::get('/',  [CustomerViewController::class, 'index'])->name('index');
         Route::get('/create',  [CustomerViewController::class, 'create'])->name('create');

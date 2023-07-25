@@ -22,7 +22,11 @@
 
                         </li>
                         <li class="@if(Route::current()->getName() === 'its.app.leads') active @endif">Leads</li>
-                        <li class="@if(Route::current()->getName() === 'its.app.mails') active @endif">E-mails</li>
+                        <li class="@if(Route::current()->getName() === 'its.app.mails') active @endif">
+                            <a href="{{ route('its.app.mails.index') }}">
+                                E-mails
+                            </a>
+                        </li>
                         <li class="@if(Route::current()->getName() === 'its.app.customers.index') active @endif">
                             <a href="{{ route('its.app.customers.index') }}">
                                 Clientes
@@ -40,6 +44,11 @@
                     @case('its.app.statistics')
                         <div class="row">
                             <livewire:backoffice.components.app-statistics-component />
+                        </div>
+                        @break
+                    @case('its.app.mails')
+                        <div class="row">
+                            <livewire:backoffice.components.app-mails-component />
                         </div>
                         @break
                     @case('its.app.customers.index')
