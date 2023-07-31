@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Views;
 
+use App\Helpers\Dictionaries\CampaignDictionary;
 use App\Http\Controllers\Controller;
 use App\Services\BrevoService;
 use Illuminate\Contracts\Foundation\Application;
@@ -13,7 +14,8 @@ use Illuminate\Http\Response;
 
 class MailViewController extends Controller
 {
-    protected BrevoService $brevoService;
+
+    private BrevoService $brevoService;
 
     public function __construct(BrevoService $brevoService)
     {
@@ -26,10 +28,9 @@ class MailViewController extends Controller
     public function index()
     {
         //
+        $campaigns = $this->brevoService->fetchAllCampaigns();
 
-        $this->brevoService->fetchCampaigns();
-
-
-        return view('pages.mails.index');
+        return view('pages.mails.index')
+            ->withCampaigns($this->brevoService->fetchAllCampaigns());
     }
 }

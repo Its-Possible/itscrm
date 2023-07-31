@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\Dictionaries\CampaignDictionary;
 use Brevo\Client\Api\AccountApi;
 use Brevo\Client\Api\EmailCampaignsApi;
 use Brevo\Client\Configuration;
@@ -39,24 +40,99 @@ class BrevoService {
             $response = $this->api_instance->getEmailCampaigns();
             dd($response);
         }catch(\Exception $exception){
-            echo 'Exception when calling EmailCampaignsApi->getEmailCampaigns: ', $e->getMessage(), PHP_EOL;
+            echo 'Exception when calling EmailCampaignsApi->getEmailCampaigns: ', $exception->getMessage(), PHP_EOL;
         }
     }
 
-    public function fetchCampaigns(): void
+    public function countCampaigns(): int
+    {
+        try {
+            $this->api_instance = new EmailCampaignsApi(new Client, $this->configuration);
+            $response = $this->api_instance->getEmailCampaigns();
+
+            return $response['count'];
+
+        }catch(\Exception $exception){
+            echo 'Exception when calling EmailCampaignsApi->getEmailCampaigns: ', $exception->getMessage(), PHP_EOL;
+        }
+
+        return 0;
+    }
+
+    public function fetchAllCampaigns() : array
     {
         try {
            $this->api_instance = new EmailCampaignsApi(new Client, $this->configuration);
            $response = $this->api_instance->getEmailCampaigns();
-           dd($response);
+
+            foreach($response['campaigns'] as $index => $campaign) {
+
+                $campaign_dictionary = new CampaignDictionary();
+                foreach(array_keys($campaign) as $property)
+                {
+                    $campaign_dictionary->$property = $campaign[$property];
+                }
+
+                $campaigns_dictionaries[] = $campaign_dictionary;
+            }
+
+            return $campaigns_dictionaries;
+
         }catch(\Exception $exception){
-            echo 'Exception when calling EmailCampaignsApi->getEmailCampaigns: ', $e->getMessage(), PHP_EOL;
+            echo 'Exception when calling EmailCampaignsApi->getEmailCampaigns: ', $exception->getMessage(), PHP_EOL;
         }
+
+        return [];
     }
 
-    public function findCampaign(int $id)
+    public function fetchCampaigns($type = null, $status = null, $statistics = null, $startDate = null, $endDate = null, $limit = '50', $offset = '0', $sort = 'desc', $excludeHtmlContent = null) : array
     {
+        try {
+            $this->api_instance = new EmailCampaignsApi(new Client, $this->configuration);
+            $response = $this->api_instance->getEmailCampaigns($type, $status, $statistics, $startDate, $endDate, $limit, $offset, $sort, $excludeHtmlContent);
 
+            foreach($response['campaigns'] as $index => $campaign) {
+
+                $campaign_dictionary = new CampaignDictionary();
+                foreach(array_keys($campaign) as $property)
+                {
+                    $campaign_dictionary->$property = $campaign[$property];
+                }
+
+                $campaigns_dictionaries[] = $campaign_dictionary;
+            }
+
+            return $campaigns_dictionaries;
+
+        }catch(\Exception $exception){
+            echo 'Exception when calling EmailCampaignsApi->getEmailCampaigns: ', $exception->getMessage(), PHP_EOL;
+        }
+
+        return [];
+    }
+
+    public function findCampaign(int $id) : object|array
+    {
+        try {
+            $this->api_instance = new EmailCampaignsApi(new Client, $this->configuration);
+            $response = $this->api_instance->getEmailCampaign($id);
+
+            foreach($response['campaigns'] as $index => $campaign) {
+
+                $campaign_dictionary = new CampaignDictionary();
+                foreach(array_keys($campaign) as $property)
+                {
+                    $campaign_dictionary->$property = $campaign[$property];
+                }
+            }
+
+            return $campaign_dictionary;
+
+        }catch(\Exception $exception){
+            echo 'Exception when calling EmailCampaignsApi->getEmailCampaigns: ', $exception->getMessage(), PHP_EOL;
+        }
+
+        return [];
     }
 
     public function getCustomers()
