@@ -21,6 +21,7 @@
                             </a>
 
                         </li>
+                        <li class="@if(Route::current()->getName() === 'its.app.campaigns') active @endif">Campanhas</li>
                         <li class="@if(Route::current()->getName() === 'its.app.leads') active @endif">Leads</li>
                         <li class="@if(Route::current()->getName() === 'its.app.mails') active @endif">
                             <a href="{{ route('its.app.mails.index') }}">

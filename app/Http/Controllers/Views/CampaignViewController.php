@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers\Views;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Campaign;
+use App\Services\BrevoService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 
 class CampaignViewController extends Controller
 {
+
+    private BrevoService $brevo;
+
+    public function __construct(BrevoService $brevoService)
+    {
+        $this->brevo = $brevoService;
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index()
     {
         //
+        dd(Campaign::all());
+
+
         return view('pages.campaigns.index');
     }
 

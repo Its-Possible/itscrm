@@ -120,9 +120,4 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
-
-    'brevo' => [
-        'api_key' => env('BREVO_API_KEY', null)
-    ]
-
 ];

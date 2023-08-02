@@ -7,6 +7,7 @@ use App\Http\Controllers\Views\CustomerViewController;
 use App\Http\Controllers\Views\MailViewController;
 use App\Http\Controllers\Views\PageStaticViewController;
 use App\Http\Controllers\Views\StatisticViewController;
+use App\Http\Controllers\Views\CampaignViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,7 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
     Route::get('/home', [PageStaticViewController::class, 'home'])->name('home');
     Route::get('/alerts', [PageStaticViewController::class, 'home'])->name('alerts');
     Route::get('/statistics', [StatisticViewController::class, 'index'])->name('statistics');
+    Route::get('/campaigns', [CampaignViewController::class, 'index'])->name('campaigns');
     Route::get('/leads', [CustomerViewController::class, 'index'])->name('leads');
 
     Route::prefix('/mails')->name('mails.')->group(function () {

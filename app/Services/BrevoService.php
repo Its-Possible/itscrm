@@ -15,9 +15,9 @@ class BrevoService {
     private mixed $api_instance;
     private Configuration $configuration;
 
-    public function __construct(string $api_key)
+    public function __construct()
     {
-        $this->api_key = $api_key;
+        $this->api_key = config('services.brevo.api_key');
         $this->authenticate();
     }
 
@@ -33,12 +33,12 @@ class BrevoService {
         }
     }
 
-    public function getCampaigns(): void
+    public function getCampaigns(): mixed
     {
         try {
             $this->api_instance = new EmailCampaignsApi(new Client, $this->configuration);
             $response = $this->api_instance->getEmailCampaigns();
-            dd($response);
+            return $response['campaigns'];
         }catch(\Exception $exception){
             echo 'Exception when calling EmailCampaignsApi->getEmailCampaigns: ', $exception->getMessage(), PHP_EOL;
         }

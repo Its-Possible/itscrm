@@ -14,9 +14,7 @@ class BrevoServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind(\App\Services\BrevoService::class, function ($app) {
-            return new \App\Services\BrevoService(
-                api_key: config('mail.brevo.api_key')
-            );
+            return new \App\Services\BrevoService();
         });
     }
 
