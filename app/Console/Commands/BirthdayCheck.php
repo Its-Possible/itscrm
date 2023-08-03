@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendBirthdayEmailJob;
+use App\Models\Customer;
 use Illuminate\Console\Command;
 
 class BirthdayCheck extends Command
@@ -11,14 +13,14 @@ class BirthdayCheck extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'birthday:list';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'List all birthdays today';
 
     /**
      * Execute the console command.
@@ -26,8 +28,15 @@ class BirthdayCheck extends Command
     public function handle(): void
     {
         //
-        $today = now()->format('d-m');
+        $today = now()->format('m-d');
 
-        
+        $customers = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') LIKE '{$today}'")->get();
+
+        foreach($customers as $customer)
+        {
+            $this->info(decrypt_data($customer->email));
+            SendBirthdayEmailJob::dispatch($customer);
+        }
+
     }
 }

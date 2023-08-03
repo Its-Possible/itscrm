@@ -23,6 +23,7 @@ class CustomerFactory extends Factory
             'email' => encrypt_data($this->faker->unique()->email),
             'phone' => encrypt_data($this->faker->phoneNumber),
             'mobile' => encrypt_data($this->faker->phoneNumber),
+            'birthday' => $this->faker->date,
             'vat' => encrypt_data($this->faker->numberBetween(100000000, 999999999))
         ];
     }

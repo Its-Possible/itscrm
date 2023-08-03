@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();
+            $table->date('birthday')->nullable();
             $table->string('zip')->nullable();
             $table->string('website')->nullable();
             $table->string('vat')->default('CONSUMIDOR FINAL');
