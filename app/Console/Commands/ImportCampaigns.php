@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\ProcessImportCampaigns;
 use App\Models\Campaign;
 use App\Services\BrevoService;
 use Illuminate\Console\Command;
@@ -35,21 +36,22 @@ class ImportCampaigns extends Command
         $this->info("\nImporting campaigns...\n");
 
         foreach ($this->brevo->getCampaigns() as $campaign) {
-            if(Campaign::where("code", "cbrevo#" . $campaign['id'])->count() == 0) {
+            if (Campaign::where("code", "cbrevo#" . $campaign['id'])->count() == 0) {
                 $import_campaign = new Campaign();
-                $import_campaign->code  = "cbrevo#" . $campaign['id'];
+                $import_campaign->code = "cbrevo#" . $campaign['id'];
                 $import_campaign->name = $campaign['name'];
                 $import_campaign->subject = $campaign['subject'];
                 $import_campaign->previewText = $campaign['previewText'];
                 $import_campaign->htmlContent = $campaign['htmlContent'];
                 $import_campaign->local = 'brevo';
 
-                if($import_campaign->save())
+                if ($import_campaign->save())
                     $this->comment("{$import_campaign->name} Campaign imported with sucessfully!");
                 else
                     $this->warn("\n{$import_campaign->name} Campaign not imported with sucessfully!\n");
             }
         }
 
+        $this->info("Imported with sucessfully!");
     }
 }
