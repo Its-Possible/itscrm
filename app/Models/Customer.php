@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     use HasFactory;
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'tags_customers', 'id', 'customer_id');
+    }
 }

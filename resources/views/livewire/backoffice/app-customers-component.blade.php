@@ -68,8 +68,8 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Ver</a>
-                                    <a class="dropdown-item" href="#">Editar</a>
+                                    <a class="dropdown-item" href="{{ route('its.app.customers.show', $customer->slug) }}">Ver</a>
+                                    <a class="dropdown-item" href="{{ route('its.app.customers.edit', $customer->slug) }}">Editar</a>
                                     <hr class="dropdown-divider" />
                                     <a class="dropdown-item text-danger" href="#">Apagar</a>
                                 </div>

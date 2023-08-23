@@ -46,17 +46,28 @@ class CustomerViewController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): Response
+    public function show(string $slug): Response
     {
         //
+        dd($slug);
+
+        return response()->json([
+            "message" => "Editing...",
+            "slug" => $slug
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): Response
+    public function edit(string $slug): Response
     {
         //
+        dd($slug);
+
+        return response()->json([
+            "message" => "Editing...",
+        ]);
     }
 
     /**

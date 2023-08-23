@@ -19,3 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/users', [App\Http\Controllers\Api\UserApiController::class, 'index']);
+Route::get('/tags', [App\Http\Controllers\Api\TagApiController::class, 'index']);
+Route::get('/tags/relationship', [App\Http\Controllers\Api\TagApiController::class, 'relationship']);
+
+Route::get('/customers', [App\Http\Controllers\Api\CustomerApiController::class, 'index']);

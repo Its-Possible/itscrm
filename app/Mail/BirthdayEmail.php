@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Campaign;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -39,8 +40,10 @@ class BirthdayEmail extends Mailable
      */
     public function content(): Content
     {
+        $campaign = Campaign::find(1);
+
         return new Content(
-            view: 'mails.birthday',
+            htmlString: $campaign->htmlContent,
             with: ['customer' => $this->customer]
         );
     }

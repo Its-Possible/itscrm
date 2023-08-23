@@ -12,4 +12,9 @@ class Campaign extends Model
     protected $fillable = [
         'code', 'name', 'subject', 'previewText', 'htmlContent', 'scheduledAt', 'status', 'local'
     ];
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'tags_campaigns');
+    }
 }

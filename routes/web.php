@@ -39,7 +39,10 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
 
     Route::prefix('/customers')->name('customers.')->group(function () {
         Route::get('/',  [CustomerViewController::class, 'index'])->name('index');
+        Route::get('/{slug}',  [CustomerViewController::class, 'show'])->name('show');
         Route::get('/create',  [CustomerViewController::class, 'create'])->name('create');
+        Route::get('/{slug}/edit', [CustomerViewController::class, 'edit'])->name('edit');
+        Route::patch('/{slug}', [CustomerApiController::class, 'edit'])->name('update');
         Route::get('/import',  [CustomerViewController::class, 'import'])->name('import');
     });
     Route::get('/projects', [CustomerViewController::class, 'index'])->name('projects');

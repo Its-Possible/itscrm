@@ -26,6 +26,7 @@ return new class extends Migration
             $table->date('birthday')->nullable();
             $table->string('zip')->nullable();
             $table->string('website')->nullable();
+            $table->string('slug')->unique();
             $table->string('vat')->default('CONSUMIDOR FINAL');
             $table->timestamps();
         });

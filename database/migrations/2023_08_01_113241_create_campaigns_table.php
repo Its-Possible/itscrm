@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('previewText');
             $table->longText('htmlContent');
             $table->string('scheduledAt')->nullable();
+            $table->dateTime('scheduledStart')->nullable();
+            $table->dateTime('scheduledEnd')->nullable();
             $table->string('status')->default(CampaignInterface::STATUS_DRAFT);
             $table->string('local')->default('local');
             $table->timestamps();
