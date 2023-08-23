@@ -12,7 +12,7 @@ class CustomerApiController extends Controller
     public function index(Request $request)
     {
         return response()->json([
-            'data' => Customer::with('tags')->get()
+            'data' => Customer::with('tags')->limit(5)->get()
         ]);
     }
 

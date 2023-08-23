@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <livewire:backoffice.app-mails-component />
+    <livewire:backoffice.app-campaigns-component />
 @endsection
 
 @push('scripts')

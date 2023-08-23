@@ -47,9 +47,9 @@
                             <livewire:backoffice.components.app-statistics-component />
                         </div>
                         @break
-                    @case('its.app.mails')
+                    @case('its.app.campaigns')
                         <div class="row">
-                            <livewire:backoffice.components.app-mails-component />
+                            <livewire:backoffice.components.app-campaigns-component />
                         </div>
                         @break
                     @case('its.app.customers.index')

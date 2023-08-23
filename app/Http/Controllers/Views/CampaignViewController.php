@@ -25,9 +25,6 @@ class CampaignViewController extends Controller
     public function index()
     {
         //
-        dd(Campaign::all());
-
-
         return view('pages.campaigns.index');
     }
 
