@@ -23,7 +23,7 @@ class ImportCampaigns extends Command
      *
      * @var string
      */
-    protected $description = 'Import campaigns from services';
+    protected $description = 'Import campaigns and updating from services';
 
     /**
      * Execute the console command.
@@ -33,10 +33,14 @@ class ImportCampaigns extends Command
         //
         $this->brevo = new BrevoService();
 
-        $this->info("\nImporting campaigns...\n");
+        $this->info("\nImporting and updating campaigns...\n");
 
-        foreach ($this->brevo->getCampaigns() as $campaign) {
-            if (Campaign::where("code", "cbrevo#" . $campaign['id'])->count() == 0) {
+        $campaignsFromService = $this->brevo->getCampaigns();
+
+        foreach ($campaignsFromService as $campaign) {
+            $selectedCampaignByCode = Campaign::where("code", "cbrevo#" . $campaign['id']);
+
+            if ($selectedCampaignByCode->count() == 0) {
                 $import_campaign = new Campaign();
                 $import_campaign->code = "cbrevo#" . $campaign['id'];
                 $import_campaign->name = $campaign['name'];
@@ -49,9 +53,25 @@ class ImportCampaigns extends Command
                     $this->comment("{$import_campaign->name} Campaign imported with sucessfully!");
                 else
                     $this->warn("\n{$import_campaign->name} Campaign not imported with sucessfully!\n");
+            }else {
+
+                $updateCampaign = $selectedCampaignByCode->first();
+                $updateCampaign->name = $campaign['name'];
+                $updateCampaign->subject = $campaign['subject'];
+                $updateCampaign->previewText = $campaign['previewText'];
+                $updateCampaign->htmlContent = $campaign['htmlContent'];
+
+                if ($updateCampaign->save())
+                    $this->comment("{$updateCampaign->name} Campaign updated with sucessfully!");
+                else
+                    $this->warn("\n{$updateCampaign->name} Campaign not updated with sucessfully!\n");
             }
         }
 
-        $this->info("Imported with sucessfully!");
+        $campaignsFromDatabase = Campaign::all();
+
+        // TODO: Delete all campaigns deleted on Brevo
+
+        $this->info("Imported and updated campaigns with sucessfully!");
     }
 }

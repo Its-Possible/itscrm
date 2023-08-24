@@ -2,11 +2,26 @@
 
 namespace App\Http\Livewire\Backoffice;
 
-use App\Models\Campaign;
 use Livewire\Component;
+use App\Models\Campaign;
+use Illuminate\Support\Facades\Artisan;
 
 class AppCampaignsComponent extends Component
 {
+    public function import()
+    {
+        Artisan::call('import:campaigns');
+
+        $this->emit('refreshComponent');
+    }
+
+    public function delete(string $code)
+    {
+        Campaign::where('code', $code)->deleteOrFail();
+
+        $this->emit('refreshComponent');
+    }
+
     public function render()
     {
 

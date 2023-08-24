@@ -11,3 +11,8 @@ function decrypt_data($value): string
 {
     return !is_null($value) ? Crypt::decryptString($value) : "";
 }
+
+function getCampaignIdFromCode(string $code): string
+{
+    return str_replace('#', '', strstr($code, "#"));
+}

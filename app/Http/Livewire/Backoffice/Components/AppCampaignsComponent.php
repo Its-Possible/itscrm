@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Backoffice\Components;
 
+use App\Console\Commands\ImportCampaigns;
 use App\Models\Campaign;
 use Livewire\Component;
 

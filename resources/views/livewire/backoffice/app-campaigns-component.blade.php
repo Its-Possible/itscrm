@@ -4,7 +4,7 @@
             <h1 class="mt-3 mb-3">Campanhas</h1>
         </div>
         <div class="col-md-3 text-right pt-3">
-            <button class="btn btn-filter" wire:click="$set('modal', true)">Importar</button>
+            <button class="btn btn-filter" wire:click="import">Importar</button>
         </div>
     </div>
     <div class="row mb-3">
@@ -67,10 +67,10 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="{{ route('its.app.customers.show', $campaign->id) }}">Ver</a>
-                                    <a class="dropdown-item" href="{{ route('its.app.customers.edit', $campaign->id) }}">Editar</a>
+                                    <a class="dropdown-item" href="{{ route('its.app.campaigns.show', $campaign->code) }}">Ver</a>
+                                    <a class="dropdown-item" href="{{ route('its.app.campaigns.edit', $campaign->code) }}">Editar</a>
                                     <hr class="dropdown-divider" />
-                                    <a class="dropdown-item text-danger" href="#">Apagar</a>
+                                    <a class="dropdown-item text-danger" wire:click="delete({{ $campaign->code }})">Apagar</a>
                                 </div>
                             </div>
                         </td>

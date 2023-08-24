@@ -51,6 +51,7 @@ class CampaignViewController extends Controller
     public function show(string $id): Response
     {
         //
+        return response()->json($id);
     }
 
     /**

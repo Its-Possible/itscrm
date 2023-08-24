@@ -30,11 +30,20 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
     Route::get('/home', [PageStaticViewController::class, 'home'])->name('home');
     Route::get('/alerts', [PageStaticViewController::class, 'home'])->name('alerts');
     Route::get('/statistics', [StatisticViewController::class, 'index'])->name('statistics');
-    Route::get('/campaigns', [CampaignViewController::class, 'index'])->name('campaigns');
+//    Route::get('/campaigns', [CampaignViewController::class, 'index'])->name('campaigns');
     Route::get('/leads', [CustomerViewController::class, 'index'])->name('leads');
 
     Route::prefix('/mails')->name('mails.')->group(function () {
         Route::get('/', [MailViewController::class, 'index'])->name('index');
+    });
+
+    Route::prefix('/campaigns')->name('campaigns.')->group(function () {
+        Route::get('/', [CampaignViewController::class, 'index'])->name('index');
+        Route::get('/{slug}', [CampaignViewController::class, 'show'])->name('show');
+        Route::get('/create', [CampaignViewController::class, 'create'])->name('create');
+        Route::get('/{slug}/edit', [CampaignViewController::class, 'edit'])->name('edit');
+        Route::patch('/{slug}', [CampaignApiViewController::class, 'update'])->name('update');
+        Route::delete('{slug}', [CampaignViewController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('/customers')->name('customers.')->group(function () {
