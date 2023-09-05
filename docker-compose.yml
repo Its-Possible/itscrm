@@ -23,6 +23,7 @@ services:
         image: oxy-php8.1
         ports:
             - 80:80
+            - 9005:9005
         volumes:
             - .:/var/www/html
             - W:/ItsPossible/06_IT/0601_Dockerfiles/060101_Configurations/06010103_Configurations/0801010301_Apache:/etc/apache2/sites-available/

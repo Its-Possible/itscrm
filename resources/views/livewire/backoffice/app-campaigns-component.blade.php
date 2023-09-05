@@ -5,6 +5,7 @@
         </div>
         <div class="col-md-3 text-right pt-3">
             <button class="btn btn-filter" wire:click="import">Importar</button>
+            <a class="btn btn-filter" href="{{ route('its.app.campaigns.create') }}">Nova campanha</a>
         </div>
     </div>
     <div class="row mb-3">
@@ -12,14 +13,13 @@
             <div class="row">
                 <div class="col-md-10">
                     <button class="btn btn-filter">Adicionar filtro <i class="ri-add-fill ml-2"></i></button>
-                    <button class="btn btn-filter"><span>Tag:</span> Filiado <i class="ri-close-fill ml-2"></i></button>
-                    <button class="btn btn-filter"><span>Tipo:</span> Pessoa <i class="ri-close-fill ml-2"></i></button>
-                    <button class="btn btn-filter"><span>Pais:</span> Portugal & Estados Unidos<i
-                            class="ri-close-fill ml-2"></i></button>
+{{--                    <button class="btn btn-filter"><span>Tag:</span> Filiado <i class="ri-close-fill ml-2"></i></button>--}}
+{{--                    <button class="btn btn-filter"><span>Tipo:</span> Pessoa <i class="ri-close-fill ml-2"></i></button>--}}
+{{--                    <button class="btn btn-filter"><span>Pais:</span> Portugal & Estados Unidos--}}
+{{--                        <i class="ri-close-fill ml-2"></i>--}}
+{{--                    </button>--}}
                 </div>
-                <div class="col-md-2 text-right pt-3">
-                    {{ $campaignsCounter }} Encontrados
-                </div>
+                <div class="col-md-2 text-right pt-3">{{ $campaignsCounter }} Encontrados</div>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
                 <tr>
                     <th><input type="checkbox" id="its-app-users-all" value="all"/></th>
                     <th>Campanha</th>
-                    <th>importado em</th>
+                    <th>Importado em</th>
                     <th>Importado de</th>
                     <th>Tags</th>
                     <th>Estado</th>
@@ -45,9 +45,7 @@
                 @forelse($campaigns as $index => $campaign)
                     <tr data-index="{{ $index }}">
                         <td><input type="checkbox" id="its-app-users-all" value="{{ $index }}"/></td>
-                        <td class="text-bold">
-                            {{ $campaign->name }}
-                        </td>
+                        <td class="text-bold">{{ $campaign->name }}</td>
                         <td class="text-bold">{{ date('D d M, H:i', strtotime($campaign->created_at)) }}</td>
                         <td class="text-bold">{{ ucfirst($campaign->local) }}</td>
                         <td>
@@ -70,15 +68,14 @@
                                     <a class="dropdown-item" href="{{ route('its.app.campaigns.show', $campaign->code) }}">Ver</a>
                                     <a class="dropdown-item" href="{{ route('its.app.campaigns.edit', $campaign->code) }}">Editar</a>
                                     <hr class="dropdown-divider" />
-                                    <a class="dropdown-item text-danger" wire:click="delete({{ $campaign->code }})">Apagar</a>
+                                    <a class="dropdown-item text-danger" wire:click="delete('{{ $campaign->code }}')">Apagar</a>
                                 </div>
                             </div>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center py-3">Neste momento não temos qualquer cliente registado!
-                        </td>
+                        <td colspan="7" class="text-center py-3">Neste momento não temos qualquer campanha registada!</td>
                     </tr>
                 @endforelse
                 </tbody>

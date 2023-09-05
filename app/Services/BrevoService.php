@@ -135,14 +135,11 @@ class BrevoService {
         return [];
     }
 
-    public function deleteCampaign(int $id): void
+    public function deleteCampaign(string $code): void
     {
         try {
             $this->api_instance = new EmailCampaignsApi(new Client, $this->configuration);
-            $response = $this->api_instance->deleteEmailCampaign($id);
-
-            dd($response);
-
+            $response = $this->api_instance->deleteEmailCampaign((int) getCampaignIdFromCode($code));
         }catch(\Exception $exception){
             echo 'Exception when calling EmailCampaignsApi->getEmailCampaigns: ', $exception->getMessage(), PHP_EOL;
         }

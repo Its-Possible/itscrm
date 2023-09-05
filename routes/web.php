@@ -39,8 +39,8 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
 
     Route::prefix('/campaigns')->name('campaigns.')->group(function () {
         Route::get('/', [CampaignViewController::class, 'index'])->name('index');
-        Route::get('/{slug}', [CampaignViewController::class, 'show'])->name('show');
         Route::get('/create', [CampaignViewController::class, 'create'])->name('create');
+        Route::get('/{slug}', [CampaignViewController::class, 'show'])->name('show');
         Route::get('/{slug}/edit', [CampaignViewController::class, 'edit'])->name('edit');
         Route::patch('/{slug}', [CampaignApiViewController::class, 'update'])->name('update');
         Route::delete('{slug}', [CampaignViewController::class, 'delete'])->name('delete');

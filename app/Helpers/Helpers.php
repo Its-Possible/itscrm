@@ -16,3 +16,4 @@ function getCampaignIdFromCode(string $code): string
 {
     return str_replace('#', '', strstr($code, "#"));
 }
+

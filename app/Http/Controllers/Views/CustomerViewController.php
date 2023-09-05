@@ -49,12 +49,6 @@ class CustomerViewController extends Controller
     public function show(string $slug): Response
     {
         //
-        dd($slug);
-
-        return response()->json([
-            "message" => "Editing...",
-            "slug" => $slug
-        ]);
     }
 
     /**

@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire\Backoffice;
 
+use App\Services\BrevoService;
 use Livewire\Component;
 use App\Models\Campaign;
 use Illuminate\Support\Facades\Artisan;
 
 class AppCampaignsComponent extends Component
 {
+
+    private BrevoService $brevo;
+
     public function import()
     {
         Artisan::call('import:campaigns');
@@ -17,9 +21,16 @@ class AppCampaignsComponent extends Component
 
     public function delete(string $code)
     {
-        Campaign::where('code', $code)->deleteOrFail();
+        $this->brevo = new BrevoService();
+        $campaign = Campaign::where('code', $code);
 
-        $this->emit('refreshComponent');
+        if($campaign->exists())
+        {
+            $this->brevo->deleteCampaign($campaign->firstOrFail()->code);
+            $campaign->delete();
+            $this->emit('refreshComponent');
+        }
+
     }
 
     public function render()
