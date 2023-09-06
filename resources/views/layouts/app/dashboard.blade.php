@@ -21,6 +21,8 @@
         </aside>
         <main id="app-main" class="col-md-10">
             @include('layouts.app.partials.header')
+
+            @yield('content')
         </main>
     </div>
     @stack('scripts')

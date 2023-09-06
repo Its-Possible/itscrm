@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(ActivationAccount::class);
     }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

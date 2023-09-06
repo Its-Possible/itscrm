@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DoctorApiController;
+use App\Http\Controllers\Api\MessageApiController;
 use App\Models\Doctor;
 use App\Http\Controllers\Api\Auth\LoginApiController;
 use App\Http\Controllers\Views\DoctorViewController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Views\MailViewController;
 use App\Http\Controllers\Views\PageStaticViewController;
 use App\Http\Controllers\Views\StatisticViewController;
 use App\Http\Controllers\Views\CampaignViewController;
+use App\Http\Controllers\Views\MessageViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,10 +69,9 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
         Route::get('/', [MailViewController::class, 'index'])->name('index');
     });
 
-
-    // Marketing route group
-    Route::prefix('/marketing')->name('marketing.')->group(function () {
-        Route::get('/', [PageStaticViewController::class, 'marketing'])->name('home');
+    Route::prefix('/messages')->name('messages.')->group(function () {
+        Route::get('/', [MessageViewController::class, 'index'])->name('index');
+        Route::post('/', [MessageApiController::class, 'store'])->name('store');
     });
 });
 
