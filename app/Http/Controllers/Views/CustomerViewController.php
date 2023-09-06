@@ -46,9 +46,13 @@ class CustomerViewController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug): Response
+    public function show(string $slug)
     {
         //
+        $customer = Customer::where('slug', $slug)->firstOrFail();
+
+        return view('pages.customers.show')
+            ->with(['customer' => $customer]);
     }
 
     /**

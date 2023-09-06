@@ -1,238 +1,173 @@
 @import '_base.css';
 
-html, body {
-    overflow-x: hidden;
-}
-
-.nav-link,
-.nav-link.active,
-.nav-link:hover {
-    color: #fff;
-    text-transform: uppercase;
-    font-size: .95rem;
-    letter-spacing: 1px;
-    font-family: "Roboto", sans-serif;
-}
-
-#app-header {
-    color: rgb(28, 29, 86);;
-    height: 350px;
-    /*background: rgb(28, 29, 86);*/
-    background: #d8e4fb;
-    background-size: 100% auto;
-}
-
-#app-navigation {
-
-}
-
-#app-navigation ul {
-    list-style: none;
-    border-bottom: 1px solid rgba(28, 29, 86, 0.5);
-}
-
-#app-navigation ul li {
-    padding: 14px 22px;
-    position: relative;
-    display: inline-block;
-    font-size: .95rem;
-    border-bottom: 2px solid transparent;
-    font-family: "Roboto", sans-serif;
-}
-
-#app-navigation ul li:hover,
-#app-navigation ul li.active {
-    cursor: pointer;
-    color: rgb(28, 29, 86);;
-    border-bottom: 2px solid rgb(28, 29, 86);;
-}
-
-#app-navigation ul li.active {
-    font-weight: bold;
-}
-
-#app-navigation ul li a {
-    color: rgb(28, 29, 86);;
-    text-decoration: none;
-}
-
-.app-navigation-square {
-    padding: 8px 16px;
-    margin: 10px 16px;
-    height: 190px;
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 0 6px #333;
-}
-
-
-.app-navigation-double-square {
-    height: 190px;
-}
-
-.app-navigation-landscape {
-    padding: 8px 16px;
-    margin: 6px 10px;
-    height: 90px;
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 0 6px #333;
-}
-
-.app-navigation-square h5,
-.app-navigation-landscape h5 {
-    margin-top: 8px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-}
-
-.app-navigation-square h1,
-.app-navigation-landscape h1 {
-    margin-top: 2.5vh;
-    color: #000;
-    font-size: 4rem;
-    font-family: "Roboto", sans-serif;
-}
-
-.app-navigation-square:first-child {
-    color: #888;
-    background: #fff;
-}
-
-.app-navigation-section-title {
-    font-weight: bold;
-    color: #5231a0;
-    font-size: 0.75rem;
-    line-height: 20px;
-}
-
-#app-main {
-    position: relative;
-    top: 18vh;
-    min-height: 50vh;
-}
-
-#its-app-users-table {
-    border: 0;
-    border-radius: 8px;
-    font-family: "PT Sans", sans-serif;
-}
-
-#its-app-users-table thead {
-    font-size: 14px;
-}
-
-#its-app-users-table thead th {
-    padding: 2px 16px;
-    color: #909DAE;
-    background: #F0F5F9;
-    vertical-align: middle;
-    border: 0;
-    font-weight: normal;
-}
-
-#its-app-users-table thead th:first-child {
-    border-top-left-radius: 12px;
-}
-
-#its-app-users-table thead th:last-child {
-    border-top-right-radius: 12px;
-}
-
-#its-app-users-table tbody tr:hover td,
-#its-app-users-table tbody tr.selected td {
-    color: #fff;
-    cursor: pointer;
-    background: rgb(102, 150, 230);
-    transition: background 0.4s ease;
-}
-
-#its-app-users-table tbody td {
-    cursor: pointer;
-    padding: 2px 16px;
-    vertical-align: middle;
-    border: 0;
-    font-family: "PT Sans", sans-serif;
-    background: #fff;
-    transition: background 0.4s ease;
-}
-
-
-#its-app-users-table tbody td img {
-    margin-right: 15px;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-}
-
-#its-app-users-table thead th input[type="checkbox"],
-#its-app-users-table tbody td input[type="checkbox"] {
-    margin-top: 5px;
-    width: 16px;
-    height: 16px;
-    border-radius: 16px !important;
-    border: 0;
-}
-
-
-#its-app-users-table tbody td small {
-    color: #bbb;
-    font-weight: normal;
-}
-
-#its-app-customers-import {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.75);
-}
-
-#its-app-customers-import-content {
-    padding: 18px;
-    margin: 20vh auto;
-    width: 50%;
-    height: 60vh;
-    background: #fff;
-    border-radius: 6px;
-}
-
-#app-sidebar-preview.app-preview-visible {
+* {
+    padding: 0;
     margin: 0;
-    position: fixed;
-    top: 0;
-    right: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
     width: 100%;
-    height: 100%;
-    z-index: 1000;
-    background: rgba(0,0,0,.75);
+    min-height: 100%;
+    background: rgb(245,245,245);
+}
+
+div#app {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    grid-template-columns: 7% 93%;
+    grid-template-rows: 100%;
+    display: inline-grid;
+}
+
+aside#app-sidebar {
+    padding: 5px 10px;
+    margin: 0 0 0 0;
+    width: 100%;
+    min-height: 100vh;
+    background: rgb(255,255,255);
+}
+
+aside#app-sidebar > header#app-sidebar-header {
+    padding: 0;
+    margin: 0 0 20vh 0;
+}
+
+aside#app-sidebar > header#app-sidebar-header > div#app-brand {
+    text-align: center;
+}
+
+aside#app-sidebar > header#app-sidebar-header > div#app-brand img {
+    width: 100px;
+}
+
+aside#app-sidebar > nav#app-sidebar-nav {
+    padding: 0;
+    margin: 0;
+}
+
+aside#app-sidebar > nav#app-sidebar-nav > ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+aside#app-sidebar > nav#app-sidebar-nav > ul > li {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+aside#app-sidebar > nav#app-sidebar-nav > ul > li.active {
+    
+}
+
+aside#app-sidebar > nav#app-sidebar-nav > ul > li > a {
+    padding: 10px 0;
+    color: rgba(150,150,150);
+    text-decoration: none;
     display: block;
 }
 
-#app-sidebar-preview.app-preview-hidden {
-    display: none;
-}
+aside#app-sidebar > nav#app-sidebar-nav > ul > li > a > p {
+    font-size: .8rem;
+    text-transform: uppercase;
+} 
 
-#app-sidebar-preview.app-preview-hidden #app-sidebar-preview-content {
-    padding: 15px 20px;
+main#app-main {
+    padding: 0;
     margin: 0;
-    position: absolute;
-    top: 0;
-    right: 100%;
-    width: 50%;
-    height: 100%;
-    z-index: 1000;
-    background: #fff;
-    transition: right 0.6s ease;
-    display: none;
+    width: 100%;
 }
 
-#app-sidebar-preview.app-preview-visible #app-sidebar-preview-content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transition: right 0.6s ease;
-    z-index: 1001;
+main#app-main header#app-main-header {
+    color: rgb(150,150,150);
+    padding: 8px 12px;
+    grid-template-columns: 40% 30% 30%;
+    display: grid;
+}
+
+main#app-main > header#app-main-header > section#app-main-search {
+    padding: 16px 10px 8px 30px;
+    margin: 0;
+    width: 100%;
+}
+
+main#app-main > header#app-main-header > section#app-main-search > label {
+    position: relative;
+    top: 3px;
+}
+
+main#app-main > header#app-main-header > section#app-main-search > input {
+    padding-left: 8px;
+    width: 250px;
+    background: transparent;
+    border: 0;
+}
+
+main#app-main > header#app-main-header > section#app-main-search > input::placeholder {
+    color: rgb(150,150,150);
+}
+
+main#app-main > header#app-main-header > section#app-main-datetime {
+    padding: 16px 10px 8px 30px;
+}
+
+main#app-main > header#app-main-header > section#app-main-datetime label {
+    padding-right: 8px;
+    position: relative;
+    top: 3px;
+}
+
+main#app-main > header#app-main-header > section#app-main-logged {
+    padding: 16px 10px 8px 30px;
+    grid-template-columns: 60% 10% 10%;
+    grid-template-rows: auto;
+    display: grid;
+}
+
+main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-messages {
+    padding-right: 32px;
+    text-align: right;
+}
+
+main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-messages > button {
+    padding: 8px 22px;
+    background: rgb(255,255,255);
+    border: 0;
+    box-shadow: 0 1px 1px rgba(150,150,150);
+    border-radius: 4px;
+    font-size: .85rem;
+}
+
+main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-messages > button > label {
+    margin-right: 3px;
+    position: relative;
+    top: 3px;
+}
+
+main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-notifications {
+    margin-top: 3px;
+}
+
+main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-notifications > label {
+    padding-right: 8px;
+    position: relative;
+    top: 3px;
+}
+
+main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-avatar {
+    margin-top: 3px;
+}
+
+main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-avatar img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
 }

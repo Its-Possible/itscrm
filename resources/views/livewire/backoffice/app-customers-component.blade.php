@@ -86,6 +86,7 @@
             </table>
         </div>
         <div class="col-md-8 offset-2">
+            {{ $customers->links() }}
         </div>
     </div>
 

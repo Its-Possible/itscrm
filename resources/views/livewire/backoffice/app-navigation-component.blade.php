@@ -12,7 +12,7 @@
                             </span>
                         </li>
                         <li class="@if(Route::current()->getName() === 'its.app.statistics') active @endif">
-                            <a href="{{ route('its.app.statistics') }}">
+                            <a href="{{ route('its.app.statistics.index') }}">
                                 Estatísticas
                                 <span
                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">4
