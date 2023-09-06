@@ -16,4 +16,18 @@
     <form name="messages-form" id="messages-form" method="post" action="{{ route('its.app.messages.store') }}">
         @csrf
     </form>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('9b6bf9aa6a0df94ca136', {
+            cluster: 'eu'
+        });
+
+        var channel = pusher.subscribe('messages');
+        channel.bind('messages', function(data) {
+            alert(JSON.stringify(data));
+        });
+    </script>
 @endsection

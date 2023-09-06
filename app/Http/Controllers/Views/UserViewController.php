@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Views;
 
-use App\Events\MessageEvent;
-use App\Models\Message;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class MessageViewController extends Controller
+class UserViewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +15,7 @@ class MessageViewController extends Controller
     public function index()
     {
         //
-        event(new MessageEvent('Hello world'));
-
-        $messages = Message::with('user')->get();
-
-        return view('pages.messages.index')
-            ->with(['messages' => $messages]);
+        return view('pages.users.index');
     }
 
     /**

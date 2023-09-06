@@ -1,19 +1,21 @@
 <?php
 
+use Database\Factories\SettingFactory;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Views\MailViewController;
 use App\Http\Controllers\Api\DoctorApiController;
 use App\Http\Controllers\Api\MessageApiController;
-use App\Models\Doctor;
+use App\Http\Controllers\Views\SettingsViewController;
+use App\Http\Controllers\Views\UserViewController;
 use App\Http\Controllers\Api\Auth\LoginApiController;
 use App\Http\Controllers\Views\DoctorViewController;
 use App\Http\Controllers\Views\Auth\LoginViewController;
-use App\Http\Controllers\Views\Auth\RegisterViewController;
 use App\Http\Controllers\Views\CustomerViewController;
-use App\Http\Controllers\Views\MailViewController;
+use App\Http\Controllers\Views\Auth\RegisterViewController;
 use App\Http\Controllers\Views\PageStaticViewController;
 use App\Http\Controllers\Views\StatisticViewController;
 use App\Http\Controllers\Views\CampaignViewController;
 use App\Http\Controllers\Views\MessageViewController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,18 +35,10 @@ Route::middleware('auth')->get('/', function () {
 Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
     Route::get('/', [PageStaticViewController::class, 'home'])->name('index');
     Route::get('/home', [PageStaticViewController::class, 'home'])->name('home');
-
-    Route::prefix('statistics')->name('statistics.')->group(function () {
-        Route::get('/', [StatisticViewController::class, 'index'])->name('index');
-    });
-
-    Route::prefix('/doctors')->name('doctors.')->group(function () {
-        Route::get('/', [DoctorViewController::class, 'index']);
-        Route::get('/create', [DoctorViewController::class, 'create']);
-        Route::get('/{slug}', [DoctorViewController::class, 'show']);
-        Route::get('/{slug}/edit', [DoctorViewController::class, 'edit']);
-        Route::patch('/{slug/edit', [DoctorApiController::class, 'update']);
-        Route::delete('/slug', [DoctorApiController::class, 'destroy']);
+    
+    Route::prefix('/messages')->name('messages.')->group(function () {
+        Route::get('/', [MessageViewController::class, 'index'])->name('index');
+        Route::post('/', [MessageApiController::class, 'store'])->name('store');
     });
 
     Route::prefix('/customers')->name('customers.')->group(function () {
@@ -65,14 +59,33 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
         Route::delete('{slug}', [CampaignViewController::class, 'delete'])->name('delete');
     });
 
-    Route::prefix('/mails')->name('mails.')->group(function () {
-        Route::get('/', [MailViewController::class, 'index'])->name('index');
+    Route::prefix('/doctors')->name('doctors.')->group(function () {
+        Route::get('/', [DoctorViewController::class, 'index'])->name('index');
+        Route::get('/create', [DoctorViewController::class, 'create'])->name('create');
+        Route::get('/{slug}', [DoctorViewController::class, 'show'])->name('show');
+        Route::get('/{slug}/edit', [DoctorViewController::class, 'edit'])->name('edit');
+        Route::patch('/{slug/edit', [DoctorApiController::class, 'update'])->name('update');
+        Route::delete('/slug', [DoctorApiController::class, 'destroy'])->name('delete');
     });
 
-    Route::prefix('/messages')->name('messages.')->group(function () {
-        Route::get('/', [MessageViewController::class, 'index'])->name('index');
-        Route::post('/', [MessageApiController::class, 'store'])->name('store');
+    Route::prefix('/users')->name('users.')->group(function () {
+        Route::get('/', [UserViewController::class, 'index'])->name('index');
+        Route::get('/create', [UserViewController::class, 'create'])->name('create');
+        Route::get('/{slug}', [UserViewController::class, 'show'])->name('show');
+        Route::get('/{slug}/edit', [UserViewController::class, 'edit'])->name('edit');
+        Route::patch('/{slug/edit', [UserApiController::class, 'update'])->name('update');
+        Route::delete('/slug', [UserApiController::class, 'destroy'])->name('delete');
     });
+
+    Route::prefix('/settings')->name('settings.')->group(function () {
+        Route::get('/', [SettingsViewController::class, 'index'])->name('index');
+        Route::prefix('/account')->name('account.')->group(function () {
+            Route::get('/', [SettingsViewController::class, 'account'])->name('index');
+            Route::get('/secure', [SettingsViewController::class, 'secure'])->name('secure');
+            Route::get('/delete', [SettingsViewController::class, 'destroy'])->name('delete');
+        });
+    });
+
 });
 
 

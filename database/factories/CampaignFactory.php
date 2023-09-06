@@ -18,6 +18,11 @@ class CampaignFactory extends Factory
     {
         return [
             //
+            'code' => $this->faker->unique()->slug,
+            'name' => $this->faker->name,
+            'subject' => $this->faker->text,
+            'previewText' => $this->faker->text,
+            'htmlContent' => $this->faker->text
         ];
     }
 }

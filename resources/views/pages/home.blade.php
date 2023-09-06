@@ -1,15 +1,211 @@
 @extends('layouts.app.dashboard', ['title' => 'Inicio'])
 
-@section('header')
-    <div class="row" x-data="header">
-        <div class="col-md-10 offset-1 mb-3">
-            <h1 class="py-3"><span x-text="salut"></span>, {{ decrypt_data(auth()->user()->firstname) }}</h1>
-        </div>
-    </div>
-
-    <livewire:backoffice.app-navigation-component />
-@endsection
-
 @section('content')
-    Content Page Heare
+    <section id="app-main-home">
+        <div class="container">
+            <div class="row">
+                <h1 id="page-title">Início</h1>
+                <p>Olá <strong>{{ decrypt_data(auth()->user()->firstname) }}</strong>, bem-vindo(a) de volta</p>
+            </div>
+            <div id="app-main-home-numbers" class="row mt-3">
+                <section class="app-main-home-card">
+                    <div class="row">
+                        <h5>
+                            <span><i class="ri ri-user-line"></i></span>
+                            Clientes
+                        </h5>
+                        <small>Total de clientes registados</small>
+                    </div>
+                    <div class="row mt-2">
+                        <h1>{{ $customers }}</h1>
+                    </div>
+                </section>
+                <section class="app-main-home-card">
+                    <div class="row">
+                        <h5>
+                            <span><i class="ri ri-mail-line"></i></span>
+                            Campanhas
+                        </h5>
+                        <small>Total de campanhas registas</small>
+                    </div>
+                    <div class="row mt-2">
+                        <h1>{{ $campaigns }}</h1>
+                    </div>
+                </section>
+                <section class="app-main-home-card">
+                    <div class="row">
+                        <h5>
+                            <span><i class="ri ri-chat-1-line"></i></span>
+                            Mensagens
+                        </h5>
+                        <small>Total de mensagens</small>
+                    </div>
+                    <div class="row mt-2">
+                        <h1>{{ $messages }}</h1>
+                    </div>
+                </section>
+            </div>
+            <div id="app-main-home-charts" class="row mt-3">
+                <section class="app-main-home-card">
+                    <div class="row mb-4">
+                        <h5>
+                            <span><i class="ri ri-smartphone-line"></i></span>
+                            SMS enviados
+                        </h5>
+                        <small>Número de SMS enviados por mês</small>
+                    </div>
+                    <div class="row">
+                        <canvas id="messages-sent-chart" width="800" height="280"></canvas>
+                    </div>
+                </section>
+                <section class="app-main-home-card">
+                    <div class="row mb-4">
+                        <h5>
+                            <span><i class="ri ri-mail-line"></i></span>
+                            E-mails enviados
+                        </h5>
+                        <small>Número de e-mails enviados por mês</small>
+                    </div>
+                    <div class="row">
+                        <canvas id="mails-sent-chart" width="800" height="280"></canvas>
+                    </div>
+                </section>
+            </div>
+            <div id="app-main-home-more" class="row mt-3">
+                <section class="app-main-home-card">
+                    <div class="row">
+                        <h5>
+                            <span><i class="ri-nurse-line"></i></span>
+                            Médicos ativos
+                        </h5>
+                        <small>Total de médicos ativos</small>
+                    </div>
+                    <div class="row mt-2">
+                        <h1>{{ $doctors }}</h1>
+                    </div>
+                </section>
+                <section class="app-main-home-card">
+                    <div class="row">
+                        <h5>
+                            <span><i class="ri-calendar-todo-line"></i></span>
+                            Próximos aniversários
+                        </h5>
+                        <small>Aniversários durante esta semana</small>
+                    </div>
+                    <div class="row mt-2">
+                        @forelse($birthdays as $birthday)
+                        @empty
+                            <h6 class="mt-3">Não há aniversários amanhã</h6>
+                        @endforelse
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
 @endsection
+
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+    new Chart(document.getElementById("messages-sent-chart"), {
+        type: 'line',
+        data: {
+            labels: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro", "Novembro", "Dezembro"],
+            datasets: [{ 
+                borderWidth: 2,
+                borderSkipped: false,
+                data: [{{ $smsCounterPerMonth }}],
+                borderColor: 'rgba(127,17,224,1)',
+                fill: true,
+                backgroundColor: 'rgba(127,17,224,0.1)'
+            }]
+        },
+        options: {
+            animation: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                datalabels: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        drawOnChartArea: true,
+                        color: (context) => {
+                            console.log(context);
+                            if(context.index === 0) return '';
+                            else return 'rgba(102,102,102, 0)';
+                        }
+                    },
+                    border: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true, 
+                    grid: {
+                        color: 'rgba(150,150,150,.2)'
+                    },
+                    border: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    new Chart(document.getElementById("mails-sent-chart"), {
+        type: 'line',
+        data: {
+            labels: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro", "Novembro", "Dezembro"],
+            datasets: [{ 
+                borderWidth: 2,
+                borderSkipped: false,
+                data: [{{ $mailCounterPerMonth }}],
+                borderColor: "rgba(57, 149, 236, 1)",
+                backgroundColor: "rgba(57, 149, 236, 0.1)",
+                fill: true
+            }]
+        },
+        options: {
+            animation: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                datalabels: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        drawOnChartArea: true,
+                        color: (context) => {
+                            console.log(context);
+                            if(context.index === 0) return '';
+                            else return 'rgba(102,102,102, 0)';
+                        }
+                    },
+                    border: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true, 
+                    grid: {
+                        color: 'rgba(150,150,150,.2)'
+                    },
+                    border: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+</script>
+@endpush

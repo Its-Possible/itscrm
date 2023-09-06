@@ -22,12 +22,14 @@
         <main id="app-main" class="col-md-10">
             @include('layouts.app.partials.header')
 
-            @yield('content')
+            <section id="app-main-content">
+                @yield('content')
+            </section>
         </main>
     </div>
-    @stack('scripts')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"></script>
+    @stack('scripts')
     @livewireScripts
 </body>
 </html>

@@ -6,8 +6,6 @@
             <h1 class="py-3"><span x-text="salut"></span>, {{ decrypt_data(auth()->user()->firstname) }}</h1>
         </div>
     </div>
-
-    <livewire:backoffice.app-navigation-component />
 @endsection
 
 @section('content')
