@@ -23,10 +23,11 @@ class PageStaticViewController extends Controller
 
         $today = now()->format('m-d');
         $customers = Customer::count();
+
         $campaigns = Campaign::count();
         $messages = Message::count();
-        $doctors = Doctor::count();
-        $birthdays = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') LIKE '{$today}'")->get();
+        $doctors =  Doctor::count() . ", 10";
+        $birthdays = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') >= '{$today}')")->paginate(5);
 
         return view('pages.home')
             ->with([

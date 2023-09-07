@@ -19,29 +19,30 @@ function getCampaignIdFromCode(string $code): string
 
 function date_format_trans(string $date, bool $with_week = false): string
 {
+    $weeks = ["Sun" => "Domingo","Mon" => "Segunda", "Tue" => "Terça", "Wed" => "Quarta","Thu" => "Quinta","Fri" => "Sexta","Sat" => "Sábado"];
 
-    $months_pt = [
-        1 => "Janeiro", 2 => "Fevereiro", 3 => "Março", 4 => "Abril", 5 => "Maio", 6 => "Junho", 7 => "Julho", 8 => "Agosto", 9 => "Setembro", 10 => "Outubro", 11 => "Novembro", 12 => "Dezembro"
+    $months = [
+        "Jan" => "Janeiro", "Feb" => "Fevereiro", "Mar" => "Março", "Apr" => "Abril", "May" => "Maio", "Jun" => "Junho", "Jul" => "Julho", "Aug" => "Agosto", "Sep" => "Setembro", "Oct" => "Outubro", "Nov" => "Novembro", "Dec" => "Dezembro"
     ];
 
-    $month_en = [
-        1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec"
-    ];
+    $date = (new \DateTime())->setDate(date('Y'), date_format(date_create($date), 'm'), date_format(date_create($date), 'd'));
 
     if ($with_week == false) {
-        $date = date_format(date_create($date), 'M, d');
+        $date = $date->format('M, d');
 
     } else {
-        $date = date_format(date_create($date), 'W, M, d');
+        $date = $date->format('D, M, d');
     }
 
-    foreach ($month_en as $month => $month_en) {
-        if (str_contains($date, $month_en)) {
-            return $with_week ? date('D') .", ". $months_pt[$month] .", ". date("d") : $months_pt[$month] . ", " . date("d");
-        }
+    $date = explode(", ", $date);
+
+    if($with_week && !array_key_exists($date[1], $months)){
+        return "Invalid date";
+    }else if($with_week && !array_key_exists($date[0], $weeks)){
+        return "Invalid date";
+    }else if(!$with_week && !array_key_exists($date[0], $months)){
+        return "Invalid date";
     }
 
-
-
-    return "";
+    return $with_week ? $weeks[$date[0]] .", ". $months[$date[1]] .", ". $date[2] : $months[$date[0]] . ", " . $date[1];
 }

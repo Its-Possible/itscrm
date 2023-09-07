@@ -276,8 +276,9 @@ main#app-main > section#app-main-content div > section.app-main-home-card small 
 
 main#app-main > section#app-main-content #app-main-home-card-birthdays > div.row {
     margin: 0 auto;
-    padding: 15px 15px;
+    padding: 8px 15px;
     border-bottom: 1px solid rgba(150, 150, 150, 0.1);
+    font-size: .85rem;
 }
 
 main#app-main > section#app-main-content #app-main-home-card-birthdays img {
