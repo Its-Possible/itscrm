@@ -92,8 +92,19 @@
                         </h5>
                         <small>Aniversários durante esta semana</small>
                     </div>
-                    <div class="row mt-2">
+                    <div id="app-main-home-card-birthdays" class="row mt-2">
                         @forelse($birthdays as $birthday)
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <img src="https://img.freepik.com/premium-vector/portrait-young-man-with-beard-hair-style-male-avatar-vector-illustration_266660-423.jpg?w=2000" />
+                                </div>
+                                <div class="col-md-5">
+                                    {{ decrypt_data($birthday->name) }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ date_format_trans($birthday->birthday, true) }}
+                                </div>
+                            </div>
                         @empty
                             <h6 class="mt-3">Não há aniversários amanhã</h6>
                         @endforelse
@@ -112,7 +123,7 @@
         type: 'line',
         data: {
             labels: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro", "Novembro", "Dezembro"],
-            datasets: [{ 
+            datasets: [{
                 borderWidth: 2,
                 borderSkipped: false,
                 data: [{{ $smsCounterPerMonth }}],
@@ -146,7 +157,7 @@
                     }
                 },
                 y: {
-                    beginAtZero: true, 
+                    beginAtZero: true,
                     grid: {
                         color: 'rgba(150,150,150,.2)'
                     },
@@ -162,7 +173,7 @@
         type: 'line',
         data: {
             labels: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro", "Novembro", "Dezembro"],
-            datasets: [{ 
+            datasets: [{
                 borderWidth: 2,
                 borderSkipped: false,
                 data: [{{ $mailCounterPerMonth }}],
@@ -196,7 +207,7 @@
                     }
                 },
                 y: {
-                    beginAtZero: true, 
+                    beginAtZero: true,
                     grid: {
                         color: 'rgba(150,150,150,.2)'
                     },

@@ -20,11 +20,13 @@ class PageStaticViewController extends Controller
      */
     public function home()
     {
+
+        $today = now()->format('m-d');
         $customers = Customer::count();
         $campaigns = Campaign::count();
         $messages = Message::count();
         $doctors = Doctor::count();
-        $birthdays = [];
+        $birthdays = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') LIKE '{$today}'")->get();
 
         return view('pages.home')
             ->with([

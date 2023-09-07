@@ -200,7 +200,7 @@ main#app-main > section#app-main-content div#app-main-home-numbers > section.app
 }
 
 
-main#app-main > section#app-main-content div#app-main-home-numbers > section.app-main-home-card:hover { 
+main#app-main > section#app-main-content div#app-main-home-numbers > section.app-main-home-card:hover {
     cursor: pointer;
     transform: scale(1.2);
     box-shadow: 15px 15px 50px rgb(120,120,120);
@@ -224,7 +224,7 @@ main#app-main > section#app-main-content div#app-main-home-charts > section.app-
 }
 
 
-main#app-main > section#app-main-content div#app-main-home-charts > section.app-main-home-card:hover { 
+main#app-main > section#app-main-content div#app-main-home-charts > section.app-main-home-card:hover {
     position: relative;
     cursor: pointer;
     transform: scale(1.2);
@@ -249,7 +249,7 @@ main#app-main > section#app-main-content div#app-main-home-more > section.app-ma
     transition: all 0.4s ease;
 }
 
-main#app-main > section#app-main-content div#app-main-home-more > section.app-main-home-card:hover { 
+main#app-main > section#app-main-content div#app-main-home-more > section.app-main-home-card:hover {
     position: relative;
     cursor: pointer;
     transform: scale(1.2);
@@ -272,4 +272,17 @@ main#app-main > section#app-main-content div > section.app-main-home-card h5 i {
 
 main#app-main > section#app-main-content div > section.app-main-home-card small {
     margin-bottom: 10px;
+}
+
+main#app-main > section#app-main-content #app-main-home-card-birthdays > div.row {
+    margin: 0 auto;
+    padding: 15px 15px;
+    border-bottom: 1px solid rgba(150, 150, 150, 0.1);
+}
+
+main#app-main > section#app-main-content #app-main-home-card-birthdays img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    box-shadow: 0 0 2px #666;
 }
