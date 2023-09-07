@@ -26,7 +26,7 @@ class PageStaticViewController extends Controller
 
         $campaigns = Campaign::count();
         $messages = Message::count();
-        $doctors =  Doctor::count() . ", 10";
+        $doctors = Doctor::count() . ", 10";
         $birthdays = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') >= '{$today}')")->paginate(5);
 
         return view('pages.home')
@@ -39,11 +39,5 @@ class PageStaticViewController extends Controller
                 'smsCounterPerMonth' => '100, 152, 110, 60, 200, 153, 246, 542, 482, 152, 0, 0',
                 'mailCounterPerMonth' => '100, 1520, 1150, 600, 2600, 953, 846, 1542, 1500, 852, 0, 0'
             ]);
-     }
-
-    public function marketing()
-    {
-        return view('pages.marketing.home');
     }
-
 }

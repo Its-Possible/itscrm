@@ -9,7 +9,8 @@
 @endsection
 
 @section('content')
-   <livewire:backoffice.app-customers-component />
+    <livewire:tags-component class="mb-5" />
+    <livewire:backoffice.app-customers-component />
 @endsection
 
 @push('scripts')

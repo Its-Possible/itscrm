@@ -9,6 +9,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/css/authentication.css',
+                'resources/js/components.js',
                 'resources/js/app.js'
             ],
             refresh: true,
