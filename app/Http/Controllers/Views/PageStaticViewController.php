@@ -22,12 +22,14 @@ class PageStaticViewController extends Controller
     {
 
         $today = now()->format('m-d');
+        $nextWeek = now()->addWeek()->format('m-d');
         $customers = Customer::count();
 
         $campaigns = Campaign::count();
         $messages = Message::count();
         $doctors = Doctor::count() . ", 10";
-        $birthdays = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') >= '{$today}')")->paginate(5);
+        //$birthdays = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') BETWEEN {$today} AND {$nextWeek}")->paginate(5);
+        $birthdays = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') BETWEEN '{$today}' AND '{$nextWeek}'")->paginate(5);
 
         return view('pages.home')
             ->with([
@@ -36,6 +38,7 @@ class PageStaticViewController extends Controller
                 'messages' => $messages,
                 'doctors' => $doctors,
                 'birthdays' => $birthdays,
+                'nextWeek' => $nextWeek,
                 'smsCounterPerMonth' => '100, 152, 110, 60, 200, 153, 246, 542, 482, 152, 0, 0',
                 'mailCounterPerMonth' => '100, 1520, 1150, 600, 2600, 953, 846, 1542, 1500, 852, 0, 0'
             ]);

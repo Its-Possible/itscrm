@@ -288,23 +288,24 @@ main#app-main > section#app-main-content #app-main-home-card-birthdays img {
     box-shadow: 0 0 2px #666;
 }
 
-#app-component-dropdown select {
-    position: relative;
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
+.app-components-tags-add {
+    padding: 6px 12px;
+    color: #000;
+    background: #fff;
+    border: 1px solid #000;
+    opacity: .5;
+}
+
+.app-components-tags-add:hover {
     cursor: pointer;
-    user-select: none;
-    width: 100%;
-    height: auto;
-    padding: 0.75rem 1.25rem;
-    border: none;
-    outline: none;
-    border-radius: 0.25rem;
-    color: var(--color-black);
-    background-clip: padding-box;
-    background-color: var(--color-white);
-    box-shadow: var(--shadow-medium);
-    transition: all 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.app-components-tags-add input {
+    color: #333;
+    min-width: 5px;
+    font-size: .8rem;
+    width: auto;
+    height: 15px;
+    border: 0;
 }

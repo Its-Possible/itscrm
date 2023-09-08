@@ -90,7 +90,7 @@
                             <span><i class="ri-calendar-todo-line"></i></span>
                             Próximos aniversários
                         </h5>
-                        <small>Aniversários durante esta semana</small>
+                        <small>Aniversários durante os próximos 7 dias</small>
                     </div>
                     <div id="app-main-home-card-birthdays" class="row mt-2">
                         @forelse($birthdays as $birthday)

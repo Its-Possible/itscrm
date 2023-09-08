@@ -55,7 +55,9 @@
                             @forelse($customer->tags as $tag)
                                 <span class="badge rounded-pill" style="background-color: {{ $tag->color }};">{{ $tag->name }}</span>
                             @empty
-                                Sem tags
+                                <span class="badge rounded-pill app-components-tags-add" style="background-color:  #fff;">
+                                    Adicionar
+                                </span>
                             @endforelse
                         </td>
                         <td>
@@ -78,8 +80,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center py-3">Neste momento não temos qualquer cliente registado!
-                        </td>
+                        <td colspan="7" class="text-center py-3">Neste momento não temos qualquer cliente registado!</td>
                     </tr>
                 @endforelse
                 </tbody>
@@ -113,3 +114,15 @@
         </section>
     @endif
 </div>
+
+@push('scripts')
+    <script>
+        const btnsAddTag = document.querySelectorAll('.app-components-tags-add');
+
+        btnsAddTag.forEach((btnAddTag) => {
+            btnAddTag.addEventListener("click", function () {
+                this.innerHTML = '<input type="text" id="app-component-tags-add-value" value="teste" />';
+            });
+        });
+    </script>
+@endpush
