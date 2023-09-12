@@ -68,9 +68,9 @@
                     <div></div>
                 </article>
             @empty
-                <div class="row text-center">
-                    <p>Sem clientes registados na plataforma</p>
-                </div>
+                <article id="app-list-nocustomers">
+                    Não há clientes registados, <a href="#">adicione</a> o primeiro.
+                </article>
             @endforelse
         </div>
     </div>
@@ -81,9 +81,7 @@
     </section>
 
     @if($modal)
-        <section class="app-modal" id="app-customers-import">
 
-        </section>
     @endif
 </div>
 

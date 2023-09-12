@@ -343,3 +343,19 @@ article.app-customer {
     height: 64px;
     border-radius: 8px
 }
+
+#app-list-nocustomers {
+    color: rgba(190,190,190,1);
+    padding: 20px 16px;
+    margin: 20px 0;
+    border-radius: 12px;
+    background: rgba(255,255,255,1);
+    text-align: center;
+    font-family: "Relaway", sans-serif;
+}
+
+
+#app-list-nocustomers a {
+    text-decoration: none;
+}
+
