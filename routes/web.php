@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\CampaignApiController;
+use App\Http\Controllers\Api\FileApiController;
+use App\Http\Controllers\Api\UserApiController;
+use App\Http\Controllers\Views\FileViewController;
 use Database\Factories\SettingFactory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Views\MailViewController;
@@ -35,7 +39,7 @@ Route::middleware('auth')->get('/', function () {
 Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
     Route::get('/', [PageStaticViewController::class, 'home'])->name('index');
     Route::get('/home', [PageStaticViewController::class, 'home'])->name('home');
-    
+
     Route::prefix('/messages')->name('messages.')->group(function () {
         Route::get('/', [MessageViewController::class, 'index'])->name('index');
         Route::post('/', [MessageApiController::class, 'store'])->name('store');
@@ -55,7 +59,7 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
         Route::get('/create', [CampaignViewController::class, 'create'])->name('create');
         Route::get('/{slug}', [CampaignViewController::class, 'show'])->name('show');
         Route::get('/{slug}/edit', [CampaignViewController::class, 'edit'])->name('edit');
-        Route::patch('/{slug}', [CampaignApiViewController::class, 'update'])->name('update');
+        Route::patch('/{slug}', [CampaignApiController::class, 'update'])->name('update');
         Route::delete('{slug}', [CampaignViewController::class, 'delete'])->name('delete');
     });
 
@@ -75,6 +79,15 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
         Route::get('/{slug}/edit', [UserViewController::class, 'edit'])->name('edit');
         Route::patch('/{slug/edit', [UserApiController::class, 'update'])->name('update');
         Route::delete('/slug', [UserApiController::class, 'destroy'])->name('delete');
+    });
+
+    Route::prefix('/files')->name('file.')->group(function () {
+        Route::get('/', [FileViewController::class, 'index'])->name('index');
+        Route::get('/create', [FileViewController::class, 'create'])->name('create');
+        Route::get('/{slug}', [FileViewController::class, 'show'])->name('show');
+        Route::get('/{slug}/edit', [FileViewController::class, 'edit'])->name('edit');
+        Route::patch('/{slug/edit', [FileApiController::class, 'update'])->name('update');
+        Route::delete('/slug', [FileApiController::class, 'destroy'])->name('delete');
     });
 
     Route::prefix('/settings')->name('settings.')->group(function () {

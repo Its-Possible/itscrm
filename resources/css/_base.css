@@ -112,3 +112,17 @@ h5 {
 .text-right {
     text-align: right;
 }
+
+.row-border-radius {
+    border-radius: 8px;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.app-list-actions a {
+    color: #666;
+    margin: 0 5px;
+    text-decoration: none;
+}

@@ -13,10 +13,9 @@
             <div class="row">
                 <div class="col-md-10">
                     <button class="btn btn-filter">Add filtro <i class="ri-add-fill ml-2"></i></button>
-                    <button class="btn btn-filter"><span>Tag:</span> Filiado <i class="ri-close-fill ml-2"></i></button>
-                    <button class="btn btn-filter"><span>Tipo:</span> Pessoa <i class="ri-close-fill ml-2"></i></button>
-                    <button class="btn btn-filter"><span>Pais:</span> Portugal & Estados Unidos<i
-                            class="ri-close-fill ml-2"></i></button>
+{{--                    <button class="btn btn-filter"><span>Tag:</span> Filiado <i class="ri-close-fill ml-2"></i></button>--}}
+{{--                    <button class="btn btn-filter"><span>Tipo:</span> Pessoa <i class="ri-close-fill ml-2"></i></button>--}}
+{{--                    <button class="btn btn-filter"><span>Pais:</span> Portugal & Estados Unidos<i class="ri-close-fill ml-2"></i></button>--}}
                 </div>
                 <div class="col-md-2 text-right pt-3">
                     {{ $customers_counter }} Encontrados
@@ -25,92 +24,65 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 offset-2">
-            <table id="its-app-users-table" class="table table-light">
-                <thead>
-                <tr>
-                    <th><input type="checkbox" id="its-app-users-all" value="all"/></th>
-                    <th>Cliente</th>
-                    <th>Último login</th>
-                    <th>Tags</th>
-                    <th>Estado</th>
-                    <th>
-                        <button class="btn btn-transparent">
-                            <i class="ri ri-more-fill"></i>
-                        </button>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse($customers as $index => $customer)
-                    <tr data-index="{{ $index }}">
-                        <td><input type="checkbox" id="its-app-users-all" value="{{ $index }}"/></td>
-                        <td class="text-bold">
-                            <img src="{{ $customer->avatar }}" width="60"/>
-                            {{ decrypt_data($customer->name) }}
-                            <small>&lt;{{ decrypt_data($customer->email) }}&gt;</small>
-                        </td>
-                        <td class="text-bold">{{ date('D d M, H:i') }}</td>
-                        <td width="30%">
-                            @forelse($customer->tags as $tag)
-                                <span class="badge rounded-pill" style="background-color: {{ $tag->color }};">{{ $tag->name }}</span>
-                            @empty
-                                <span class="badge rounded-pill app-components-tags-add" style="background-color:  #fff;">
-                                    Adicionar
-                                </span>
-                            @endforelse
-                        </td>
-                        <td>
-                            <span class="badge rounded-pill text-bg-success">Activo</span>
-                        </td>
-                        <td class="text-bold">
-                            <div class="dropdown show">
-                                <a class="btn btn-transparent inverter" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="ri ri-more-fill"></i>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="{{ route('its.app.customers.show', $customer->slug) }}">Ver</a>
-                                    <a class="dropdown-item" href="{{ route('its.app.customers.edit', $customer->slug) }}">Editar</a>
-                                    <hr class="dropdown-divider" />
-                                    <a class="dropdown-item text-danger" href="#">Apagar</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="7" class="text-center py-3">Neste momento não temos qualquer cliente registado!</td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
+        <div class="col-md-8 offset-2 font-bold row-border-radius">
+            <section id="app-list-header">
+                <div>Cliente</div>
+                <div>Tags</div>
+                <div>Estado</div>
+                <div>Ações</div>
+            </section>
         </div>
         <div class="col-md-8 offset-2">
-            {{ $customers->links() }}
+            @forelse($customers as $index => $customer)
+                <article class="app-customer">
+                    <div><img class="app-customer-avatar" src="{{ $customer->avatar }}" /></div>
+                    <div>
+                        <div class="text-bold">{{ decrypt_data($customer->name) }}</div>
+                        <div><small>{{ decrypt_data($customer->email) }}</small></div>
+                    </div>
+                    <div>
+                        @forelse($customer->tags() as $tag)
+                            teste
+                        @empty
+                            <span>Adicionar tag</span>
+                        @endforelse
+                    </div>
+                    <div>
+                        <span class="badge badge-success bg-success">
+                            <i class="ri ri-check"></i>
+                            Ativo
+                        </span>
+                    </div>
+                    <div>
+                        <a class="btn btn-transparent" href="{{ route('its.app.customers.show', $customer->slug) }}">
+                            <i class="ri ri-eye-line"></i>
+                        </a>
+                        <a class="btn btn-transparent" href="{{ route('its.app.customers.edit', $customer->slug) }}">
+                            <i class="ri ri-pencil-line"></i>
+                        </a>
+                        <button class="btn btn-transparent text-danger">
+                            <i class="ri ri-delete-bin-line"></i>
+                        </button>
+                    </div>
+                    <div></div>
+                    <div></div>
+                </article>
+            @empty
+                <div class="row text-center">
+                    <p>Sem clientes registados na plataforma</p>
+                </div>
+            @endforelse
         </div>
     </div>
 
-    @if($modal)
-        <section id="its-app-customers-import">
-            <div id="its-app-customers-import-content">
-                <header id="its-app-customers-import-content-header">
-                    <h2>Importar os clientes</h2>
-                </header>
-                <div class="its-app-customers-import-content-container">
-                    <p>
-                        Apenas ficheiros csv, é que podem ser importados para carregar corretamente os dados dos clientes
-                    </p>
-                    <form wire:submit.prevent="save">
-                        @error('files.*') <span class="error">{{ $message }}</span>@enderror
-                        <input type="file" class="form-control" form="import" wire:model="files"
-                               accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                               multiple />
-                        <button type="submit">Carregar</button>
-                    </form>
+    <!-- Temporarily -->
+    <section class="app-modal" id="app-customers-import">
+        <livewire:backoffice.components.app-upload-component />
+    </section>
 
-                </div>
-            </div>
+    @if($modal)
+        <section class="app-modal" id="app-customers-import">
+
         </section>
     @endif
 </div>
