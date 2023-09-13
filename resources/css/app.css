@@ -359,3 +359,13 @@ article.app-customer {
     text-decoration: none;
 }
 
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    padding: 10px 0;
+    display: block;
+}
+
+
