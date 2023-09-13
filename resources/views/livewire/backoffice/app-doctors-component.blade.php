@@ -4,7 +4,7 @@
             <h1 class="mt-3 mb-3">Médicos</h1>
         </div>
         <div class="col-md-3 text-right pt-3">
-            <a class="btn btn-filter inverter" href="{{ route('its.app.customers.create') }}">Adicionar médico</a>
+            <a class="btn btn-filter inverter" href="{{ route('its.app.doctors.create') }}">Adicionar médico</a>
             <button class="btn btn-filter" wire:click="$set('modal', true)">Importar</button>
         </div>
     </div>
@@ -12,7 +12,7 @@
         <div class="col-md-8 offset-2">
             <div class="row">
                 <div class="col-md-10">
-                    <button class="btn btn-filter">Add filtro <i class="ri-add-fill ml-2"></i></button>
+                    <button class="btn btn-filter">Adicionar filtro</button>
                     {{--                    <button class="btn btn-filter"><span>Tag:</span> Filiado <i class="ri-close-fill ml-2"></i></button>--}}
                     {{--                    <button class="btn btn-filter"><span>Tipo:</span> Pessoa <i class="ri-close-fill ml-2"></i></button>--}}
                     {{--                    <button class="btn btn-filter"><span>Pais:</span> Portugal & Estados Unidos<i class="ri-close-fill ml-2"></i></button>--}}
@@ -35,13 +35,13 @@
         <div class="col-md-8 offset-2">
             @forelse($doctors as $index => $doctor)
                 <article class="app-customer">
-                    <div><img class="app-customer-avatar" src="{{ $customer->avatar }}" /></div>
+                    <div><img class="app-customer-avatar" src="{{ $doctor->avatar }}" /></div>
                     <div>
-                        <div class="text-bold">{{ decrypt_data($customer->name) }}</div>
-                        <div><small>{{ decrypt_data($customer->email) }}</small></div>
+                        <div class="text-bold">{{ decrypt_data($doctor->name) }}</div>
+                        <div><small>{{ decrypt_data($doctor->email) }}</small></div>
                     </div>
                     <div>
-                        @forelse($customer->tags() as $tag)
+                        @forelse($doctor->tags() as $tag)
                             teste
                         @empty
                             <span>Adicionar tag</span>
@@ -54,10 +54,10 @@
                         </span>
                     </div>
                     <div>
-                        <a class="btn btn-transparent" href="{{ route('its.app.customers.show', $customer->slug) }}">
+                        <a class="btn btn-transparent" href="{{ route('its.app.doctors.show', $customer->slug) }}">
                             <i class="ri ri-eye-line"></i>
                         </a>
-                        <a class="btn btn-transparent" href="{{ route('its.app.customers.edit', $customer->slug) }}">
+                        <a class="btn btn-transparent" href="{{ route('its.app.doctors.edit', $customer->slug) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
                         <button class="btn btn-transparent text-danger">
