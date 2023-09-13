@@ -51,6 +51,7 @@ class UserSeeder extends Seeder
         //
         if(env('APP_DEBUG')) {
             $user = new User();
+            $user->avatar = "https://gcdnb.pbrd.co/images/8RSQXyPPlLYQ.png?o=1";
             $user->firstname = encrypt_data("Eduardo");
             $user->lastname = encrypt_data("Bessa");
             $user->username = "eduardo.bessa";

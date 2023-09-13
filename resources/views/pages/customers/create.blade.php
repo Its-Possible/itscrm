@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-md-8 offset-2">
+        <div class="col-md-8 offset-2 bg-white row-border-radius">
             <div class="row">
                 <div class="input-group">
                     <label class="input-group-text" for="its-app-customer-form-name">Nome</label>

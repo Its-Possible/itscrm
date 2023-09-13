@@ -25,7 +25,7 @@
             </label>
         </div>
         <div id="app-main-logged-avatar">
-           <img src="https://img.freepik.com/premium-vector/portrait-young-man-with-beard-hair-style-male-avatar-vector-illustration_266660-423.jpg?w=2000" />
+           <img src="{{ auth()->user()->avatar }}" />
         </div>
     </section>
 </header>

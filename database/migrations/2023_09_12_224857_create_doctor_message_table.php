@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('doctor_message', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('filename');
-            $table->string('mimetype');
-            $table->timestamps();
+            $table->foreignId('creator_id');
+            $table->foreignId('receiver_id');
+            $table->foreignId('message_id');
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('doctor_message');
     }
 };

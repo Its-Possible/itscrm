@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('role_id')->default(1);
+            $table->string('avatar')->default('https://img.freepik.com/premium-vector/portrait-young-man-with-beard-hair-style-male-avatar-vector-illustration_266660-423.jpg?w=2000');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('username')->unique();
