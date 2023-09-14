@@ -74,15 +74,6 @@
             @endforelse
         </div>
     </div>
-
-    <!-- Temporarily -->
-    <section class="app-modal" id="app-customers-import">
-        <livewire:backoffice.components.app-upload-component />
-    </section>
-
-    @if($modal)
-
-    @endif
 </div>
 
 @push('scripts')

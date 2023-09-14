@@ -22,8 +22,7 @@ class AppDoctorsComponent extends Component
         return view('livewire.backoffice.app-doctors-component')
             ->with([
                 'doctors' => $doctors,
-                'doctors_counter' => $doctorsCount,
-                'modal' => $this->modal
+                'doctors_counter' => $doctorsCount
             ]);
     }
 }

@@ -136,3 +136,22 @@ h5 {
     margin: 0 5px;
     text-decoration: none;
 }
+
+.btn-danger {
+    margin: 0;
+    color: #dc3545;
+    padding: 18px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid #dc3545;
+    background: #fff;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+.btn-danger:hover {
+    margin: 0;
+    color: #fff;
+    background: #dc3545;
+    border: 1px solid #dc3545;
+}
