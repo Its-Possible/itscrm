@@ -36,16 +36,23 @@
                    <label for="user">E-mail</label>
                    <input class="form-control" type="email" placeholder="E-mail" id="doctor-email" />
                </div>
-               <div class="form-group">
-                   <label for="user">Especialidade</label>
-                   <select class="form-control" name="user" id="user">
-                       <option disabled selected>Selecionar</option>
-                       @forelse($specialities as $speciality)
-                           <option>{{ $speciality->name }}</option>
-                       @empty
+               <div class="row">
+                   <div class="col-md-10">
+                       <div class="form-group">
+                           <label for="user">Especialidade</label>
+                           <select class="form-control" name="user" id="user">
+                               <option disabled selected>Selecionar</option>
+                               @forelse($specialities as $speciality)
+                                   <option>{{ $speciality->name }}</option>
+                               @empty
 
-                       @endforelse
-                   </select>
+                               @endforelse
+                           </select>
+                       </div>
+                   </div>
+                   <div class="col-md-2 mt-5">
+                       <a class="btn btn-filter inverter" href="{{ route('its.app.customers.create') }}">Guardar</a>
+                   </div>
                </div>
                <div class="form-group">
                    <label for="user">Telemóvel</label>
