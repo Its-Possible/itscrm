@@ -8,12 +8,7 @@ use Livewire\WithFileUploads;
 
 class AppDoctorsComponent extends Component
 {
-    use WithFileUploads;
-
     public $search;
-    public $modal = false;
-
-    public $files;
 
     protected $queryString = ['search'];
 

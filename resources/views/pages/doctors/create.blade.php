@@ -1,4 +1,4 @@
-@extends('layouts.app.dashboard', ['title' => 'Especialidades'])
+@extends('layouts.app.dashboard', ['title' => 'Médicos'])
 
 
 @section('content')
@@ -36,24 +36,8 @@
                    <label for="user">E-mail</label>
                    <input class="form-control" type="email" placeholder="E-mail" id="doctor-email" />
                </div>
-               <div class="row">
-                   <div class="col-md-10">
-                       <div class="form-group">
-                           <label for="user">Especialidade</label>
-                           <select class="form-control" name="user" id="user">
-                               <option disabled selected>Selecionar</option>
-                               @forelse($specialities as $speciality)
-                                   <option>{{ $speciality->name }}</option>
-                               @empty
-
-                               @endforelse
-                           </select>
-                       </div>
-                   </div>
-                   <div class="col-md-2 mt-5">
-                       <a class="btn btn-filter inverter" href="{{ route('its.app.customers.create') }}">Guardar</a>
-                   </div>
-               </div>
+               <!-- App Doctors Create Component -->
+               <livewire:backoffice.component.doctors.specialities-component />
                <div class="form-group">
                    <label for="user">Telemóvel</label>
                    <input class="form-control" type="text" placeholder="Telemóvel" id="doctor-mobile" />
