@@ -1,4 +1,4 @@
-@extends('layouts.app.dashboard', ['title' => 'Médicos'])
+@extends('layouts.app.dashboard', ['title' => 'Especialidades'])
 
 
 @section('content')
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 offset-2 row-border-radius bg-white py-2 mb-4">
+        <div class="col-md-8 offset-2 mb-2">
             <div class="alert alert-warning text-center">
                 <i class="ri ri-alert-line"></i>
                 Para adicionar um médico ao sistema é necessário que seja utilizador
@@ -40,8 +40,8 @@
                    <label for="user">Especialidade</label>
                    <select class="form-control" name="user" id="user">
                        <option disabled selected>Selecionar</option>
-                       @forelse($users as $user)
-                           <option>{{ decrypt_data($user->firstname) }}</option>
+                       @forelse($specialities as $speciality)
+                           <option>{{ $speciality->name }}</option>
                        @empty
 
                        @endforelse

@@ -39,6 +39,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{ route('its.app.specialities.index') }}">
+                <i class="ri-stethoscope-line"></i>
+                <p>Especialidades</p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{ route('its.app.users.index') }}">
                 <i class="ri ri-group-line"></i>
                 <p>Utilizadores</p>

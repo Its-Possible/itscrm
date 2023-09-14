@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Api\CampaignApiController;
 use App\Http\Controllers\Api\FileApiController;
+use App\Http\Controllers\Api\SpecialityApiController;
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Views\FileViewController;
+use App\Http\Controllers\Views\SpecialityViewController;
 use Database\Factories\SettingFactory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Views\MailViewController;
@@ -70,6 +72,15 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
         Route::get('/{slug}/edit', [DoctorViewController::class, 'edit'])->name('edit');
         Route::patch('/{slug/edit', [DoctorApiController::class, 'update'])->name('update');
         Route::delete('/slug', [DoctorApiController::class, 'destroy'])->name('delete');
+    });
+
+    Route::prefix('/specialities')->name('specialities.')->group(function () {
+        Route::get('/', [SpecialityViewController::class, 'index'])->name('index');
+        Route::get('/create', [SpecialityViewController::class, 'create'])->name('create');
+        Route::get('/{slug}', [SpecialityViewController::class, 'show'])->name('show');
+        Route::get('/{slug}/edit', [SpecialityViewController::class, 'edit'])->name('edit');
+        Route::patch('/{slug/edit', [SpecialityApiController::class, 'update'])->name('update');
+        Route::delete('/slug', [SpecialityApiController::class, 'destroy'])->name('delete');
     });
 
     Route::prefix('/users')->name('users.')->group(function () {
