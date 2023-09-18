@@ -402,3 +402,8 @@ article.app-specialities {
     align-items: center;
     display: grid;
 }
+
+#speciality-description {
+    height: 120px;
+    resize: none;
+}

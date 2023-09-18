@@ -13,4 +13,9 @@ class SpecialityViewController extends Controller
     {
         return view('pages.specialities.index');
     }
+
+    public function create(Request $request)
+    {
+        return view('pages.specialities.create');
+    }
 }

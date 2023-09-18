@@ -77,6 +77,7 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
     Route::prefix('/specialities')->name('specialities.')->group(function () {
         Route::get('/', [SpecialityViewController::class, 'index'])->name('index');
         Route::get('/create', [SpecialityViewController::class, 'create'])->name('create');
+        Route::post('/create', [SpecialityApiController::class, 'store'])->name('store');
         Route::get('/{slug}', [SpecialityViewController::class, 'show'])->name('show');
         Route::get('/{slug}/edit', [SpecialityViewController::class, 'edit'])->name('edit');
         Route::patch('/{slug/edit', [SpecialityApiController::class, 'update'])->name('update');
