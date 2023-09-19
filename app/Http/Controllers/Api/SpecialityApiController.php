@@ -27,8 +27,8 @@ class SpecialityApiController extends Controller
         }
 
         $speciality = new Speciality();
-        $speciality->name = $request->input('speciality-name');
-        $speciality->description = $request->input('speciality-description');
+        $speciality->name = $request->input('name');
+        $speciality->description = $request->input('description');
         $speciality->slug = Str::slug($speciality->name . microtime());
 
         if(!$speciality->save()){

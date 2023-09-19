@@ -16,7 +16,7 @@ class AppDoctorsComponent extends Component
     {
         $doctorsCount = Doctor::count();
         $doctors = Doctor::with('user')
-            ->with('tags')
+            ->with('specialities')
             ->paginate(30);
 
         return view('livewire.backoffice.app-doctors-component')

@@ -13,9 +13,6 @@
             <div class="row">
                 <div class="col-md-10">
                     <button class="btn btn-filter">Adicionar filtro</button>
-                    {{--                    c<button class="btn btn-filter"><span>Tag:</span> Filiado <i class="ri-close-fill ml-2"></i></button>--}}
-                    {{--                    <button class="btn btn-filter"><span>Tipo:</span> Pessoa <i class="ri-close-fill ml-2"></i></button>--}}
-                    {{--                    <button class="btn btn-filter"><span>Pais:</span> Portugal & Estados Unidos<i class="ri-close-fill ml-2"></i></button>--}}
                 </div>
                 <div class="col-md-2 text-right pt-3">
                     {{ $doctors_counter }} Encontrados
@@ -35,16 +32,16 @@
         <div class="col-md-8 offset-2">
             @forelse($doctors as $index => $doctor)
                 <article class="app-customer">
-                    <div><img class="app-customer-avatar" src="{{ $doctor->avatar }}" /></div>
+                    <div><img class="app-customer-avatar" src="{{ $doctor->user->avatar }}" /></div>
                     <div>
-                        <div class="text-bold">{{ decrypt_data($doctor->name) }}</div>
-                        <div><small>{{ decrypt_data($doctor->email) }}</small></div>
+                        <div class="text-bold">{{ decrypt_data($doctor->user->firstname) }} {{ decrypt_data($doctor->user->lastname) }}</div>
+                        <div><small>{{ $doctor->email }}</small></div>
                     </div>
                     <div>
-                        @forelse($doctor->tags() as $tag)
-                            teste
+                        @forelse($doctor->specialities as $speciality)
+                            {{ $speciality->name }}
                         @empty
-                            <span>Adicionar tag</span>
+                           <small>Sem especialidade</small>
                         @endforelse
                     </div>
                     <div>
@@ -54,10 +51,10 @@
                         </span>
                     </div>
                     <div>
-                        <a class="btn btn-transparent" href="{{ route('its.app.doctors.show', $customer->slug) }}">
+                        <a class="btn btn-transparent" href="{{ route('its.app.doctors.show', $doctor->id) }}">
                             <i class="ri ri-eye-line"></i>
                         </a>
-                        <a class="btn btn-transparent" href="{{ route('its.app.doctors.edit', $customer->slug) }}">
+                        <a class="btn btn-transparent" href="{{ route('its.app.doctors.edit', $doctor->id) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
                         <button class="btn btn-transparent text-danger">

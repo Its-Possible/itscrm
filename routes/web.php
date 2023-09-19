@@ -68,7 +68,7 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
     Route::prefix('/doctors')->name('doctors.')->group(function () {
         Route::get('/', [DoctorViewController::class, 'index'])->name('index');
         Route::get('/create', [DoctorViewController::class, 'create'])->name('create');
-        Route::post('/', [DoctorApiController::class, 'store'])->name('store');
+        Route::post('/create', [DoctorApiController::class, 'store'])->name('store');
         Route::get('/{slug}', [DoctorViewController::class, 'show'])->name('show');
         Route::get('/{slug}/edit', [DoctorViewController::class, 'edit'])->name('edit');
         Route::post('/{slug/edit', [DoctorApiController::class, 'update'])->name('update');
@@ -114,6 +114,9 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
 
 });
 
+Route::middleware('auth')->prefix('auth')->group(function () {
+    Route::get('sign-out', [LoginApiController::class, 'logout'])->name('its.auth.sign-out');
+});
 
 // Authentication routes ....
 Route::middleware('guest')->prefix('auth')->group(function () {

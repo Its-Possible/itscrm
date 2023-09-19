@@ -3,10 +3,16 @@
 namespace App\Http\Livewire\Backoffice\Components\Doctors;
 
 use App\Models\Speciality;
+use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class SpecialitiesComponent extends Component
 {
+    public User $user;
+
     public $selected = "none";
     public $doctorFromSpecialities = [];
 
@@ -25,12 +31,19 @@ class SpecialitiesComponent extends Component
         $this->selected = "none"; // Select to value default
     }
 
-    public function removeSpeciality(string $slug)
+    public function removeSpeciality(string $slug): void
     {
         unset($this->doctorFromSpecialities[$slug]);
     }
 
-    public function render()
+    public function saveSpecialities(int $doctor_id): void
+    {
+        if(count($this->doctorFromSpecialities) > 0){
+            dd($this->doctorFromSpecialities);
+        }
+    }
+
+    public function render(): Factory|View|Application
     {
         $this->specialities = Speciality::all();
 

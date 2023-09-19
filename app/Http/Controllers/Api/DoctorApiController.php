@@ -22,7 +22,7 @@ class DoctorApiController extends Controller
             return back()->withInput()->withErrors($validated);
         }
 
-        $user = User::where('username', $request->input('user'))->firstOrFail();
+        $user = User::where('username', $request->input('username'))->firstOrFail();
 
         $doctor = new Doctor();
         $doctor->user_id = $user->id;

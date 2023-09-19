@@ -36,8 +36,7 @@
                 <hr/>
                 <div class="form-group">
                     <label for="speciality-name">Nome</label>
-                    <input form="speciality-create" class="form-control" type="text" placeholder="Nome da especialidade"
-                           name="name"/>
+                    <input form="speciality-create" class="form-control" type="text" placeholder="Nome da especialidade" name="name"/>
                 </div>
                 <div class="form-group">
                     <label for="speciality-description">Descrição</label>
