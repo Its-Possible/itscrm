@@ -66,7 +66,7 @@
                 </article>
             @empty
                 <article id="app-list-nocustomers">
-                    Não há médicos registados, <a href="#">adicione</a> o primeiro.
+                    Não há médicos registados, <a href="{{ route('its.app.doctors.create') }}">adicione</a> o primeiro.
                 </article>
             @endforelse
         </div>
