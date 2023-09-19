@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('email')->unique()->nullable();
+            $table->string('mobile');
             $table->timestamps();
         });
     }

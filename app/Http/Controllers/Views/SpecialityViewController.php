@@ -18,4 +18,14 @@ class SpecialityViewController extends Controller
     {
         return view('pages.specialities.create');
     }
+
+    public function edit(Request $request, string $slug)
+    {
+        $speciality = Speciality::where('slug', $slug)->firstOrFail();
+
+        return view('pages.specialities.edit')
+            ->with([
+                'speciality' => $speciality
+            ]);
+    }
 }

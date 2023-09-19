@@ -68,9 +68,10 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
     Route::prefix('/doctors')->name('doctors.')->group(function () {
         Route::get('/', [DoctorViewController::class, 'index'])->name('index');
         Route::get('/create', [DoctorViewController::class, 'create'])->name('create');
+        Route::post('/', [DoctorApiController::class, 'store'])->name('store');
         Route::get('/{slug}', [DoctorViewController::class, 'show'])->name('show');
         Route::get('/{slug}/edit', [DoctorViewController::class, 'edit'])->name('edit');
-        Route::patch('/{slug/edit', [DoctorApiController::class, 'update'])->name('update');
+        Route::post('/{slug/edit', [DoctorApiController::class, 'update'])->name('update');
         Route::delete('/slug', [DoctorApiController::class, 'destroy'])->name('delete');
     });
 
@@ -80,7 +81,7 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
         Route::post('/create', [SpecialityApiController::class, 'store'])->name('store');
         Route::get('/{slug}', [SpecialityViewController::class, 'show'])->name('show');
         Route::get('/{slug}/edit', [SpecialityViewController::class, 'edit'])->name('edit');
-        Route::patch('/{slug/edit', [SpecialityApiController::class, 'update'])->name('update');
+        Route::post('/{slug}/edit', [SpecialityApiController::class, 'update'])->name('update');
         Route::delete('/slug', [SpecialityApiController::class, 'destroy'])->name('delete');
     });
 

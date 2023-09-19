@@ -9,6 +9,13 @@
     </div>
     <div class="row mb-3">
         <div class="col-md-8 offset-2">
+            @if(session()->has('its.message.body'))
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert text-center @if(session('its.message.type') == 'warning') alert-warning @elseif('its.message.type' == 'danger') alert-danger @else alert-success @endif">{{ session('its.message.body') }}</div>
+                </div>
+            </div>
+            @endif
             <div class="row">
                 <div class="col-md-10">
                 </div>
@@ -47,7 +54,7 @@
                         <a class="btn btn-transparent" href="{{ route('its.app.specialities.edit', $speciality->slug) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
-                        <button class="btn btn-transparent text-danger">
+                        <button type="button" class="btn btn-transparent text-danger" onclick="confirm('Deseja mesmo apagar a especialidade {{ $speciality->name }}?') || event.stopImmediatePropagation()" wire:click.prevent="deleteSpeciality('{{ $speciality->slug }}')">
                             <i class="ri ri-delete-bin-line"></i>
                         </button>
                     </div>

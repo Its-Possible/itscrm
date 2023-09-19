@@ -1,4 +1,13 @@
-<div>
+<div class="mt-4 mb-3">
+    <div class="row">
+        <div class="col-md-9">
+            <h6 class="mt-2">Especialidade médica</h6>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-filter btn-small pull-right" href="http://dev.itscrm.local/app/customers/create">Guardar</a>
+        </div>
+    </div>
+    <hr />
     <div class="row">
         <div class="col-md-10">
             <div class="form-group">
@@ -24,7 +33,7 @@
                 <i class="ri ri-close-line"></i>
             </button>
         @empty
-
+            <small>Este médico não tem especialidades</small>
         @endforelse
     </div>
 </div>

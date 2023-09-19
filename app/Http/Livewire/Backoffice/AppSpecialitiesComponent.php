@@ -7,6 +7,13 @@ use Livewire\Component;
 
 class AppSpecialitiesComponent extends Component
 {
+
+    public function deleteSpeciality(string $slug)
+    {
+        $speciality = Speciality::where('slug', $slug)->firstOrFail();
+        $speciality->delete();
+    }
+
     public function render()
     {
         $specialities_counter = Speciality::count();

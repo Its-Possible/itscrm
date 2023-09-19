@@ -1,4 +1,13 @@
 <div>
+    <div class="row">
+        <div class="col-md-9">
+            <h6 class="mt-2">Horário do médico</h6>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-filter btn-small pull-right" href="http://dev.itscrm.local/app/customers/create">Guardar</a>
+        </div>
+    </div>
+    <hr />
     <label for="user">Defina o horário semanal do médico</label>
     <div class="form-group" id="dayweek">
         <button class="btn btn-filter {{ in_array('Dom', $daysweekSelected) ? 'inverter' : '' }}"
