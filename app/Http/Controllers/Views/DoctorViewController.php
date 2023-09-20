@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Views;
 
 use App\Helpers\Interfaces\UserInterface;
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use App\Models\Speciality;
 use App\Models\User;
 use Illuminate\Http\Request;

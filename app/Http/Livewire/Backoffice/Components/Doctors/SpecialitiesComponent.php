@@ -7,16 +7,23 @@ use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class SpecialitiesComponent extends Component
 {
-    public User $user;
+
+    protected $listeners = ["doctorSelectedUsername" => "selectedUsername"];
 
     public $selected = "none";
     public $doctorFromSpecialities = [];
-
     public $specialities;
+    public User $user;
+
+    public function selectedUsername(string $username): void
+    {
+        $this->user = User::where('username', $username)->firstOrFail();
+    }
 
     public function selectSpeciality(): void
     {
@@ -36,11 +43,9 @@ class SpecialitiesComponent extends Component
         unset($this->doctorFromSpecialities[$slug]);
     }
 
-    public function saveSpecialities(int $doctor_id): void
+    public function saveSpecialities(): void
     {
-        if(count($this->doctorFromSpecialities) > 0){
-            dd($this->doctorFromSpecialities);
-        }
+
     }
 
     public function render(): Factory|View|Application
