@@ -4,8 +4,7 @@
             <h6 class="mt-2">Especialidade médica</h6>
         </div>
         <div class="col-md-3">
-            <button type="button" class="btn btn-filter btn-small pull-right" wire:click="saveSpecialities">Guardar
-            </button>
+            <button type="button" class="btn btn-filter btn-small pull-right" wire:click="saveSpecialities">Guardar</button>
         </div>
     </div>
     <hr/>

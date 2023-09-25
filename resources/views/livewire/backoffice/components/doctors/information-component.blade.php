@@ -13,7 +13,7 @@
         <select class="form-control" name="username" id="doctor-username" form="doctor-create" wire:model="username" wire:change="changeSelectUsername">
             <option disabled selected>Selecionar</option>
             @forelse($users as $user)
-                <option value="{{ $user->username }}">{{ decrypt_data($user->firstname) }}</option>
+                <option value="{{ $user->username }}">{{ decrypt_data($user->firstname) }} {{ decrypt_data($user->lastname) }}</option>
             @empty
 
             @endforelse

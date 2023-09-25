@@ -26,7 +26,7 @@ class DoctorApiController extends Controller
         }
 
         $user = User::where('username', $request->input('username'))->firstOrFail();
-        
+
         $doctor = new Doctor();
         $doctor->user_id = $user->id;
         $doctor->email = $request->input('email');

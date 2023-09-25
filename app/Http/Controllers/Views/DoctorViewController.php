@@ -28,4 +28,16 @@ class DoctorViewController extends Controller
                 'specialities' => $specialities
             ]);
     }
+
+    public function edit(Request $request, string $username)
+    {
+        $user = User::with('specialities')
+            ->where('username', $username)
+            ->where('status', UserInterface::STATUS_ACTIVE);
+
+        return view('pages.doctors.edit')
+            ->with([
+                'user' => $user
+            ]);
+    }
 }

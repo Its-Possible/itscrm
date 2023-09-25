@@ -17,8 +17,8 @@ class SpecialityApiController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => 'required|min:3|max:15',
-            'description' => 'required|min:3|max:30'
+            'name' => 'required|min:3|max:50',
+            'description' => 'required|min:3|max:200'
         ]);
 
         if (!$validated) {
@@ -42,15 +42,21 @@ class SpecialityApiController extends Controller
         return redirect()->route('its.app.specialities.index');
     }
 
-    public function update(SpecialityUpdateRequest $request, string $slug)
+    public function update(Request $request, string $slug)
     {
-        if (!$request->validated()) {
+
+        $validated = $request->validate([
+            'name' => 'required|min:3|max:50',
+            'description' => 'required|min:3|max:200'
+        ]);
+
+        if (!$validated) {
             return back()->withInput()->withErrors($request);
         }
 
         $speciality = Speciality::where('slug', $slug)->firstOrFail();
-        $speciality->name = $request->input('speciality-name');
-        $speciality->description = $request->input('speciality-description');
+        $speciality->name = $request->input('name');
+        $speciality->description = $request->input('description');
 
         if (!$speciality->save()) {
             return back()->withInput()->withErrors(['message' => 'Não foi possivel atualizar a especialidade!']);

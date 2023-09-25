@@ -56,6 +56,11 @@ class ScheduleComponent extends Component
         else $this->custom = true;
     }
 
+    public function addSchedule(): void
+    {
+        $this->timerSelected = [];
+    }
+
     public function render(): Factory|View|Application
     {
         return view('livewire.backoffice.components.doctors.schedule-component');

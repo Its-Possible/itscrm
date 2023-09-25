@@ -15,13 +15,20 @@ class InformationComponent extends Component
 
     public function changeSelectUsername(): void
     {
-        $this->emit('doctorSelectedUsername', $this->username);
+
+        $user = User::with('doctor')->where('username', $this->username)->first();
+
+        if($user->doctor->count() <= 0) {
+            $this->emit('doctorSelectedUsername', $this->username);
+        }
     }
 
     public function render(): Factory|View|Application
     {
 
-        $users = User::where('status', UserInterface::STATUS_ACTIVE)->get();
+        $users = User::where('status', UserInterface::STATUS_ACTIVE)
+            ->whereDoesntHave('doctor')
+            ->get();
 
         return view('livewire.backoffice.components.doctors.information-component')
             ->with([

@@ -24,7 +24,7 @@
         <div class="col-md-8 offset-2 font-bold row-border-radius">
             <section id="app-list-header">
                 <div>Médico</div>
-                <div></div>
+                <div>Especialidades</div>
                 <div>Estado</div>
                 <div>Ações</div>
             </section>
@@ -39,7 +39,7 @@
                     </div>
                     <div>
                         @forelse($doctor->specialities as $speciality)
-                            {{ $speciality->name }}
+                            {{ $speciality->name }},
                         @empty
                            <small>Sem especialidade</small>
                         @endforelse
