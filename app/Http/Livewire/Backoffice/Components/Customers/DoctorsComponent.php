@@ -11,25 +11,29 @@ use PhpParser\Comment\Doc;
 class DoctorsComponent extends Component
 {
     public $doctors = [];
+    public $specialities = [];
 
     public $selected;
 
     public function updateDoctorsFromSpeciality()
     {
         $this->doctors = Doctor::with('specialities')->get();
+        $this->specialities = Speciality::with(['doctors' => function ($query) {
+            $query->where('doctor_id', 1);
+        }])->get();
+
+        dd($this->doctors);
     }
 
     public function render()
     {
 
-        $specialities = Speciality::all();
-
-        $doctors = Doctor::with('user')->get();
+        $this->specialities = Speciality::all();
 
         return view('livewire.backoffice.components.customers.doctors-component')
             ->with([
-                'specialities' => $specialities,
-                'doctors' => $doctors
+                'specialities' => $this->specialities,
+                'doctors' => $this->doctors
             ]);
     }
 }
