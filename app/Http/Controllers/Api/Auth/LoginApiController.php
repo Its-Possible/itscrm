@@ -8,9 +8,12 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
 
 class LoginApiController extends Controller
 {
+    public int $attemptsLimit = 5;
+
     /*
      * Authenticate user and redirect to dashboard
      *
@@ -24,6 +27,10 @@ class LoginApiController extends Controller
             'password' => 'required|string|min:4|max:100',
             'remember' => 'nullable|boolean',
         ]);
+
+        if(RateLimiter::tooManyAttempts(request()->ip(), $this->attemptsLimit)) {
+            return back()->withInput()->withErrors(['credentials' => 'Demasiadas tentativas, o seu IP esta restrigido por 1 minuto.']);
+        }
 
         if ($validated) {
             if (filter_var($request->input('username'), FILTER_VALIDATE_EMAIL)) {
@@ -44,6 +51,7 @@ class LoginApiController extends Controller
                 session()->regenerate();
 
                 if (auth()->user()->status === UserInterface::STATUS_ACTIVE) {
+                    RateLimiter::clear(request()->ip());
                     return (session()->has('url.intended')) ? redirect(session()->get('url.intended')) : redirect()->route('its.app.home');
                 }
 
@@ -66,6 +74,8 @@ class LoginApiController extends Controller
                 }
             }
         }
+
+        RateLimiter::hit(request()->ip(), 60);
 
         return back()->withInput()->withErrors(['credentials' => 'As credenciais introduzidas são inválidas, tente novamente!.']);
     }
