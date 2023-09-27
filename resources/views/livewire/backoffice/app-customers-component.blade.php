@@ -8,14 +8,18 @@
             <button class="btn btn-filter" wire:click="$set('modal', true)">Importar</button>
         </div>
     </div>
+    @if(session()->has('its.message.body'))
+        <div class="row">
+            <div class="col-12">
+                <div class="alert text-center @if(session('its.message.type') == 'warning') alert-warning @elseif('its.message.type' == 'danger') alert-danger @else alert-success @endif">{{ session('its.message.body') }}</div>
+            </div>
+        </div>
+    @endif
     <div class="row mb-3">
         <div class="col-md-8 offset-2">
             <div class="row">
                 <div class="col-md-10">
                     <button class="btn btn-filter">Add filtro <i class="ri-add-fill ml-2"></i></button>
-{{--                    <button class="btn btn-filter"><span>Tag:</span> Filiado <i class="ri-close-fill ml-2"></i></button>--}}
-{{--                    <button class="btn btn-filter"><span>Tipo:</span> Pessoa <i class="ri-close-fill ml-2"></i></button>--}}
-{{--                    <button class="btn btn-filter"><span>Pais:</span> Portugal & Estados Unidos<i class="ri-close-fill ml-2"></i></button>--}}
                 </div>
                 <div class="col-md-2 text-right pt-3">
                     {{ $customers_counter }} Encontrados

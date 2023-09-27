@@ -27,9 +27,9 @@ class CustomerStoreRequest extends FormRequest
             'name' => 'min:5|max:200|required',
             'email' => 'max:200|required',
             'birthday' => 'date|required',
-            'address_line_1' => 'max:200|required',
-            'address_line_2' => 'max:200',
-            'postcode' => 'max:6|required',
+            'address-line-1' => 'max:200|required',
+            'address-line-2' => 'max:200',
+            'postcode' => 'max:10|required',
             'location' => 'min:3|max:50|required',
             'mobile' => 'min:9|max:12|required'
         ];

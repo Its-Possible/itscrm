@@ -18,13 +18,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('mobile')->nullable();
-            $table->string('address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('country')->nullable();
+            $table->string('address_line_1')->nullable();
+            $table->string('address_line_2')->nullable();
+            $table->string('location')->nullable();
+            $table->string('postcode')->nullable();
             $table->date('birthday')->nullable();
-            $table->string('zip')->nullable();
-            $table->string('website')->nullable();
             $table->string('slug')->unique();
             $table->string('vat')->default('CONSUMIDOR FINAL');
             $table->timestamps();
