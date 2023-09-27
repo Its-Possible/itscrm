@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use PhpParser\Comment\Doc;
 
 class Speciality extends Model
@@ -18,8 +19,8 @@ class Speciality extends Model
         'id'
     ];
 
-    public function doctors()
+    public function doctors(): BelongsToMany
     {
-        return $this->belongsTo(Doctor::class);
+        return $this->belongsToMany(Doctor::class,  'doctor_specialities');
     }
 }

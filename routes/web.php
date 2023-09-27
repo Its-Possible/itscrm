@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CampaignApiController;
+use App\Http\Controllers\Api\CustomerApiController;
 use App\Http\Controllers\Api\FileApiController;
 use App\Http\Controllers\Api\SpecialityApiController;
 use App\Http\Controllers\Api\UserApiController;
@@ -50,6 +51,7 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
     Route::prefix('/customers')->name('customers.')->group(function () {
         Route::get('/',  [CustomerViewController::class, 'index'])->name('index');
         Route::get('/create', [CustomerViewController::class, 'create'])->name('create');
+        Route::post('/', [CustomerApiController::class, 'store'])->name('store');
         Route::get('/{slug}', [CustomerViewController::class, 'show'])->name('show');
         Route::get('/{slug}/edit', [CustomerViewController::class, 'edit'])->name('edit');
         Route::patch('/{slug}', [CustomerApiController::class, 'edit'])->name('update');

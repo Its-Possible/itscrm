@@ -4,9 +4,10 @@ namespace App\Http\Livewire\Backoffice\Components\Customers;
 
 use App\Models\Doctor;
 use App\Models\Speciality;
-use Google\Service\AIPlatformNotebooks\Schedule;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
-use PhpParser\Comment\Doc;
 
 class DoctorsComponent extends Component
 {
@@ -15,17 +16,13 @@ class DoctorsComponent extends Component
 
     public $selected;
 
-    public function updateDoctorsFromSpeciality()
+    public function updateDoctorsFromSpeciality(): void
     {
-        $this->doctors = Doctor::with('specialities')->get();
-        $this->specialities = Speciality::with(['doctors' => function ($query) {
-            $query->where('doctor_id', 1);
-        }])->get();
-
-        dd($this->doctors);
+        $speciality = Speciality::with('doctors')->where('slug', $this->selected)->firstOrFail();
+        $this->doctors = $speciality->doctors;
     }
 
-    public function render()
+    public function render(): Factory|View|Application
     {
 
         $this->specialities = Speciality::all();

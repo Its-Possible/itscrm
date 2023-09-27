@@ -48,7 +48,7 @@
     </div>
     <div class="row mb-4" x-data="customers">
         <div class="col-md-8 offset-2 text-right pt-3">
-            <form id="doctor-create" action="{{ route('its.app.doctors.store') }}" method="post" autocomplete="off">
+            <form id="doctor-create" action="{{ route('its.app.customers.store') }}" method="post" autocomplete="off">
                 {{ csrf_field() }}
                 <button form="doctor-create" type="submit" class="btn btn-filter inverter pull-right">Guardar</button>
             </form>

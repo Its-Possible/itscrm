@@ -18,7 +18,7 @@ class InformationComponent extends Component
 
         $user = User::with('doctor')->where('username', $this->username)->first();
 
-        if($user->doctor->count() <= 0) {
+        if(is_null($user->doctor)) {
             $this->emit('doctorSelectedUsername', $this->username);
         }
     }
