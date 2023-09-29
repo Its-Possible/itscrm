@@ -407,3 +407,108 @@ article.app-specialities {
     height: 120px;
     resize: none;
 }
+
+#customer-avatar-upload {
+    position: relative;
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 18px;
+    width: 183px;
+    height: 183px;
+    border: 1px dashed #333;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 50%;
+}
+
+#customer-avatar-upload-input {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0);
+    opacity: 0;
+    border-radius: 50%;
+}
+
+#customer-avatar-croppie {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0);
+    opacity: 1;
+    border-radius: 50%;
+}
+
+.customer-avatar-edit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(50,50,50,0.75);
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+#customer-avatar-croppie:hover #customer-avatar-upload-edit {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+#customer-avatar-current {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+
+#customer-avatar-current > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#customer-avatar-current-edit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(50,50,50,0.75);
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+#customer-avatar-current:hover #customer-avatar-current-edit {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.cr-boundary {
+    border-radius: 50% !important;
+}
+
+#customer-avatar-current-edit > h6 {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+}

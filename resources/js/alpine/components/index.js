@@ -6,4 +6,6 @@ window.header = header;
 window.customers = customers;
 
 Alpine.data('header', header);
-Alpine.data('customers', customers)
+Alpine.data('customers', customers);
+
+Alpine.start();

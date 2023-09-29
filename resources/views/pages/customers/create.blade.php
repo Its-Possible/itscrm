@@ -12,7 +12,7 @@
     </div>
     @if(session()->has('its.message.body'))
         <div class="row">
-            <div class="col-12">
+            <div class="col-8 offset-2">
                 <div class="alert text-center @if(session('its.message.type') == 'warning') alert-warning @elseif('its.message.type' == 'danger') alert-danger @else alert-success @endif">{{ session('its.message.body') }}</div>
             </div>
         </div>
@@ -31,16 +31,9 @@
         </div>
     @endif
     <div class="row">
-        <div class="col-md-8 offset-2 mb-2">
-            <div class="alert alert-warning text-center">
-                <i class="ri ri-alert-line"></i>
-                Para adicionar um médico ao sistema é necessário que seja utilizador
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-8 offset-2 bg-white row-border-radius bg-white py-2 mb-4">
             <div class="container">
+                <livewire:backoffice.components.customers.upload-image-component />
                 <livewire:backoffice.components.customers.information-component />
                 <livewire:backoffice.components.customers.doctors-component />
             </div>
