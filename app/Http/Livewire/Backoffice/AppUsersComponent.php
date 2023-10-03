@@ -13,7 +13,7 @@ class AppUsersComponent extends Component
     public function render()
     {
         $usersCount = User::count();
-        $users = User::paginate(30);
+        $users = User::with('avatar')->paginate(30);
 
         return view('livewire.backoffice.app-users-component')
             ->with([

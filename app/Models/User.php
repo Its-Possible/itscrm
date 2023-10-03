@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Seeders\AvatarSeeder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -47,6 +48,11 @@ class User extends Authenticatable
     public function activationAccount(): HasOne
     {
         return $this->hasOne(ActivationAccount::class);
+    }
+
+    public function avatar(): HasOne
+    {
+        return $this->hasOne(Avatar::class, 'id', 'avatar_id');
     }
 
     public function messages(): HasMany

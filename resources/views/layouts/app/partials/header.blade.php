@@ -25,7 +25,7 @@
             </label>
         </div>
         <div id="app-main-logged-avatar">
-           <img src="{{ auth()->user()->avatar }}" />
+           <img src="{{ auth()->user()->avatar->base64code }}" />
         </div>
     </section>
 </header>

@@ -34,7 +34,7 @@
         <div class="col-md-8 offset-2">
             @forelse($users as $index => $user)
                 <article class="app-customer">
-                    <div><img class="app-customer-avatar" src="{{ $user->avatar }}" /></div>
+                    <div><img class="app-customer-avatar" src="{{ $user->avatar->base64code }}" /></div>
                     <div>
                         <div class="text-bold">{{ decrypt_data($user->firstname) }}</div>
                         <div><small>{{ $user->email }}</small></div>

@@ -25,7 +25,7 @@ class CustomerStoreRequest extends FormRequest
         return [
             //
             'name' => 'min:5|max:200|required',
-            'email' => 'max:200|required',
+            'email' => 'max:200|unique:customers|required',
             'birthday' => 'date|required',
             'address-line-1' => 'max:200|required',
             'address-line-2' => 'max:200',

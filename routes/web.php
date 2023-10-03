@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\SpecialityApiController;
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Views\FileViewController;
 use App\Http\Controllers\Views\SpecialityViewController;
+use App\Models\Avatar;
 use App\Models\PersonalAccessToken;
 use Database\Factories\SettingFactory;
 use Illuminate\Support\Facades\Route;
@@ -132,4 +133,11 @@ Route::middleware('guest')->prefix('auth')->group(function () {
     Route::post('sign-in', [LoginApiController::class, 'authenticate'])->name('its.auth.sign-in.submit');
     Route::get('sign-up', [RegisterViewController::class, 'show'])->name('its.auth.sign-up');
     Route::get('activate-account/{token}', [RegisterViewController::class, 'activateAccount'])->name('its.auth.activate-account');
+});
+
+
+Route::get('avatars', function () {
+    $avatar = Avatar::find(1);
+
+    return "<img src=\" {$avatar->base64code}\" />";
 });

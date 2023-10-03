@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('avatars', function (Blueprint $table) {
             $table->id();
-            $table->string('base64code');
+            $table->longText('base64code');
             $table->timestamps();
         });
     }
