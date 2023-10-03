@@ -5,7 +5,8 @@ import Croppie from 'croppie';
 export default () => ({
     croppie: {
         visible: false,
-        image: {}
+        image: {},
+        result: ''
     },
     image: {
         has: false,
@@ -75,7 +76,17 @@ export default () => ({
             this.$refs.result.src = croppedImage;
             this.croppie.visible = false;
             this.image.has = true;
-        })
+            this.result = croppedImage;
+
+            axios.get('/')
+                .then((response) => {
+                    console.log(response);
+                }).catch((err) => {
+                console.error(err);
+            }).finally(() => {
+                console.log('Finally')
+            })
+        });
     },
 
     setAvatarClickEventHandler: function () {

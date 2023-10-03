@@ -3,10 +3,12 @@
 use App\Http\Controllers\Api\CampaignApiController;
 use App\Http\Controllers\Api\CustomerApiController;
 use App\Http\Controllers\Api\FileApiController;
+use App\Http\Controllers\Api\PersonalAccessTokenApiController;
 use App\Http\Controllers\Api\SpecialityApiController;
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Views\FileViewController;
 use App\Http\Controllers\Views\SpecialityViewController;
+use App\Models\PersonalAccessToken;
 use Database\Factories\SettingFactory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Views\MailViewController;
@@ -112,8 +114,12 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
             Route::get('/secure', [SettingsViewController::class, 'secure'])->name('secure');
             Route::get('/delete', [SettingsViewController::class, 'destroy'])->name('delete');
         });
+        Route::prefix('/auth')->name('auth.')->group(function () {
+            Route::prefix('/tokens')->name('tokens')->group(function () {
+                Route::get('/create', [PersonalAccessTokenApiController::class, 'store'])->name('store');
+            });
+        });
     });
-
 });
 
 Route::middleware('auth')->prefix('auth')->group(function () {

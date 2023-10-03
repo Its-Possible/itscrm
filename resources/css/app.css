@@ -483,6 +483,7 @@ article.app-specialities {
     justify-content: center;
     align-items: center;
     display: flex;
+    background: #fff;
 }
 
 #customer-avatar-current-edit {

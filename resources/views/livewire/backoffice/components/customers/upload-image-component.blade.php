@@ -17,7 +17,7 @@
                     <img alt x-ref="croppie" />
                 </div>
                 <div id="customer-avatar-current" x-show="!croppie.visible" @click="setAvatarClickEventHandler()">
-                    <img x-ref="result" src="{{ auth()->user()->avatar }}" width="220" height="220" />
+                    <img x-ref="result" src="{{ asset('/images/avatar.default.png') }}" width="220" height="220" />
                     <div id="customer-avatar-current-edit">
                         <h6 class="text-white">
                             <i class="ri ri-camera-2-line ri-2x"></i><br />
