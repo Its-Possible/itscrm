@@ -7,7 +7,7 @@
             <h1 class="mt-3 mb-3">Criar cliente</h1>
         </div>
         <div class="col-md-3 text-right pt-3">
-            <button form="doctor-create" type="submit" class="btn btn-filter inverter pull-right">Guardar</button>
+            <button form="customer-create" type="submit" class="btn btn-filter inverter pull-right">Guardar</button>
         </div>
     </div>
     @if(session()->has('its.message.body'))

@@ -38,8 +38,13 @@
                         <div><small>{{ $doctor->email }}</small></div>
                     </div>
                     <div>
+                        @php $xindex = 0 @endphp
                         @forelse($doctor->specialities as $speciality)
-                            {{ $speciality->name }},
+                            @php $xindex++ @endphp
+                            {{ $speciality->name }}
+                            @if($xindex < count($doctor->specialities))
+                                ,
+                            @endif
                         @empty
                            <small>Sem especialidade</small>
                         @endforelse
