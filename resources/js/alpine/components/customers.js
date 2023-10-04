@@ -78,8 +78,9 @@ export default () => ({
             this.image.has = true;
             this.result = croppedImage;
 
-            axios.get('/')
-                .then((response) => {
+            axios.post('/api/avatar', {
+                'image': this.result
+            }).then((response) => {
                     console.log(response);
                 }).catch((err) => {
                 console.error(err);

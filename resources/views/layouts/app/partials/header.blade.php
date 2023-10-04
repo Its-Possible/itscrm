@@ -17,7 +17,12 @@
         <div id="app-main-logged-messages">
             <button>
                 <label><i class="ri ri-mail-line"></i></label>
-                Tens 5 novas <strong>mensagens</strong></button>
+                @if(count(auth()->user()->messages) > 0)
+                Tens {{  count(auth()->user()->messages) }} novas <strong>mensagens</strong>
+                @else
+                    Sem mensagens novas
+                @endif
+            </button>
         </div>
         <div id="app-main-logged-notifications">
             <label>
@@ -25,7 +30,7 @@
             </label>
         </div>
         <div id="app-main-logged-avatar">
-           <img src="{{ auth()->user()->avatar->base64code }}" />
+           <img src="{{ auth()->user()->avatar->image }}" />
         </div>
     </section>
 </header>

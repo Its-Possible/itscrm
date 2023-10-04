@@ -39,7 +39,7 @@
         <div class="col-md-8 offset-2">
             @forelse($customers as $index => $customer)
                 <article class="app-customer">
-                    <div><img class="app-customer-avatar" src="{{ $customer->avatar }}" /></div>
+                    <div><img class="app-customer-avatar" src="{{ $customer->avatar->image }}" /></div>
                     <div>
                         <div class="text-bold">{{ decrypt_data($customer->name) }}</div>
                         <div><small>{{ decrypt_data($customer->email) }}</small></div>

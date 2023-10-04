@@ -20,12 +20,8 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::middleware('auth.api')->name('api')->group(function () {
-    Route::prefix('user')->name('api')->group(function () {
+    Route::prefix('user')->name('user')->group(function () {
         Route::get('/', [UserApiController::class, 'index']);
-    });
-
-    Route::prefix('customers')->name('customers.')->group(function () {
-
     });
 });
 
@@ -35,3 +31,5 @@ Route::get('/tags', [App\Http\Controllers\Api\TagApiController::class, 'index'])
 Route::get('/tags/relationship', [App\Http\Controllers\Api\TagApiController::class, 'relationship']);
 
 Route::get('/customers', [App\Http\Controllers\Api\CustomerApiController::class, 'index']);
+
+Route::post('/avatar', [App\Http\Controllers\Api\AvatarApiController::class, 'store']);
