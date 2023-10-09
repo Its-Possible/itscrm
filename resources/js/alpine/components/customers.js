@@ -86,7 +86,7 @@ export default () => ({
                 console.error(err);
             }).finally(() => {
                 console.log('Finally')
-            })
+            });
         });
     },
 

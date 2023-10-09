@@ -12,23 +12,25 @@ class AvatarApiController extends Controller
     //
     public function store(AvatarStoreRequest $request)
     {
-        if(!$request->validated()) {
+        if (!$request->validated()) {
             return response()->json([
-               'message' => 'Error: Validation error'
+                'message' => 'Error: Validation error'
             ]);
         }
 
         $avatar = new Avatar();
         $avatar->image = $request->input('image');
 
-        if(!$avatar->save()){
+        if (!$avatar->save()) {
             return response()->json([
-               'message' => 'Error: Save image'
+                'message' => 'Error: Save image'
             ]);
         }
 
         return response()->json([
-           'message' => 'Saved image on database'
+            'status' => 'ok',
+            'image' =>  $avatar->image,
+            'message' => 'Saved image on database'
         ]);
     }
 }
