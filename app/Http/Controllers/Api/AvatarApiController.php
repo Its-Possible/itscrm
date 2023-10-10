@@ -29,8 +29,11 @@ class AvatarApiController extends Controller
 
         return response()->json([
             'status' => 'ok',
-            'image' =>  $avatar->image,
-            'message' => 'Saved image on database'
+            'message' => 'Saved image on database',
+            'image' => [
+                "id" => $avatar->id,
+                'code' => $avatar->image
+            ]
         ]);
     }
 }

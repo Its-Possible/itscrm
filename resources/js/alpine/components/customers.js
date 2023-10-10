@@ -81,8 +81,10 @@ export default () => ({
             axios.post('/api/avatar', {
                 'image': this.result
             }).then((response) => {
-                    console.log(response);
-                }).catch((err) => {
+                console.log(response.data);
+                let el = document.getElementById('avatar-id');
+                el.value = response.data.image.id;
+            }).catch((err) => {
                 console.error(err);
             }).finally(() => {
                 console.log('Finally')

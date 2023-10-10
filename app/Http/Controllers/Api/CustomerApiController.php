@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerStoreRequest;
 use App\Models\Customer;
+use App\Models\Speciality;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Str;
 
 class CustomerApiController extends Controller
@@ -25,6 +27,12 @@ class CustomerApiController extends Controller
         }
 
         $customer = new Customer;
+
+        if($request->input('avatar')) {
+            $customer->avatar_id = $request->input('avatar');
+        }
+
+
         $customer->name = encrypt_data($request->input('name'));
         $customer->email = encrypt_data($request->input('email'));
         $customer->birthday = $request->input('birthday');
@@ -37,6 +45,23 @@ class CustomerApiController extends Controller
 
         if(!$customer->save()){
             return back()->withErrors($request)->withInput();
+        }
+
+        if($request->input('speciality-selected')) {
+
+            $speciality = Speciality::where('slug', $request->input('speciality-select'))->firstOrFail();
+
+            DB::table('customers_specialities')->insert([
+                'customer_id' => $customer->id,
+                'speciality_id' => $speciality->id
+            ]);
+        }
+
+        if($request->input('doctor-selected')) {
+            DB::table('customers_doctors')->insert([
+                'customer_id' => $customer->id,
+                'doctor_id' => $request->input('doctor-select')
+            ]);
         }
 
         $request->session()->flash('its.message.body', 'Cliente criado com sucesso!');

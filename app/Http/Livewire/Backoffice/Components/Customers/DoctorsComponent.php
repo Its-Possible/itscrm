@@ -14,7 +14,7 @@ class DoctorsComponent extends Component
     public $doctors = [];
     public $specialities = [];
 
-    public $selected;
+    public $selected = "";
 
     public function updateDoctorsFromSpeciality(): void
     {
