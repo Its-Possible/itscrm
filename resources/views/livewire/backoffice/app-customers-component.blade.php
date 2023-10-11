@@ -64,7 +64,7 @@
                         <a class="btn btn-transparent" href="{{ route('its.app.customers.edit', $customer->slug) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
-                        <button class="btn btn-transparent text-danger" wire:click="delete">
+                        <button class="btn btn-transparent text-danger" wire:click="delete('{{ $customer->slug }}')">
                             <i class="ri ri-delete-bin-line"></i>
                         </button>
                     </div>

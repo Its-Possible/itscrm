@@ -32,6 +32,15 @@ class AppCustomersComponent extends Component
         }
     }
 
+    public function delete(string $slug)
+    {
+        $customer = Customer::with(['specialities', 'doctors'])->where('slug', $slug)->firstOrFail();
+
+        $customer->specialities();
+
+        dd($customer);
+    }
+
     public function render()
     {
         $customersCount = Customer::count();
