@@ -36,9 +36,17 @@ class AppCustomersComponent extends Component
     {
         $customer = Customer::with(['specialities', 'doctors'])->where('slug', $slug)->firstOrFail();
 
-        $customer->specialities();
+        if($customer->specialities->count() > 0) {
+            $customer->specialities->delete();
+        }
 
-        dd($customer);
+        if($customer->doctors->count() > 0) {
+            $customer->doctors->delete();
+        }
+
+        $customer->delete();
+
+        $this->emit('refresh');
     }
 
     public function render()

@@ -58,14 +58,13 @@ class CustomerViewController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $slug): Response
+    public function edit(string $slug)
     {
         //
-        dd($slug);
+        $customer = Customer::where('slug', $slug)->firstOrFail();
 
-        return response()->json([
-            "message" => "Editing...",
-        ]);
+        return view('pages.customers.edit')
+            ->with(['customer' => $customer]);
     }
 
     /**
