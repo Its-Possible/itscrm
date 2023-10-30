@@ -15,7 +15,7 @@ export default () => ({
         }
     },
     tags: {
-        editable: false
+        editable: true
     },
     initialize: function () {
         this.croppie.image = new Croppie(this.$refs.croppie, {
@@ -96,5 +96,14 @@ export default () => ({
 
     setAvatarClickEventHandler: function () {
         document.getElementById('customer-avatar-upload-input').click();
+    },
+
+    createNewTagClickEventHandler: function (e) {
+        let id = e.currentTarget.dataset.customer;
+
+        let el = document.createElement("span");
+        el.setAttribute('badge app-customer-tag')
+
+        document.getElementById('app-customers-tags').parentNode.insertBefore('' e.currentTarget)
     }
 });

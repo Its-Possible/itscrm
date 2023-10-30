@@ -513,3 +513,8 @@ article.app-specialities {
     font-weight: 400;
     letter-spacing: 1px;
 }
+
+.app-customer-new-tag {
+    border: 0;
+    background: transparent;
+}

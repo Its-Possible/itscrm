@@ -12,3 +12,5 @@ Alpine.data('header', header);
 Alpine.data('customers', customers);
 
 Alpine.start();
+
+

@@ -1,5 +1,5 @@
 <div x-data="customers">
-    <div class="row mb-4" x-data="customers">
+    <div class="row mb-4">
         <div class="col-md-5 offset-2">
             <h1 class="mt-3 mb-3">Clientes</h1>
         </div>
@@ -11,7 +11,8 @@
     @if(session()->has('its.message.body'))
         <div class="row">
             <div class="col-12">
-                <div class="alert text-center @if(session('its.message.type') == 'warning') alert-warning @elseif('its.message.type' == 'danger') alert-danger @else alert-success @endif">{{ session('its.message.body') }}</div>
+                <div
+                    class="alert text-center @if(session('its.message.type') == 'warning') alert-warning @elseif('its.message.type' == 'danger') alert-danger @else alert-success @endif">{{ session('its.message.body') }}</div>
             </div>
         </div>
     @endif
@@ -19,7 +20,7 @@
         <div class="col-md-8 offset-2">
             <div class="row">
                 <div class="col-md-10">
-                    <button class="btn btn-filter">Add filtro <i class="ri-add-fill ml-2"></i></button>
+                    <button class="btn btn-filter">Adicionar filtro <i class="ri-add-fill ml-2"></i></button>
                 </div>
                 <div class="col-md-2 text-right pt-3">
                     {{ $customers_counter }} Encontrados
@@ -39,18 +40,18 @@
         <div class="col-md-8 offset-2">
             @forelse($customers as $index => $customer)
                 <article class="app-customer">
-                    <div><img class="app-customer-avatar" src="{{ $customer->avatar->image }}" /></div>
+                    <div><img class="app-customer-avatar" src="{{ $customer->avatar->image }}"/></div>
                     <div>
                         <div class="text-bold">{{ decrypt_data($customer->name) }}</div>
                         <div><small>{{ decrypt_data($customer->email) }}</small></div>
                     </div>
-                    <div>
-                        @forelse($customer->tags as $tag)
-                            <span class="badge badge-primary">{{ $tag->name }}</span>
-                        @empty
-                            <span>Adicionar tag</span>
-                        @endforelse
-                        <input type="text" id="app-customer-new-tag" name="new-tag" value="Nova tag" :disabled="!tag.editable" />
+                    <div id="app-customers-tags">
+                        @if($customer->tags)
+                            @foreach($customer->tags as $tag)
+                                <span class="badge app-customer-tag" style="background-color: {{ $tag->color }}" contenteditable="false">{{ $tag->name }}</span>
+                            @endforeach
+                        @endif
+                        <span class="badge bg-transparent text-secondary" contenteditable="false" @click="createNewTagClickEventHandler" data-customer="{{ $customer->slug }}"><i class="ri ri-add-circle-line"></i> Adicionar tag</span>
                     </div>
                     <div>
                         <span class="badge badge-success bg-success">
@@ -79,25 +80,5 @@
             @endforelse
         </div>
     </div>
-
-    <!-- Temporarily -->
-    <section class="app-modal" id="app-customers-import">
-        <livewire:backoffice.components.app-upload-component />
-    </section>
-
-    @if($modal)
-
-    @endif
 </div>
 
-@push('scripts')
-    <script>
-        const btnsAddTag = document.querySelectorAll('.app-components-tags-add');
-
-        btnsAddTag.forEach((btnAddTag) => {
-            btnAddTag.addEventListener("click", function () {
-                this.innerHTML = '<input type="text" id="app-component-tags-add-value" value="teste" />';
-            });
-        });
-    </script>
-@endpush
