@@ -14,12 +14,12 @@
                 <p>Inicio</p>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="{{ route('its.app.messages.index') }}">
-                <i class="ri ri-chat-3-line"></i>
-                <p>Mensagens</p>
-            </a>
-        </li>
+{{--        <li class="nav-item">--}}
+{{--            <a href="{{ route('its.app.messages.index') }}">--}}
+{{--                <i class="ri ri-chat-3-line"></i>--}}
+{{--                <p>Mensagens</p>--}}
+{{--            </a>--}}
+{{--        </li>--}}
         <li class="nav-item">
             <a href="{{ route('its.app.customers.index') }}">
                 <i class="ri ri-user-line"></i>
@@ -30,6 +30,12 @@
             <a href="{{ route('its.app.campaigns.index') }}">
                 <i class="ri ri-mail-line"></i>
                 <p>Campanhas</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('its.app.automations.index') }}">
+                <i class="ri ri-time-line"></i>
+                <p>Automatizações</p>
             </a>
         </li>
         <li class="nav-item">

@@ -9,13 +9,17 @@
         "getbrevo/brevo-php": "^1.0",
         "google/apiclient": "^2.12.1",
         "guzzlehttp/guzzle": "^7.2",
+        "http-interop/http-factory-guzzle": "^1.2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.3",
+        "laravel/scout": "^10.5",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^2.12",
         "mailchimp/marketing": "^3.0",
+        "meilisearch/meilisearch-php": "^1.4",
         "pusher/pusher-php-server": "^7.2",
-        "sendgrid/sendgrid": "*"
+        "sendgrid/sendgrid": "*",
+        "twilio/sdk": "^7.12"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",

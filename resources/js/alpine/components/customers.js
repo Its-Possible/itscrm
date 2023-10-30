@@ -14,7 +14,9 @@ export default () => ({
             origin: null
         }
     },
-
+    tags: {
+        editable: false
+    },
     initialize: function () {
         this.croppie.image = new Croppie(this.$refs.croppie, {
             viewport: {

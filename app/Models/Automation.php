@@ -4,11 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
 
-class Setting extends Model
+class Automation extends Model
 {
-    use HasFactory, Searchable;
-
-    public $timestamps = false;
+    use HasFactory;
 }

@@ -2,38 +2,21 @@
 
 namespace App\Services;
 
+use Twilio\Rest\Client;
+
 class TwilioService {
+
+    private Client $client;
 
     private string $client_id;
     private string $client_token;
-
 
     public function __construct()
     {
         $this->client_id = env('TWILIO_CLIENT_ID');
         $this->client_token = env('TWILIO_CLIENT_TOKEN');
-    }
 
-    public function mail(array $to, string $subject,  string $htmlContent, string $textContent): mixed
-    {
-        $mail = new \SendGrid\Mail\Mail();
-        $mail->setFrom(env('TWILIO_MAIL_FROM_ADDRESS'), env('TWILIO_MAIL_FROM_NAME'));
-        $mail->setSubject($subject);
-        $mail->addContent('html/html', $htmlContent);
-        $mail->addContent('text/plain', $textContent);
-
-        $service = new \SendGrid();
-
-        try {
-
-            $response = $service->send($mail);
-
-            return $response;
-
-        }catch(\Exception $exception){
-            echo "Caught exception: ". $e->getMessage(), PHP_EOL;
-            exit(1);
-        }
+        $this->client = new Client($this->client_id, $this->client_token);
     }
 
     /**
@@ -41,16 +24,13 @@ class TwilioService {
      * @param string $message
      * @return void
      */
-    public function sms(string $to, string $message)
+    public function sms(string $to, string $message): void
     {
-         $sms = new \SendGrid\Rest\Client($this->client_id, $this->client_token);
+        $mobile_number = env('TWILIO_MOBILE_PHONE');
 
-         $client->messages->create(
-             $to,
-             [
-                 "from" => env('TWILIO_MOBILE_PHONE'),
-                 "body" => $message
-             ]
-         );
+        $this->client->messages->create($to, [
+            'From' => $mobile_number,
+            'body' => 'Hello world!'
+        ]);
     }
 }

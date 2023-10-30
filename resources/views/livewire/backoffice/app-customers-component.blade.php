@@ -1,4 +1,4 @@
-<div>
+<div x-data="customers">
     <div class="row mb-4" x-data="customers">
         <div class="col-md-5 offset-2">
             <h1 class="mt-3 mb-3">Clientes</h1>
@@ -45,11 +45,12 @@
                         <div><small>{{ decrypt_data($customer->email) }}</small></div>
                     </div>
                     <div>
-                        @forelse($customer->tags() as $tag)
-                            teste
+                        @forelse($customer->tags as $tag)
+                            <span class="badge badge-primary">{{ $tag->name }}</span>
                         @empty
                             <span>Adicionar tag</span>
                         @endforelse
+                        <input type="text" id="app-customer-new-tag" name="new-tag" value="Nova tag" :disabled="!tag.editable" />
                     </div>
                     <div>
                         <span class="badge badge-success bg-success">

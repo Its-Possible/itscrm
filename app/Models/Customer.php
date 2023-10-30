@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Scout\Searchable;
 
 class Customer extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     public function avatar(): HasOne
     {
@@ -28,6 +29,6 @@ class Customer extends Model
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class, 'tags_customers', 'customer_id', 'id');
+        return $this->belongsToMany(Tag::class, 'tags_customers', 'tag_id', 'customer_id', 'id', 'id');
     }
 }

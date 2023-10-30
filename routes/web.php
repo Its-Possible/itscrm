@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Api\AutomationApiController;
 use App\Http\Controllers\Api\CampaignApiController;
 use App\Http\Controllers\Api\CustomerApiController;
 use App\Http\Controllers\Api\FileApiController;
 use App\Http\Controllers\Api\PersonalAccessTokenApiController;
 use App\Http\Controllers\Api\SpecialityApiController;
 use App\Http\Controllers\Api\UserApiController;
+use App\Http\Controllers\Views\AutomationViewController;
 use App\Http\Controllers\Views\FileViewController;
 use App\Http\Controllers\Views\SpecialityViewController;
 use App\Models\Avatar;
@@ -68,6 +70,15 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
         Route::get('/{slug}/edit', [CampaignViewController::class, 'edit'])->name('edit');
         Route::patch('/{slug}', [CampaignApiController::class, 'update'])->name('update');
         Route::delete('{slug}', [CampaignViewController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('/automations')->name('automations.')->group(function () {
+        Route::get('/', [AutomationViewController::class, 'index'])->name('index');
+        Route::get('/create', [AutomationViewController::class, 'create'])->name('create');
+        Route::get('/{slug}/edit', [AutomationViewController::class, 'show'])->name('show');
+        Route::get('/{slug}', [AutomationViewController::class, 'show'])->name('edit');
+        Route::patch('/{slug}', [AutomationApiController::class, 'update'])->name('update');
+        Route::delete('{slug}', [AutomationViewController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('/doctors')->name('doctors.')->group(function () {
