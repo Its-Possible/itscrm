@@ -105,5 +105,8 @@ export default () => ({
         el.setAttribute('badge app-customer-tag')
 
         document.getElementById('app-customers-tags').parentNode.insertBefore('' e.currentTarget)
+    },
+    addTagClickEventHandler: function () {
+        console.log("hello");
     }
 });

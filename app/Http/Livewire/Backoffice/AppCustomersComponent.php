@@ -12,12 +12,13 @@ class AppCustomersComponent extends Component
 
     public $search;
     public $modal = false;
+    public $customer;
 
     public $files;
 
     protected $queryString = ['search'];
 
-    public function save()
+    public function save(): void
     {
         $this->validate([
             'files.*' => 'file|max:6144'
@@ -32,7 +33,7 @@ class AppCustomersComponent extends Component
         }
     }
 
-    public function delete(string $slug)
+    public function delete(string $slug): void
     {
         $customer = Customer::with(['specialities', 'doctors'])->where('slug', $slug)->firstOrFail();
 

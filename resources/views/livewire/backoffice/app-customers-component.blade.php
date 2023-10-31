@@ -45,14 +45,7 @@
                         <div class="text-bold">{{ decrypt_data($customer->name) }}</div>
                         <div><small>{{ decrypt_data($customer->email) }}</small></div>
                     </div>
-                    <div id="app-customers-tags">
-                        @if($customer->tags)
-                            @foreach($customer->tags as $tag)
-                                <span class="badge app-customer-tag" style="background-color: {{ $tag->color }}" contenteditable="false">{{ $tag->name }}</span>
-                            @endforeach
-                        @endif
-                        <span class="badge bg-transparent text-secondary" contenteditable="false" @click="createNewTagClickEventHandler" data-customer="{{ $customer->slug }}"><i class="ri ri-add-circle-line"></i> Adicionar tag</span>
-                    </div>
+                    <livewire:backoffice.components.customers.tags-component customer="{{ $customer->id }}" />
                     <div>
                         <span class="badge badge-success bg-success">
                             <i class="ri ri-check"></i>
