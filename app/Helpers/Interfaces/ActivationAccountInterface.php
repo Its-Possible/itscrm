@@ -2,9 +2,7 @@
 
 namespace App\Helpers\Interfaces;
 
-class ActivationAccountInterface {
-
-
+interface ActivationAccountInterface {
 
     const STATUS_USED       = 'ACTIVATION_ACCOUNT::STATUS::USED';
     const STATUS_ACTIVE     = 'ACTIVATION_ACCOUNT::STATUS::ACTIVE';

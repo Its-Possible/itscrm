@@ -18,6 +18,10 @@ class AutomationFactory extends Factory
     {
         return [
             //
+            'name' => $this->faker->unique()->name,
+            'schedule' => "* * * * *",
+            'command' => "echo hello world from cron",
+            'slug' => $this->faker->unique()->slug
         ];
     }
 }

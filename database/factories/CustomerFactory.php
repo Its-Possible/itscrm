@@ -18,7 +18,7 @@ class CustomerFactory extends Factory
     {
         return [
             //
-            'avatar' => $this->faker->imageUrl,
+            'avatar_id' => 1,
             'name' => encrypt_data($this->faker->name),
             'email' => encrypt_data($this->faker->unique()->email),
             'phone' => encrypt_data($this->faker->phoneNumber),

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('message'); // Save with html tags
             $table->datetime('read_at')->nullable();
+            $table->string('type');
             $table->timestamps();
         });
     }

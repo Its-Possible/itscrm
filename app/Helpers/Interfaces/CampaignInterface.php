@@ -2,7 +2,7 @@
 
 namespace App\Helpers\Interfaces;
 
-class CampaignInterface {
+interface CampaignInterface {
 
     const TYPE_CLASSIC = "CAMPAIGN::TYPE::CLASSIC";
 

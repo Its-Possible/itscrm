@@ -45,7 +45,14 @@
                         <div class="text-bold">{{ decrypt_data($customer->name) }}</div>
                         <div><small>{{ decrypt_data($customer->email) }}</small></div>
                     </div>
-                    <livewire:backoffice.components.customers.tags-component customer="{{ $customer->id }}" />
+                    @forelse($customer->tags as $tag)
+                        <span class="badge app-customer-tag" style="background-color: {{ $tag->color }}">
+                            {{ $tag->name }}
+                            <i class="ri ri-delete-bin-2-line" wire:click.prevent="delete({{ $tag->id }})"></i>
+                        </span>
+                    @empty
+                        <p class="text-center">Sem tags</p>
+                    @endforelse
                     <div>
                         <span class="badge badge-success bg-success">
                             <i class="ri ri-check"></i>

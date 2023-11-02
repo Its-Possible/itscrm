@@ -2,7 +2,7 @@
 
 namespace App\Helpers\Interfaces;
 
-class MailInterface
+interface MailInterface
 {
     //
     const STATUS_SENT = 'MAIL::STATUS::SENT';

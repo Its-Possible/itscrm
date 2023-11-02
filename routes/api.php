@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\AutomationApiController;
 use App\Http\Controllers\Api\UserApiController;
+use App\Models\Automation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +35,5 @@ Route::get('/tags/relationship', [App\Http\Controllers\Api\TagApiController::cla
 Route::get('/customers', [App\Http\Controllers\Api\CustomerApiController::class, 'index']);
 
 Route::post('/avatar', [App\Http\Controllers\Api\AvatarApiController::class, 'store']);
+
+Route::get('/automation/{slug}/play', [AutomationApiController::class, 'play']);

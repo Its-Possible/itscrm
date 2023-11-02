@@ -36,6 +36,7 @@
                 <livewire:backoffice.components.customers.upload-image-component />
                 <livewire:backoffice.components.customers.information-component />
                 <livewire:backoffice.components.customers.doctors-component />
+                <livewire:backoffice.components.customers.tags-component />
             </div>
         </div>
     </div>

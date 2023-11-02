@@ -15,6 +15,10 @@ class AppAutomationsComponent extends Component
 
         $automations = Automation::all();
 
-        return view('livewire.backoffice.app-automations-component');
+        return view('livewire.backoffice.app-automations-component')
+            ->with([
+                'automations' => $automations,
+                'automations_counter' => Automation::count()
+            ]);
     }
 }

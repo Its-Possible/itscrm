@@ -2,7 +2,7 @@
 
 namespace App\Helpers\Interfaces;
 
-class UserInterface {
+interface UserInterface {
 
     const STATUS_ACTIVE         = "USER::STATUS::ACTIVE";
     const STATUS_INACTIVE       = "USER::STATUS::INACTIVE";

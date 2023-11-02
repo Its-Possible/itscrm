@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Interfaces\AutomationInterface;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,12 @@ return new class extends Migration
     {
         Schema::create('automations', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->string('schedule');
+            $table->string('command');
+            $table->string('status')->default(AutomationInterface::STATUS_STOPPED);
+            $table->string('notification')->default(AutomationInterface::NOTIFICATION_ON);
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

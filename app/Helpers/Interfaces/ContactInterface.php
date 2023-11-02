@@ -2,6 +2,6 @@
 
 namespace App\Helpers\Interfaces;
 
-class ContactInterface {
+interface ContactInterface {
 
 }
