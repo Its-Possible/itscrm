@@ -33,9 +33,9 @@
     <div class="row">
         <div class="col-md-8 offset-2 bg-white row-border-radius bg-white py-2 mb-4">
             <div class="container">
-                <livewire:backoffice.components.customers.upload-image-component />
-                <livewire:backoffice.components.customers.information-component />
-                <livewire:backoffice.components.customers.doctors-component />
+                <livewire:backoffice.components.customers.upload-image-component customer="{{ $customer->slug }}" />
+                <livewire:backoffice.components.customers.information-component customer="{{ $customer->slug }}" />
+                <livewire:backoffice.components.customers.doctors-component customer="{{ $customer->slug }}" />
             </div>
         </div>
     </div>
