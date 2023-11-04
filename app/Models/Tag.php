@@ -9,7 +9,7 @@ use Laravel\Scout\Searchable;
 
 class Tag extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     protected $hidden = [
         'id'

@@ -10,7 +10,7 @@ use Laravel\Scout\Searchable;
 
 class Customer extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     public function avatar(): HasOne
     {

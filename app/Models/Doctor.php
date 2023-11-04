@@ -11,7 +11,7 @@ use Laravel\Scout\Searchable;
 
 class Doctor extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     public function user(): HasOne
     {

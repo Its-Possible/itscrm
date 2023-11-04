@@ -8,7 +8,7 @@ use Laravel\Scout\Searchable;
 
 class Setting extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     public $timestamps = false;
 }

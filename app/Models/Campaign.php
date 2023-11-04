@@ -8,7 +8,7 @@ use Laravel\Scout\Searchable;
 
 class Campaign extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     protected $fillable = [
         'code', 'name', 'subject', 'previewText', 'htmlContent', 'scheduledAt', 'status', 'local'

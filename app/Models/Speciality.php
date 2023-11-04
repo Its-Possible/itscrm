@@ -10,7 +10,7 @@ use PhpParser\Comment\Doc;
 
 class Speciality extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     protected $fillable = [
         'name', 'description'
