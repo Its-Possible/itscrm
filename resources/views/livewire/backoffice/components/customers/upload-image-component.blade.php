@@ -17,7 +17,7 @@
                     <img alt x-ref="croppie" />
                 </div>
                 <div id="customer-avatar-current" x-show="!croppie.visible" @click="setAvatarClickEventHandler()">
-                    <img x-ref="result"  src="{{ $avatar->image }}" width="220" height="220" />
+                    <img x-ref="result" src="{{ $avatar->image }}" width="220" height="220" />
                     <div id="customer-avatar-current-edit">
                         <h6 class="text-white">
                             <i class="ri ri-camera-2-line ri-2x"></i><br />
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <input form="customer-create" name="avatar" type="hidden" id="avatar" />
+        <input form="customer-save" name="avatar" type="hidden" id="avatar" />
     </div>
 </div>
 <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" media="all" />

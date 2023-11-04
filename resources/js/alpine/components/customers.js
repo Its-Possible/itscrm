@@ -84,10 +84,10 @@ export default () => ({
                 'image': this.result
             }).then((response) => {
                 console.log(response.data);
-                let el = document.getElementById('avatar-id');
+                let el = document.getElementById('avatar');
                 el.value = response.data.image.id;
             }).catch((err) => {
-                console.error(err);
+                console.log(err);
             }).finally(() => {
                 console.log('Finally')
             });

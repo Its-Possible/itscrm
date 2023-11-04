@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="speciality-select">Especialidade</label>
-                <select form="customer-create" class="form-control" wire:model="selected"
+                <select form="customer-save" class="form-control" wire:model="selected"
                         wire:change="updateDoctorsFromSpeciality" name="speciality-select" id="speciality-select">
                     <option value="" disabled selected>Selecionar</option>
                     @forelse($specialities as $speciality)
@@ -31,7 +31,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="doctor-select">Médico</label>
-                <select form="customer-create" class="form-control" wire:model="selected"
+                <select form="customer-save" class="form-control" wire:model="selected"
                         wire:click="updateDoctorsFromSpeciality" name="doctor-select" id="doctor-select">
                     <option value="none" disabled selected>Selecionar</option>
                     @forelse($doctors as $doctor)

@@ -15,6 +15,7 @@ class CustomerApiController extends Controller
     //
     public function index(Request $request)
     {
+
         return response()->json([
             'data' => Customer::with('tags')->limit(5)->get()
         ]);
@@ -22,6 +23,7 @@ class CustomerApiController extends Controller
 
     public function store(CustomerStoreRequest $request)
     {
+
         if(!$request->validated()){
             return back()->withErrors($request)->withInput();
         }
@@ -71,6 +73,6 @@ class CustomerApiController extends Controller
 
     public function update(Request $request, int $id)
     {
-        return $id;
+        dd("hello world");
     }
 }

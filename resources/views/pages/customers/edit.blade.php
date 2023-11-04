@@ -2,12 +2,12 @@
 
 
 @section('content')
-    <div class="row mb-4" x-data="customers">
+    <div class="row mb-4">
         <div class="col-md-5 offset-2">
             <h1 class="mt-3 mb-3">Editar cliente</h1>
         </div>
         <div class="col-md-3 text-right pt-3">
-            <button form="customer-edit" type="submit" class="btn btn-filter inverter pull-right">Guardar</button>
+            <button form="customer-save" type="submit" class="btn btn-filter inverter pull-right">Guardar</button>
         </div>
     </div>
     @if(session()->has('its.message.body'))
@@ -41,9 +41,9 @@
     </div>
     <div class="row mb-4" x-data="customers">
         <div class="col-md-8 offset-2 text-right pt-3">
-            <form id="customer-create" action="{{ route('its.app.customers.store') }}" method="post" autocomplete="off">
+            <form id="customer-save" action="{{ route('its.app.customers.store') }}" method="post" autocomplete="off">
                 {{ csrf_field() }}
-                <button form="customer-create" type="submit" class="btn btn-filter inverter pull-right">Guardar</button>
+                <button form="customer-save" type="submit" class="btn btn-filter inverter pull-right">Guardar</button>
             </form>
         </div>
     </div>
