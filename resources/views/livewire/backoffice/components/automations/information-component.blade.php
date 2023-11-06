@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
         <label for="automation-email">Descrição</label>
-        <textarea class="form-control" type="email" placeholder="E-mail" id="automation-description" name="email" form="automation-create" autocomplete="off"></textarea>
+        <textarea class="form-control" placeholder="Descrição" id="automation-description" name="email" form="automation-create" autocomplete="off"></textarea>
     </div>
     <div class="row mt-3">
         <div class="col-md-9">

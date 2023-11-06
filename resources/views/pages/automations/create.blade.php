@@ -34,7 +34,7 @@
         <div class="col-md-8 offset-2 bg-white row-border-radius bg-white py-2 mb-4">
             <div class="container">
                 <livewire:backoffice.components.automations.information-component />
-                <livewire:backoffice.components.automations.schedule--component />
+                <livewire:backoffice.components.automations.schedule-component />
             </div>
         </div>
         <div class="row mb-4" x-data="automations">
