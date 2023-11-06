@@ -10,9 +10,9 @@ use Livewire\Component;
 
 class AppAutomationsComponent extends Component
 {
+
     public function render(): Factory|View|Application
     {
-
         $automations = Automation::all();
 
         return view('livewire.backoffice.app-automations-component')

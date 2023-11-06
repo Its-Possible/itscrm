@@ -29,7 +29,7 @@
     </div>
     <div class="row">
         <div class="col-md-8 offset-2 font-bold row-border-radius">
-            <section id="app-customers-header">
+            <section id="app-automations-header">
                 <div>Nome</div>
                 <div>Descrição</div>
                 <div>Estado</div>

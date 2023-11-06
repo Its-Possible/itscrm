@@ -519,12 +519,12 @@ article.app-specialities {
     background: transparent;
 }
 
-section#app-header-automation {
+section#app-automations-header {
     padding: 24px 16px;
     width: 100%;
     background: rgba(255,255,255,1);
     border-radius: 12px;
-    grid-template-columns: 25% 45% 10% 20%;
+    grid-template-columns: 15% 55% 8% 23%;
     grid-template-rows: auto;
     display: grid;
     text-align: center;
@@ -536,8 +536,9 @@ article.app-automation {
     width: 100%;
     background: rgba(255,255,255,1);
     border-radius: 12px;
-    grid-template-columns: 20% 35% 10% 20%;
+    grid-template-columns: 20% 50% 8% 23%;
     grid-template-rows: auto;
     align-items: center;
     display: grid;
+    text-align: center;
 }

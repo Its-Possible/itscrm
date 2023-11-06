@@ -12,4 +12,9 @@ class AutomationViewController extends Controller
     {
         return view('pages.automations.index');
     }
+
+    public function create()
+    {
+        return view('pages.automations.create');
+    }
 }

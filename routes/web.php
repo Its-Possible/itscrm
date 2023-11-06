@@ -75,6 +75,7 @@ Route::middleware('auth')->prefix('app')->name('its.app.')->group(function () {
     Route::prefix('/automations')->name('automations.')->group(function () {
         Route::get('/', [AutomationViewController::class, 'index'])->name('index');
         Route::get('/create', [AutomationViewController::class, 'create'])->name('create');
+        Route::post('/create', [AutomationApiController::class, 'store'])->name('store');
         Route::get('/{slug}/edit', [AutomationViewController::class, 'show'])->name('show');
         Route::get('/{slug}', [AutomationViewController::class, 'show'])->name('edit');
         Route::patch('/{slug}', [AutomationApiController::class, 'update'])->name('update');

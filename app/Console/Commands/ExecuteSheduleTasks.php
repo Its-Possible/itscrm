@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Helpers\Interfaces\AutomationInterface;
 use App\Models\Automation;
+use Cron\CronExpression;
 use Illuminate\Console\Command;
 
 class ExecuteSheduleTasks extends Command
@@ -28,11 +29,19 @@ class ExecuteSheduleTasks extends Command
     public function handle(): void
     {
         //
-        $automations = Automation::where('status', AutomationInterface::STATUS_WAITING)->get();
+        //$automations = Automation::where('status', AutomationInterface::STATUS_WAITING)->get();
+
+        $automations = Automation::all();
 
         foreach($automations as $automation)
         {
-            exec($automation->command);
+            if($automation->next_run_at === now()){
+                exec($automation->command);
+            }
         }
+
+
+
+
     }
 }
