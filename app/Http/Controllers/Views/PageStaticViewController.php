@@ -33,7 +33,6 @@ class PageStaticViewController extends Controller
         //$birthdays = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') BETWEEN {$today} AND {$nextWeek}")->paginate(5);
         $birthdays = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') BETWEEN '{$today}' AND '{$nextWeek}'")->paginate(5);
 
-        event(new NotificationEvent(Auth::user(), "Hello world from Event"));
 
         return view('pages.home')
             ->with([

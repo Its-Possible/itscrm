@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\AutomationApiController;
+use App\Http\Controllers\Api\TaskApiController;
 use App\Http\Controllers\Api\UserApiController;
 use App\Models\Automation;
 use Illuminate\Http\Request;
@@ -36,4 +36,4 @@ Route::get('/customers', [App\Http\Controllers\Api\CustomerApiController::class,
 
 Route::post('/avatar', [App\Http\Controllers\Api\AvatarApiController::class, 'store']);
 
-Route::get('/automation/{slug}/play', [AutomationApiController::class, 'play']);
+Route::get('/automation/{slug}/play', [TaskApiController::class, 'play']);

@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <livewire:backoffice.app-automations-component />
+    <livewire:backoffice.app-tasks-component />
 @endsection
 
 @push('scripts')

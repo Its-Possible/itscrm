@@ -35,7 +35,7 @@ aside#app-sidebar {
 
 aside#app-sidebar > header#app-sidebar-header {
     padding: 0;
-    margin: 0 0 5vh 0;
+    margin: 0 0 2vh 0;
 }
 
 aside#app-sidebar > header#app-sidebar-header > div#app-brand {
@@ -43,7 +43,7 @@ aside#app-sidebar > header#app-sidebar-header > div#app-brand {
 }
 
 aside#app-sidebar > header#app-sidebar-header > div#app-brand img {
-    width: 100px;
+    width: 90px;
 }
 
 aside#app-sidebar > nav#app-sidebar-nav {
@@ -519,18 +519,18 @@ article.app-specialities {
     background: transparent;
 }
 
-section#app-automations-header {
+section#app-tasks-header {
     padding: 24px 16px;
     width: 100%;
     background: rgba(255,255,255,1);
     border-radius: 12px;
-    grid-template-columns: 15% 55% 8% 23%;
+    grid-template-columns: 15% 55% 5% 23%;
     grid-template-rows: auto;
     display: grid;
     text-align: center;
 }
 
-article.app-automation {
+article.app-task {
     padding: 16px 16px;
     margin: 20px 0;
     width: 100%;

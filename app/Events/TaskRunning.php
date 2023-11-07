@@ -11,33 +11,35 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NotificationEvent
+class TaskRunning
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-
-    public string $message;
+    private int $user;
+    private string $title;
+    private string $message;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(User $user, $message)
+    public function __construct(string $title, string $message)
     {
         //
+        $this->title = $title;
         $this->message = $message;
     }
 
     public function broadcastWith(): array
     {
         return [
-            'user' => $this->user,
+            'title' => $this->title,
             'message' => $this->message
         ];
     }
 
-    public function broadcastNew(): string
+    public function broadcastAs(): string
     {
-        return 'newNotification';
+        return "task-schedule-running";
     }
 
     /**

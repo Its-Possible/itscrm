@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Backoffice\Components\Automations;
+namespace App\Http\Livewire\Backoffice\Components\Tasks;
 
 use Livewire\Component;
 

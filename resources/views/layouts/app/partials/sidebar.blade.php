@@ -14,12 +14,6 @@
                 <p>Inicio</p>
             </a>
         </li>
-{{--        <li class="nav-item">--}}
-{{--            <a href="{{ route('its.app.messages.index') }}">--}}
-{{--                <i class="ri ri-chat-3-line"></i>--}}
-{{--                <p>Mensagens</p>--}}
-{{--            </a>--}}
-{{--        </li>--}}
         <li class="nav-item">
             <a href="{{ route('its.app.customers.index') }}">
                 <i class="ri ri-user-line"></i>
@@ -33,9 +27,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('its.app.automations.index') }}">
+            <a href="{{ route('its.app.tasks.index') }}">
                 <i class="ri ri-time-line"></i>
-                <p>Automatizações</p>
+                <p>Tarefas <br />Agendadas</p>
             </a>
         </li>
         <li class="nav-item">

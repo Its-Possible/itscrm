@@ -2,10 +2,11 @@
 
 namespace App\Helpers\Interfaces;
 
-interface AutomationInterface {
+interface TaskInterface {
 
     const STATUS_RUNNING = "AUTOMATION::STATUS::RUNNING";
     const STATUS_WAITING = "AUTOMATION::STATUS::WAITING";
+    const STATUS_PAUSED  = "AUTOMATION::STATUS::PAUSED";
     const STATUS_STOPPED = "AUTOMATION::STATUS::STOPPED";
 
     const NOTIFICATION_ON = "AUTOMATION::NOTIFICATION::ON";

@@ -19,16 +19,16 @@ class Customer extends Model
 
     public function doctors(): BelongsToMany
     {
-        return $this->belongsToMany(Doctor::class, 'customers_doctors', 'customer_id', 'id');
+        return $this->belongsToMany(Doctor::class, 'customer_doctor', 'customer_id', 'id');
     }
 
     public function specialities(): BelongsToMany
     {
-        return $this->belongsToMany(Speciality::class, 'customers_specialities', 'customer_id','id');
+        return $this->belongsToMany(Speciality::class, 'customer_speciality', 'customer_id','id');
     }
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class, 'tags_customers', 'tag_id', 'customer_id', 'id', 'id');
+        return $this->belongsToMany(Tag::class, 'tag_customer', 'tag_id', 'customer_id', 'id', 'id');
     }
 }
