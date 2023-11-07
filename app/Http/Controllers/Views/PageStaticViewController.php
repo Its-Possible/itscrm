@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Views;
 
+use App\Events\NotificationEvent;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use DateTime;
@@ -10,6 +11,7 @@ use App\Models\Customer;
 use App\Models\Campaign;
 use App\Models\Message;
 use App\Models\Doctor;
+use Illuminate\Support\Facades\Auth;
 
 class PageStaticViewController extends Controller
 {
@@ -30,6 +32,8 @@ class PageStaticViewController extends Controller
         $doctors = Doctor::count() . ", 10";
         //$birthdays = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') BETWEEN {$today} AND {$nextWeek}")->paginate(5);
         $birthdays = Customer::whereRaw("DATE_FORMAT(birthday, '%m-%d') BETWEEN '{$today}' AND '{$nextWeek}'")->paginate(5);
+
+        event(new NotificationEvent(Auth::user(), "Hello world from Event"));
 
         return view('pages.home')
             ->with([

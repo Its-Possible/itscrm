@@ -118,8 +118,7 @@
 
 
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.js" crossorigin="anonymous"
-            referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
         // Messages Sent Chart
         new Chart(document.getElementById("messages-sent-chart"), {
@@ -150,7 +149,6 @@
                         grid: {
                             drawOnChartArea: true,
                             color: (context) => {
-                                console.log(context);
                                 if (context.index === 0) return '';
                                 else return 'rgba(102,102,102, 0)';
                             }

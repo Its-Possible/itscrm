@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <!-- Links -->
-    @vite(['resources/css/app.css', 'resources/js/alpine/components/index.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/alpine/components/index.js'])
     @livewireStyles
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css" />
     <link href="https://cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet" />
