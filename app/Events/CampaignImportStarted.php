@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Campaign;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -10,14 +11,17 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageEvent
+class CampaignImportStarted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    private Campaign $campaign;
+    private string $message;
 
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct(Campaign $campaign, string $message)
     {
         //
     }
@@ -30,12 +34,7 @@ class MessageEvent
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('messages'),
+            new PrivateChannel('channel-name'),
         ];
-    }
-
-    public function broadcastAs()
-    {
-        return 'messages';
     }
 }

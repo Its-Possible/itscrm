@@ -36,12 +36,12 @@ class AppCampaignsComponent extends Component
     public function render()
     {
 
-        $campaigns = Campaign::with('tags')->paginate(30);
+        $campaigns = Campaign::with('tags');
 
         return view('livewire.backoffice.app-campaigns-component')
             ->with([
-                'campaigns' => $campaigns,
-                'campaignsCounter' => Campaign::count()
+                'campaigns' => $campaigns->paginate(30),
+                'campaigns_counter' => $campaigns->count()
             ]);
     }
 }
