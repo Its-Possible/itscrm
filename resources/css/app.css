@@ -155,12 +155,41 @@ main#app-main > header#app-main-header > section#app-main-logged > div#app-main-
 
 main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-notifications {
     margin-top: 3px;
+    position: relative;
 }
 
 main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-notifications > label {
     padding-right: 8px;
     position: relative;
     top: 3px;
+}
+
+
+div#app-main-logged-notifications-content {
+    padding: 8px;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 320px;
+    height: 420px;
+    background: white;
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+
+div#app-main-logged-notifications-content:after {
+    bottom: 100%;
+    left: 88%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #ffffff;
+    border-width: 6px;
+    margin-left: -6px;
+
 }
 
 main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-avatar {
@@ -203,7 +232,7 @@ main#app-main > section#app-main-content div#app-main-home-numbers > section.app
 
 main#app-main > section#app-main-content div#app-main-home-numbers > section.app-main-home-card:hover {
     cursor: pointer;
-    transform: scale(1.2);
+    transform: scale(1);
     box-shadow: 15px 15px 50px rgb(120,120,120);
     transition: all 0.4s ease;
 }
@@ -228,7 +257,7 @@ main#app-main > section#app-main-content div#app-main-home-charts > section.app-
 main#app-main > section#app-main-content div#app-main-home-charts > section.app-main-home-card:hover {
     position: relative;
     cursor: pointer;
-    transform: scale(1.2);
+    transform: scale(1);
     box-shadow: 15px 15px 50px rgb(120,120,120);
     transition: all 0.4s ease;
     z-index: 100;
@@ -253,7 +282,7 @@ main#app-main > section#app-main-content div#app-main-home-more > section.app-ma
 main#app-main > section#app-main-content div#app-main-home-more > section.app-main-home-card:hover {
     position: relative;
     cursor: pointer;
-    transform: scale(1.2);
+    transform: scale(1);
     box-shadow: 15px 15px 50px rgb(120,120,120);
     transition: all 0.4s ease;
     z-index: 99;

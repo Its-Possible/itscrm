@@ -49,14 +49,15 @@
                             @case(CampaignInterface::STATUS_DRAFT)
                                 <span class="badge badge-warning bg-warning">Racunho</span>
                                 @break
-                            @case(CampaignInterface::STATUS_DESACTIVATED)
+                            @case(CampaignInterface::STATUS_DEACTIVATED)
                             @case(CampaignInterface::STATUS_EXPIRED)
                                 <span class="badge badge-warning bg-warning">Expirada</span>
                                 @break
                         @endswitch
                     </div>
                     <div>
-                        <a class="btn btn-transparent text-warning" href="{{ route('its.app.campaigns.edit', $campaign->code) }}">
+                        <a class="btn btn-transparent text-warning"
+                           href="{{ route('its.app.campaigns.edit', $campaign->code) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
                         <button class="btn btn-transparent text-danger" wire:click="delete('{{ $campaign->slug }}')">

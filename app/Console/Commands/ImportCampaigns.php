@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Events\CampaignImportStarted;
 use App\Jobs\ProcessImportCampaigns;
 use App\Models\Campaign;
+use App\Repositories\NotificationRepository;
 use App\Services\BrevoService;
 use Illuminate\Console\Command;
 
@@ -36,6 +38,9 @@ class ImportCampaigns extends Command
         $this->info("\nImporting and updating campaigns...\n");
 
         $campaignsFromService = $this->brevo->getCampaigns();
+
+        $notificationRepository = new NotificationRepository();
+        $notificationRepository->create("Importação de campanhas", "A importação de campanhas foi inicializada, pode continuar a trabalhar");
 
         foreach ($campaignsFromService as $campaign) {
             $selectedCampaignByCode = Campaign::where("code", "cbrevo#" . $campaign['id']);

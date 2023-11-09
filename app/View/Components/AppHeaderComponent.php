@@ -16,7 +16,7 @@ class AppHeaderComponent extends Component
     {
         // Get all notifications by authenticable user
         $this->notifications = new NotificationRepository();
-        $this->notifications->getNotificationsByAuthenticableUser();
+        $this->notifications->getNotificationsByAuthenticateUser();
     }
 
     /**

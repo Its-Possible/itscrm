@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\CampaignImportStarted;
 use App\Http\Controllers\Api\TaskApiController;
 use App\Http\Controllers\Api\CampaignApiController;
 use App\Http\Controllers\Api\CustomerApiController;
@@ -152,4 +153,9 @@ Route::get('avatars', function () {
     $avatar = Avatar::find(1);
 
     return "<img src=\" {$avatar->base64code}\" />";
+});
+
+Route::get('test', function () {
+    event(new CampaignImportStarted("Hello world from web"));
+    return "Event has been sent!";
 });

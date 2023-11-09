@@ -25,9 +25,14 @@
             </button>
         </div>
         <div id="app-main-logged-notifications">
-            <label>
+            <label id="app-main-logged-notifications-label">
                 <i class="ri ri-notification-line"></i>
+                {{ notifications("counter") }}
             </label>
+            <div id="app-main-logged-notifications-content">
+                @foreach($notifications as $notification)
+                @endforeach
+            </div>
         </div>
         <div id="app-main-logged-avatar">
            <img src="{{ auth()->user()->avatar->image }}" />

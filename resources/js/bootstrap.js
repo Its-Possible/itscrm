@@ -27,10 +27,13 @@ window.Echo = new Echo({
     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
     forceTLS: true,
     enabledTransports: ['ws', 'wss'],
-
 });
 
-window.Echo.channel('notifications')
-    .listen('newNotification', (message) => {
-        console.log(message);
+window.Echo.channel('app-notification')
+    .listen(`.campaign-import-started.app-notification`, (e) => {
+        const notifications_counter = document.getElementById("app-main-logged-notifications-label");
+        let counter = parseInt(notifications_counter.innerText.replace("<i class=\"ri ri-notification-line\"></i> ", "")) + 1;
+        notifications_counter.innerHTML = `<i class=\"ri ri-notification-line\"></i> ${counter}`;
     });
+
+

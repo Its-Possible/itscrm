@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\Campaign;
+use App\Models\Notification;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -11,19 +11,21 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class CampaignImportStarted
+class CampaignImportStarted implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private Campaign $campaign;
+    private string $title;
     private string $message;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(Campaign $campaign, string $message)
+    public function __construct(string $title, string $message)
     {
         //
+        $this->title = $title;
+        $this->message = $message;
     }
 
     /**
@@ -33,8 +35,24 @@ class CampaignImportStarted
      */
     public function broadcastOn(): array
     {
+
+        $notification = new Notification();
+
         return [
-            new PrivateChannel('channel-name'),
+            new Channel('app-notification'),
+        ];
+    }
+
+    public function broadcastAs(): string
+    {
+        return "campaign-import-started.app-notification";
+    }
+
+    public function broadcastWith(): array
+    {
+        return [
+            "title" => $this->title,
+            "message" => $this->message
         ];
     }
 }
