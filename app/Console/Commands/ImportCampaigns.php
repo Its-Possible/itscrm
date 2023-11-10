@@ -18,7 +18,7 @@ class ImportCampaigns extends Command
      *
      * @var string
      */
-    protected $signature = 'import:campaigns {service?}';
+    protected $signature = 'import:campaigns {--user=} {--service=?}';
 
     /**
      * The console command description.
@@ -40,7 +40,7 @@ class ImportCampaigns extends Command
         $campaignsFromService = $this->brevo->getCampaigns();
 
         $notificationRepository = new NotificationRepository();
-        $notificationRepository->create("Importação de campanhas", "A importação de campanhas foi inicializada, pode continuar a trabalhar");
+        $notificationRepository->create("Importação de campanhas", "<strong>Eduardo Bessa</strong> inicializou a importação de campanhas");
 
         foreach ($campaignsFromService as $campaign) {
             $selectedCampaignByCode = Campaign::where("code", "cbrevo#" . $campaign['id']);

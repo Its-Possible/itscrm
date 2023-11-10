@@ -170,3 +170,34 @@ h5 {
     border: 1px solid #19202E;
     font-weight: bold;
 }
+
+.app-main-notification-new {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: #7436f8;
+    border-radius: 50%;
+}
+
+.app-main-notification-icon-new {
+    position: absolute;
+    top: -5px;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background: #7436f8;
+    border-radius: 50%;
+}
+
+.btn-link {
+    color: #000;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: right;
+    text-decoration: none;
+}

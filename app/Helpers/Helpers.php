@@ -60,3 +60,19 @@ function notifications($type = "list"): int|array|Collection
         default: return $notificationRepository->getNotificationsGlobalNotRead()->get();
     }
 }
+
+function notification_datetime(string $datetime): string {
+    $diff = now()->diff(new \DateTime($datetime));
+
+    if($diff->h < 24 && $diff->h >= 1)
+    {
+        return "{$diff->h} horas";
+    }else if($diff->m > 0 && $diff->h < 1){
+        return "{$diff->m} minutos";
+    }else if($diff->m < 1 && $diff->h <= 1){
+        return "{$diff->s} segundos";
+    }else{
+        $datetime = new DateTime($datetime);
+        return "{$datetime->format('d-m-y H:i:s')}";
+    }
+}
