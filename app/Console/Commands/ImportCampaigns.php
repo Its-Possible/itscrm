@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Events\CampaignImportStarted;
 use App\Jobs\ProcessImportCampaigns;
 use App\Models\Campaign;
+use App\Models\User;
 use App\Repositories\NotificationRepository;
 use App\Services\BrevoService;
 use Illuminate\Console\Command;
@@ -18,7 +19,7 @@ class ImportCampaigns extends Command
      *
      * @var string
      */
-    protected $signature = 'import:campaigns {--user=} {--service=?}';
+    protected $signature = 'import:campaigns {--user=} {--service=}';
 
     /**
      * The console command description.
@@ -33,14 +34,29 @@ class ImportCampaigns extends Command
     public function handle(): void
     {
         //
+
         $this->brevo = new BrevoService();
+
+        $notificationRepository = new NotificationRepository();
+
+        if(!is_null($this->option('user')))
+        {
+
+
+            $user = User::where('username', $this->option('user'))->firstOrFail();
+            $user->firstname = decrypt_data($user->firstname);
+            $user->lastname = decrypt_data($user->lastname);
+
+            $notificationRepository->create("Importação de campanhas", "<strong>{$user->firstname} {$user->lastname}</strong> inicializou a importação de campanhas", $user->id);
+        }else{
+            $notificationRepository->create("Importação de campanhas", "O <strong>sistema</strong> inicializou a importação de campanhas automaticamente, pode <strong>continuar a utilizar a plataforma.</strong>", 0);
+        }
 
         $this->info("\nImporting and updating campaigns...\n");
 
         $campaignsFromService = $this->brevo->getCampaigns();
 
-        $notificationRepository = new NotificationRepository();
-        $notificationRepository->create("Importação de campanhas", "<strong>Eduardo Bessa</strong> inicializou a importação de campanhas");
+
 
         foreach ($campaignsFromService as $campaign) {
             $selectedCampaignByCode = Campaign::where("code", "cbrevo#" . $campaign['id']);
@@ -72,6 +88,8 @@ class ImportCampaigns extends Command
                     $this->warn("\n{$updateCampaign->name} Campaign not updated with sucessfully!\n");
             }
         }
+
+        $notificationRepository->create("Importação de campanhas", "O processo de importação de campanhas foi <strong>consluído com sucesso.</strong>", 0);
 
         $campaignsFromDatabase = Campaign::all();
 

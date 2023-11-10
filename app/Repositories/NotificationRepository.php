@@ -27,12 +27,12 @@ class NotificationRepository {
      *
      * User ID: 0 - Global notification
      */
-    public function create(string $title, string $message, string $type = "notification", int $user = 0): Notification
+    public function create(string $title, string $message, int $user = 0, string $type = "notification"): Notification
     {
         $notification = new Notification();
         $notification->user_id = $user;
-        $notification->title = $title;
-        $notification->message = $message;
+        $notification->title = encrypt_data($title);
+        $notification->message = encrypt_data($message);
         $notification->type = $type;
 
         if(!$notification->save()){
@@ -50,7 +50,7 @@ class NotificationRepository {
     }
 
     public function getNotificationsGlobalNotRead(): mixed {
-        return $this->notification->where('user_id', 0)->orWhereNull('user_id')->whereNull('read_at');
+        return $this->notification->whereNull('read_at');
     }
 
     /**

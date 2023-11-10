@@ -64,13 +64,13 @@ function notifications($type = "list"): int|array|Collection
 function notification_datetime(string $datetime): string {
     $diff = now()->diff(new \DateTime($datetime));
 
-    if($diff->h < 24 && $diff->h >= 1)
+    if($diff->h <= 24 && $diff->h >= 1)
     {
-        return "{$diff->h} horas";
+        return ($diff->h > 1) ? "à {$diff->h} horas atrás" : "à {$diff->h} hora atrás";
     }else if($diff->m > 0 && $diff->h < 1){
-        return "{$diff->m} minutos";
+        return ($diff->m > 1) ? "à {$diff->m} minutos atrás" : "à {$diff->m} minuto atrás";
     }else if($diff->m < 1 && $diff->h <= 1){
-        return "{$diff->s} segundos";
+        return ($diff->s > 1) ? "à {$diff->s} segundos atrás" : "à {$diff->s} segundo atrás";
     }else{
         $datetime = new DateTime($datetime);
         return "{$datetime->format('d-m-y H:i:s')}";
