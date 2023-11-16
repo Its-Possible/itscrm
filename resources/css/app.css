@@ -161,7 +161,14 @@ main#app-main > header#app-main-header > section#app-main-logged > div#app-main-
 main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-notifications > label {
     padding-right: 8px;
     position: relative;
+    cursor: pointer;
     top: 3px;
+}
+
+main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-notifications > label > div.app-main-logged-notifications-opened {
+    padding: 4px 8px;
+    background: rgba(9, 132, 227, .1);
+    border-radius: 50%;
 }
 
 div#app-main-logged-notifications-content {
@@ -175,7 +182,6 @@ div#app-main-logged-notifications-content {
     box-shadow: 0 0 4px rgba(0,0,0,0.5);
     border-radius: 12px;
     z-index: 1000;
-    overflow-y: auto;
 }
 
 
@@ -196,12 +202,20 @@ div#app-main-logged-notifications-content:after {
 
 header#app-main-logged-notifications-content-header {
     padding: 18px 22px;
+    border-bottom: 1px solid rgba(213, 213, 213, 0.5);
+    border-top: 1px solid rgba(213, 213, 213, 0.65
+    );
 }
 
 header#app-main-logged-notifications-content-header h4 {
     color: #000;
     margin-top: 5px;
     font-size: 20px;
+}
+
+nav#app-main-logged-notifications-content-list {
+    overflow-y: auto;
+    height: 360px;
 }
 
 nav#app-main-logged-notifications-content-list li {
@@ -217,14 +231,9 @@ nav#app-main-logged-notifications-content-list li {
     transition: all 0.4s ease;
 }
 
-nav#app-main-logged-notifications-content-list li:first-child {
-    border-top: 1px solid rgba(213, 213, 213, 0.5);
-}
-
 nav#app-main-logged-notifications-content-list li:hover {
     cursor: pointer;
-    color: #fff;
-    background: rgba(85, 59, 162, 0.35);
+    background: rgba(116, 185, 255, .1);
     transition: all 0.4s ease;
 }
 

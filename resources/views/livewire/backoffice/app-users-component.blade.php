@@ -11,10 +11,6 @@
         <div class="col-md-8 offset-2">
             <div class="row">
                 <div class="col-md-10">
-                    <button class="btn btn-filter">Adicionar filtro</button>
-                    {{--                    <button class="btn btn-filter"><span>Tag:</span> Filiado <i class="ri-close-fill ml-2"></i></button>--}}
-                    {{--                    <button class="btn btn-filter"><span>Tipo:</span> Pessoa <i class="ri-close-fill ml-2"></i></button>--}}
-                    {{--                    <button class="btn btn-filter"><span>Pais:</span> Portugal & Estados Unidos<i class="ri-close-fill ml-2"></i></button>--}}
                 </div>
                 <div class="col-md-2 text-right pt-3">
                     {{ $users_counter }} Encontrados
@@ -34,7 +30,7 @@
         <div class="col-md-8 offset-2">
             @forelse($users as $index => $user)
                 <article class="app-customer">
-                    <div><img class="app-customer-avatar" src="{{ $user->avatar->base64code }}" /></div>
+                    <div><img class="app-customer-avatar" src="{{ $user->avatar->image }}" /></div>
                     <div>
                         <div class="text-bold">{{ decrypt_data($user->firstname) }}</div>
                         <div><small>{{ $user->email }}</small></div>

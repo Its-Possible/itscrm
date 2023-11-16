@@ -32,7 +32,7 @@
         <div class="col-md-8 offset-2">
             @forelse($doctors as $index => $doctor)
                 <article class="app-customer">
-                    <div><img class="app-customer-avatar" src="{{ $doctor->user->avatar }}" /></div>
+                    <div><img class="app-customer-avatar" src="{{ $doctor->user->avatar->image }}" /></div>
                     <div>
                         <div class="text-bold">{{ decrypt_data($doctor->user->firstname) }} {{ decrypt_data($doctor->user->lastname) }}</div>
                         <div><small>{{ $doctor->email }}</small></div>
@@ -46,7 +46,7 @@
                                 ,
                             @endif
                         @empty
-                           <small>Sem especialidade</small>
+                           <small class="text-center">Sem especialidade</small>
                         @endforelse
                     </div>
                     <div>
