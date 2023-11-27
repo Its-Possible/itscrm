@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerStoreRequest;
+use App\Http\Requests\CustomerUpdateRequest;
 use App\Models\Customer;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Str;
+use Illuminate\Support\Str;
 
 class CustomerApiController extends Controller
 {
@@ -71,8 +72,25 @@ class CustomerApiController extends Controller
         return redirect()->route('its.app.customers.index');
     }
 
-    public function update(Request $request, int $id)
+    public function update(CustomerUpdateRequest $request, string $slug)
     {
-        dd("hello world");
+        if(!$request->validated()){
+            return back()->withInput()->withErrors();
+        }
+
+        $customer = Customer::where('slug', $slug)->firstOrFail();
+        $customer->name = encrypt_data($request->input('name'));
+        $customer->email = encrypt_data($request->input('email'));
+        $customer->birthday = $request->input('birthday');
+        $customer->address_line_1 = encrypt_data($request->input('address-line-1'));
+        $customer->address_line_2 = encrypt_data($request->input('address-line-2'));
+        $customer->postcode = encrypt_data($request->input('postcode'));
+        $customer->location = encrypt_data($request->input('location'));
+        $customer->mobile = $request->input('mobile');
+        $customer->slug = Str::slug(str_replace("-", "", microtime()));
+
+        if(!$customer->save()){
+            return back()->withErrors($request)->withInput();
+        }
     }
 }

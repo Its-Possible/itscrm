@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Events\CampaignImportStarted;
 use App\Jobs\ProcessImportCampaigns;
 use App\Models\Campaign;
 use App\Models\User;
@@ -42,7 +41,6 @@ class ImportCampaigns extends Command
         if(!is_null($this->option('user')))
         {
 
-
             $user = User::where('username', $this->option('user'))->firstOrFail();
             $user->firstname = decrypt_data($user->firstname);
             $user->lastname = decrypt_data($user->lastname);
@@ -55,8 +53,6 @@ class ImportCampaigns extends Command
         $this->info("\nImporting and updating campaigns...\n");
 
         $campaignsFromService = $this->brevo->getCampaigns();
-
-
 
         foreach ($campaignsFromService as $campaign) {
             $selectedCampaignByCode = Campaign::where("code", "cbrevo#" . $campaign['id']);
@@ -71,9 +67,9 @@ class ImportCampaigns extends Command
                 $import_campaign->local = 'brevo';
 
                 if ($import_campaign->save())
-                    $this->comment("{$import_campaign->name} Campaign imported with sucessfully!");
+                    $this->comment("{$import_campaign->name} Campaign imported with successfully!");
                 else
-                    $this->warn("\n{$import_campaign->name} Campaign not imported with sucessfully!\n");
+                    $this->warn("\n{$import_campaign->name} Campaign not imported with successfully!\n");
             }else {
 
                 $updateCampaign = $selectedCampaignByCode->first();
@@ -89,11 +85,7 @@ class ImportCampaigns extends Command
             }
         }
 
-        $notificationRepository->create("Importação de campanhas", "O processo de importação de campanhas foi <strong>consluído com sucesso.</strong>", 0);
-
-        $campaignsFromDatabase = Campaign::all();
-
-        // TODO: Delete all campaigns deleted on Brevo
+        $notificationRepository->create("Importação de campanhas", "O processo de importação de campanhas foi <strong>concluído com sucesso.</strong>", 0);
 
         $this->info("Imported and updated campaigns with sucessfully!");
     }

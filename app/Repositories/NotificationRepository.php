@@ -19,6 +19,8 @@ class NotificationRepository {
 
 
     /**
+     * Create notification on database and send to broadcast
+     *
      * @param string $title
      * @param string $message
      * @param string $type

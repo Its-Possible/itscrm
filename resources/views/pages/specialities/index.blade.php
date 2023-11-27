@@ -1,4 +1,4 @@
-@extends('layouts.app.dashboard', ['title' => 'Médicos'])
+@extends('layouts.app.dashboard', ['title' => 'Especialidades'])
 
 @section('header')
     <div class="row" x-data="header">

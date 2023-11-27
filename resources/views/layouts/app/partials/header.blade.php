@@ -28,9 +28,8 @@
                 <div class="app-main-logged-notifications-opened">
                     <i class="ri ri-notification-line"></i>
                 </div>
-                @if(notifications("counter") > 0)
-                    <div class="app-main-notification-icon-new"></div>
-                @endif
+                <div id="new-notifications-alert" class="app-main-notification-icon-new"></div>
+                <div id="new-notifications-alert" class="app-main-notification-icon-new"></div>
             </label>
             <div id="app-main-logged-notifications-content" x-show="notifications.open">
                 <header id="app-main-logged-notifications-content-header">

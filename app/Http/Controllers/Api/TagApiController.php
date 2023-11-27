@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Customer;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,6 +15,11 @@ class TagApiController extends Controller
         return response()->json([
             'data' => Tag::all()
         ]);
+    }
+
+    public function update( $request, $slug)
+    {
+        $customer = Customer::where('slug', $slug)->firstOrFail();
     }
 
     public function relationship(Request $request)

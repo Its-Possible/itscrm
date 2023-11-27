@@ -20,6 +20,7 @@
         "bootstrap": "^5.2.3",
         "chart.js": "^4.3.0",
         "croppie": "^2.6.5",
+        "crypto-js": "^4.2.0",
         "font-awesome": "^4.7.0",
         "lozad": "^1.16.0",
         "remixicon": "^2.5.0",

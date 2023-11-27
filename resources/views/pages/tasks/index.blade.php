@@ -1,4 +1,4 @@
-@extends('layouts.app.dashboard', ['title' => 'Automatizações'])
+@extends('layouts.app.dashboard', ['title' => 'Tarefas agendadas'])
 
 @section('header')
     <div class="row" x-data="header">

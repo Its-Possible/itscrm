@@ -5,6 +5,7 @@
  */
 
 import axios from 'axios';
+import Notification from './notifications'
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -31,9 +32,9 @@ window.Echo = new Echo({
 
 window.Echo.channel('app-notification')
     .listen(`.campaign-import-started.app-notification`, (e) => {
-        const notifications_counter = document.getElementById("app-main-logged-notifications-label");
-        let counter = parseInt(notifications_counter.innerText.replace("<i class=\"ri ri-notification-line\"></i> ", "")) + 1;
-        notifications_counter.innerHTML = `<i class=\"ri ri-notification-line\"></i> ${counter}`;
+        const new_notifications_alert = document.getElementById('new-notifications-alert');
+        new_notifications_alert.style.display = "block";
+        Notification.Add(e);
     });
 
 

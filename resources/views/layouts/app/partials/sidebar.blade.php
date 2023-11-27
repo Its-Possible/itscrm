@@ -45,16 +45,11 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('its.app.users.index') }}">
-                <i class="ri ri-group-line"></i>
-                <p>Utilizadores</p>
+            <a href="{{ route('its.app.tags.index') }}">
+                <i class="ri ri-price-tag-2-line"></i>
+                <p>Tags</p>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="{{ route('its.app.users.index') }}">
-                <i class="ri ri-folder-line"></i>
-                <p>Ficheiros</p>
-            </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('its.app.settings.index') }}">

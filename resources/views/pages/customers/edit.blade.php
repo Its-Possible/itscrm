@@ -41,8 +41,9 @@
     </div>
     <div class="row mb-4" x-data="customers">
         <div class="col-md-8 offset-2 text-right pt-3">
-            <form id="customer-save" action="{{ route('its.app.customers.store') }}" method="post" autocomplete="off">
+            <form id="customer-save" action="{{ route('its.app.customers.update', $customer->slug) }}" method="post" autocomplete="off">
                 {{ csrf_field() }}
+                @method('patch')
                 <button form="customer-save" type="submit" class="btn btn-filter inverter pull-right">Guardar</button>
             </form>
         </div>

@@ -13,14 +13,11 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="speciality-select">Especialidade</label>
-                <select form="customer-save" class="form-control" wire:model="selected"
-                        wire:change="updateDoctorsFromSpeciality" name="speciality-select" id="speciality-select">
+                <select form="customer-save" class="form-control" wire:model="selected" wire:change="updateDoctorsFromSpeciality" name="speciality-select" id="speciality-select">
                     <option value="" disabled selected>Selecionar</option>
-                    @forelse($specialities as $speciality)
+                    @foreach($specialities as $speciality)
                         <option value="{{ $speciality->slug }}">{{ $speciality->name }}</option>
-                    @empty
-
-                    @endforelse
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -49,8 +46,7 @@
     @elseif($selected)
         <div class="row">
             <div class="col-md-12">
-                <p class="alert alert-warning text-center">Não há médico com essa especialidade neste
-                    momento!</p>
+                <p class="alert alert-warning text-center">Não há médico com essa especialidade neste momento!</p>
             </div>
         </div>
     @endif

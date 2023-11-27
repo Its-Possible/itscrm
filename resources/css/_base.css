@@ -31,23 +31,23 @@
 }
 
 .btn-primary {
-    color: #fff;
+    color: #17383A;
     font-weight: bold;
-    background: #0984e3;
-    border: 2px solid #6A40DB;
+    background: #E5F5E8;
+    border: 2px solid #E5F5E8;
 }
 
 .btn-primary:hover {
-    color: #0984e3;
-    background: #fff;
-    border: 2px solid #0984e3;
+    color: #E5F5E8;
+    background: #17383A;
+    border: 2px solid #E5F5E8;
 }
 
 .btn-social {
     width: 100%;
-    background: #0984e3;
-    color: #0984e3;
-    border: 1px solid #0984e3;
+    background: #E5F5E8;
+    color: #17383A;
+    border: 1px solid #E5F5E8;
 }
 
 .btn-social:hover {

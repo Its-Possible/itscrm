@@ -165,6 +165,10 @@ main#app-main > header#app-main-header > section#app-main-logged > div#app-main-
     top: 3px;
 }
 
+main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-notifications > label > #new-notifications-alert {
+    display: none;
+}
+
 main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-notifications > label > div.app-main-logged-notifications-opened {
     padding: 4px 8px;
     background: rgba(9, 132, 227, .1);
