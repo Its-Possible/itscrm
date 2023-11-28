@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Helpers\Interfaces\UserInterface;
+use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
+use App\Notifications\ActivactionAccountNotification;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -25,7 +27,6 @@ class UserFactory extends Factory
             'username' => fake()->unique()->userName(),
             'email' => fake()->unique()->safeEmail(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'status' => UserInterface::STATUS_ACTIVE
         ];
     }
 
@@ -39,5 +40,16 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+
+    public function configure(): Factory|UserFactory
+    {
+        return $this->afterCreating(function (User $user) {
+            $user->activationAccount()->create([
+                'token' => Crypt::encrypt(uniqid())
+            ]);
+
+            $user->notify(new ActivactionAccountNotification);
+        });
     }
 }

@@ -13,5 +13,9 @@ class ActivationAccount extends Model
         "id"
     ];
 
+    protected $fillable = [
+        'token'
+    ];
+
 
 }
