@@ -4,7 +4,9 @@
             <h6 class="mt-2">Informações do cliente</h6>
         </div>
         <div class="col-md-3">
-            <button form="customer-save" type="submit" class="btn btn-filter btn-small pull-right">Guardar</button>
+            @if(!is_null($customer))
+                <button form="customer-save" type="submit" class="btn btn-filter btn-small pull-right">Guardar</button>
+            @endif
         </div>
     </div>
     <hr />

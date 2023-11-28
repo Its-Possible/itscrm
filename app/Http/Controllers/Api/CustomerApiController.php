@@ -7,6 +7,8 @@ use App\Http\Requests\CustomerStoreRequest;
 use App\Http\Requests\CustomerUpdateRequest;
 use App\Models\Customer;
 use App\Models\Speciality;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -14,7 +16,7 @@ use Illuminate\Support\Str;
 class CustomerApiController extends Controller
 {
     //
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
 
         return response()->json([
@@ -22,7 +24,7 @@ class CustomerApiController extends Controller
         ]);
     }
 
-    public function store(CustomerStoreRequest $request)
+    public function store(CustomerStoreRequest $request): RedirectResponse
     {
 
         if(!$request->validated()){
@@ -34,7 +36,6 @@ class CustomerApiController extends Controller
         if($request->input('avatar')) {
             $customer->avatar_id = $request->input('avatar');
         }
-
 
         $customer->name = encrypt_data($request->input('name'));
         $customer->email = encrypt_data($request->input('email'));
@@ -49,6 +50,8 @@ class CustomerApiController extends Controller
         if(!$customer->save()){
             return back()->withErrors($request)->withInput();
         }
+
+        dd($customer);
 
         if($request->input('speciality-selected')) {
 
@@ -72,7 +75,7 @@ class CustomerApiController extends Controller
         return redirect()->route('its.app.customers.index');
     }
 
-    public function update(CustomerUpdateRequest $request, string $slug)
+    public function update(CustomerUpdateRequest $request, string $slug): RedirectResponse
     {
         if(!$request->validated()){
             return back()->withInput()->withErrors();
@@ -92,5 +95,9 @@ class CustomerApiController extends Controller
         if(!$customer->save()){
             return back()->withErrors($request)->withInput();
         }
+
+        $request->session()->flash('its.message.body', 'Cliente atualizado com sucesso!');
+
+        return redirect()->route('its.app.customers.index');
     }
 }

@@ -4,8 +4,9 @@
             <h6 class="mt-2">Especialidades e Médicos</h6>
         </div>
         <div class="col-md-3">
-            <button type="button" class="btn btn-filter btn-small pull-right" wire:click="saveSpecialities">Guardar
-            </button>
+            @if(!is_null($customer))
+                <button type="button" class="btn btn-filter btn-small pull-right" wire:click="save">Guardar</button>
+            @endif
         </div>
     </div>
     <hr/>
@@ -28,8 +29,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="doctor-select">Médico</label>
-                <select form="customer-save" class="form-control" wire:model="selected"
-                        wire:click="updateDoctorsFromSpeciality" name="doctor-select" id="doctor-select">
+                <select form="customer-save" class="form-control" wire:model="selected" wire:click="updateDoctorsFromSpeciality" name="doctor-select" id="doctor-select">
                     <option value="none" disabled selected>Selecionar</option>
                     @forelse($doctors as $doctor)
                         <option
@@ -49,6 +49,13 @@
                 <p class="alert alert-warning text-center">Não há médico com essa especialidade neste momento!</p>
             </div>
         </div>
+    @endif
+    @if(!is_null($customer))
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-filter btn-small" wire:click="addSpecialityAndDoctorToCustomer">Adicionar</button>
+        </div>
+    </div>
     @endif
 </div>
 

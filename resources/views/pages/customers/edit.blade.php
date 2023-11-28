@@ -36,6 +36,7 @@
                 <livewire:backoffice.components.customers.upload-image-component customer="{{ $customer->slug }}" />
                 <livewire:backoffice.components.customers.information-component customer="{{ $customer->slug }}" />
                 <livewire:backoffice.components.customers.doctors-component customer="{{ $customer->slug }}" />
+                <livewire:backoffice.components.customers.tags-component custtomer="{{ $customer->slug }}" />
             </div>
         </div>
     </div>

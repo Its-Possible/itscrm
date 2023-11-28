@@ -4,7 +4,9 @@
             <h6 class="mt-2">Campanhas & Tags</h6>
         </div>
         <div class="col-md-3">
+            @if(!is_null($customer))
             <button type="button" class="btn btn-filter btn-small pull-right" wire:click="saveTags">Guardar</button>
+            @endif
         </div>
     </div>
     <hr/>

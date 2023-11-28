@@ -31,6 +31,17 @@ class DoctorsComponent extends Component
         }
     }
 
+    public function addSpecialityAndDoctorToCustomer(): void
+    {
+        // TODO: Add speciality and doctor to customer on database
+        dd($request);
+    }
+
+    public function save(): void
+    {
+        dd("hello world, save speciality and doctor information");
+    }
+
     public function render(): Factory|View|Application
     {
 

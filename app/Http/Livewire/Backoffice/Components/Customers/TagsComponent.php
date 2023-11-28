@@ -11,6 +11,7 @@ use Livewire\Component;
 class TagsComponent extends Component
 {
 
+    public $customer;
     public string $tag = "";
 
     public function render(): Application|View|Factory
