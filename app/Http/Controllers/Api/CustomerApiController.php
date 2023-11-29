@@ -51,22 +51,15 @@ class CustomerApiController extends Controller
             return back()->withErrors($request)->withInput();
         }
 
-        dd($customer);
-
-        if($request->input('speciality-selected')) {
-
-            $speciality = Speciality::where('slug', $request->input('speciality-select'))->firstOrFail();
-
-            DB::table('customers_specialities')->insert([
-                'customer_id' => $customer->id,
-                'speciality_id' => $speciality->id
+        if($request->input('speciality-select')) {
+            $customer->specialities()->attach([
+                ['speciality_id' => Speciality::where('slug', $request->input('speciality-select'))->firstOrFail()->id]
             ]);
         }
 
-        if($request->input('doctor-selected')) {
-            DB::table('customers_doctors')->insert([
-                'customer_id' => $customer->id,
-                'doctor_id' => $request->input('doctor-select')
+        if($request->input('doctor-select')) {
+            $customer->doctors()->attach([
+                ['doctor_id' => Doctor::findOrFail($request->input('doctor->select'))->id]
             ]);
         }
 
@@ -94,6 +87,18 @@ class CustomerApiController extends Controller
 
         if(!$customer->save()){
             return back()->withErrors($request)->withInput();
+        }
+
+        if($request->input('speciality-select')) {
+            $customer->specialities()->attach([
+                ['speciality_id' => Speciality::where('slug', $request->input('speciality-select'))->firstOrFail()->id]
+            ]);
+        }
+
+        if($request->input('doctor-select')) {
+            $customer->doctors()->attach([
+                ['doctor_id' => Doctor::findOrFail($request->input('doctor->select'))->id]
+            ]);
         }
 
         $request->session()->flash('its.message.body', 'Cliente atualizado com sucesso!');
