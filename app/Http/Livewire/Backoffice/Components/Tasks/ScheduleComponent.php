@@ -11,6 +11,6 @@ class ScheduleComponent extends Component
 
     public function render()
     {
-        return view('livewire.backoffice.components.automations.schedule-component');
+        return view('livewire.backoffice.components.tasks.schedule-component');
     }
 }

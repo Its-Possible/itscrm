@@ -6,10 +6,10 @@
         <div class="col-md-3">
             <div class="btn-group" role="group" aria-label="repetitions">
                 <input type="radio" class="btn-check" name="automation-repeat" id="automation-repeat-on" autocomplete="off" value="on" wire:model="repeat" checked>
-                <label class="btn btn-radio btn-outline-primary" for="automation-repeat-on">Repetir</label>
+                <label class="btn btn-primary" for="automation-repeat-on">Repetir</label>
 
                 <input type="radio" class="btn-check" name="automation-repeat" id="automation-repeat-off" autocomplete="off" value="off" wire:model="repeat">
-                <label class="btn btn-radio btn-outline-primary" for="automation-repeat-off">Não repetir</label>
+                <label class="btn btn-primary" for="automation-repeat-off">Não repetir</label>
             </div>
         </div>
     </div>

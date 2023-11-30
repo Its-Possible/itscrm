@@ -8,6 +8,6 @@ class InformationComponent extends Component
 {
     public function render()
     {
-        return view('livewire.backoffice.components.automations.information-component');
+        return view('livewire.backoffice.components.tasks.information-component');
     }
 }

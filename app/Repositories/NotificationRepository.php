@@ -10,13 +10,11 @@ use Illuminate\Support\Facades\Log;
 class NotificationRepository {
 
     private Notification $notification;
-
     public int $limit = 10;
 
     public function __construct() {
         $this->notification = new Notification();
     }
-
 
     /**
      * Create notification on database and send to broadcast
@@ -48,11 +46,11 @@ class NotificationRepository {
     }
 
     public function getNotificationGlobal(): Collection {
-        return $this->notification->where("user_id", 0)->orWhereNull('user_id');
+        return $this->notification->where("user_id", 0)->orWhereNull('user_id')->orderBy('created_at', 'desc');
     }
 
     public function getNotificationsGlobalNotRead(): mixed {
-        return $this->notification->whereNull('read_at');
+        return $this->notification->whereNull('read_at')->orderBy('created_at', 'desc');
     }
 
     /**
@@ -60,7 +58,7 @@ class NotificationRepository {
      * @return Notification
      */
     public function getNotificationsByAuthenticateUser(): Collection {
-        return $this->notification->where('user_id', auth()->user()->id)->limit($this->limit)->get();
+        return $this->notification->where('user_id', auth()->user()->id)->limit($this->limit)->orderBy('created_at', 'desc')->get();
     }
 
     /**

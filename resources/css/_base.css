@@ -201,3 +201,26 @@ h5 {
     text-align: right;
     text-decoration: none;
 }
+
+button.btn-tag {
+    color: #19202E;
+    margin: 8px 6px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid #19202E;
+    background: #fff;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+button.btn-tag i {
+    margin-left: 8px;
+    position: relative;
+    top: 2px;
+}
+
+button.btn-tag:hover {
+    color: #fff;
+    background: #19202E;
+}

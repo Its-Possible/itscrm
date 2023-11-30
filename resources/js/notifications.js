@@ -26,7 +26,7 @@ class Notification {
                     <div class="app-main-notification-new"></div>
                 </div>
               </li>`;
-        notifications_content.innerHTML = notification_item;
+        notifications_content.insertBefore(notification_itemm, notifications_content);
     }
 
     Read = function (notification) {

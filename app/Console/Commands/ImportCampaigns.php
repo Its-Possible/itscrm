@@ -40,7 +40,6 @@ class ImportCampaigns extends Command
 
         if(!is_null($this->option('user')))
         {
-
             $user = User::where('username', $this->option('user'))->firstOrFail();
             $user->firstname = decrypt_data($user->firstname);
             $user->lastname = decrypt_data($user->lastname);
