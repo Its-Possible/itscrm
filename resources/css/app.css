@@ -400,6 +400,8 @@ main#app-main > section#app-main-content #app-main-home-card-birthdays img {
     border: 0;
 }
 
+
+
 section#app-list-header {
     padding: 24px 16px;
     width: 100%;
@@ -630,4 +632,37 @@ article.app-task {
     align-items: center;
     display: grid;
     text-align: center;
+}
+
+section#tag-input {
+    position: relative;
+}
+
+nav#tags-suggestions {
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    max-height: 150px;
+    box-shadow: 0 3px 3px #999;
+}
+
+nav#tags-suggestions ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+nav#tags-suggestions ul li {
+    cursor: pointer;
+    color: #19202E;
+    padding: 20px 18px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(150,150,150,.3);
+    transition: color, background-color 0.4s ease;
+}
+
+nav#tags-suggestions ul li:hover {
+    color: #fff;
+    background: #19202E;
+    transition: color, background-color 0.4s ease;
 }

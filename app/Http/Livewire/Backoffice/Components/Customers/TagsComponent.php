@@ -17,6 +17,17 @@ class TagsComponent extends Component
     public $customer;
     public string $tag;
     public Collection $tags;
+    public Collection $suggestions;
+
+    /**
+     * Search tag from input value
+     *
+     * @return void
+     */
+    public function searchTag(): void
+    {
+        $this->suggestions = Tag::all();
+    }
 
     public function addTag(): void
     {

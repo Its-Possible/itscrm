@@ -5,7 +5,7 @@
         </div>
         <div class="col-md-3">
             @if(!is_null($customer))
-            <button type="button" class="btn btn-filter btn-small pull-right" wire:click="saveTags">Guardar</button>
+                <button type="button" class="btn btn-filter btn-small pull-right" wire:click="saveTags">Guardar</button>
             @endif
         </div>
     </div>
@@ -15,7 +15,8 @@
             <div id="tags" class="form-group"></div>
             <div class="form-group">
                 <label for="campaign-select">Campanha</label>
-                <select form="customer-create" class="form-control" wire:model="selected"  name="campaign-select" id="campaign-select">
+                <select form="customer-create" class="form-control" wire:model="selected" name="campaign-select"
+                        id="campaign-select">
                     <option value="" disabled selected>Selecionar</option>
                     @forelse($campaigns as $campaign)
                         <option value="{{ $campaign->slug }}">{{ $campaign->name }}</option>
@@ -37,7 +38,16 @@
                     @endforeach
                 </section>
                 <section id="tag-input" class="mt-4">
-                    <input type="text" class="form-control" name="tag" wire:model="tag" wire:keyup.enter="addTag" />
+                    <input type="text" class="form-control" name="tag" wire:model="tag" wire:keyup="searchTag" />
+                    @if($suggestions)
+                        <nav id="tags-suggestions">
+                            <ul>
+                                @foreach($suggestions as $suggestion)
+                                    {{ $suggestion }}
+                                @endforeach
+                            </ul>
+                        </nav>
+                    @endif
                 </section>
             </div>
         </div>
