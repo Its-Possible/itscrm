@@ -639,11 +639,13 @@ section#tag-input {
 }
 
 nav#tags-suggestions {
+    margin-bottom: 20px;
     position: absolute;
     width: 100%;
     background: #fff;
-    max-height: 150px;
+    max-height: 220px;
     box-shadow: 0 3px 3px #999;
+    overflow: auto;
 }
 
 nav#tags-suggestions ul {

@@ -15,14 +15,13 @@
             <div id="tags" class="form-group"></div>
             <div class="form-group">
                 <label for="campaign-select">Campanha</label>
-                <select form="customer-create" class="form-control" wire:model="selected" name="campaign-select"
-                        id="campaign-select">
+                <select form="customer-create" class="form-control" wire:model="selected" name="campaign-select" id="campaign-select">
                     <option value="" disabled selected>Selecionar</option>
-                    @forelse($campaigns as $campaign)
-                        <option value="{{ $campaign->slug }}">{{ $campaign->name }}</option>
-                    @empty
-
-                    @endforelse
+                    @if($campaigns)
+                        @foreach($campaigns as $campaign)
+                            <option value="{{ $campaign->slug }}">{{ $campaign->name }}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
@@ -32,18 +31,14 @@
             <div id="tags" class="form-group"></div>
             <div class="form-group">
                 <label for="tag">Tags</label>
-                <section id="tags-list">
-                    @foreach($tags as $tag)
-                        <button type="button" class="btn btn-tag" wire:click="removeTag('{{ $tag->name }}')">{{ $tag->name }}<i class="ri ri-close-line"></i></button>
-                    @endforeach
-                </section>
+                <section id="tags-list"></section>
                 <section id="tag-input" class="mt-4">
-                    <input type="text" class="form-control" name="tag" wire:model="tag" wire:keyup="searchTag" />
+                    <input type="text" class="form-control" name="tag" wire:model="value" wire:keyup="searchTag" wire:keydown.enter="addTag" />
                     @if($suggestions)
                         <nav id="tags-suggestions">
                             <ul>
                                 @foreach($suggestions as $suggestion)
-                                    {{ $suggestion }}
+                                    <li wire:click.prevent="addTag('{{ $suggestion->slug }}')">{{ $suggestion->name }}</li>
                                 @endforeach
                             </ul>
                         </nav>

@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Backoffice\Components\Customers;
 
-use App\Models\Campaign;
 use App\Models\Tag;
+use App\Models\Campaign;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -15,9 +15,9 @@ class TagsComponent extends Component
 {
 
     public $customer;
-    public string $tag;
+    public string $value;
     public Collection $tags;
-    public Collection $suggestions;
+    public Collection|null $suggestions;
 
     /**
      * Search tag from input value
@@ -26,23 +26,33 @@ class TagsComponent extends Component
      */
     public function searchTag(): void
     {
-        $this->suggestions = Tag::all();
+        $this->suggestions = Tag::where('name', 'like', $this->value ."%")
+            ->limit(8)
+            ->get();
     }
 
-    public function addTag(): void
+    /**
+     * @param string|null $slug
+     * @return void
+     */
+    public function addTag(string $slug = null): void
     {
-        $tag = Tag::where('name', $this->tag);
+        // TODO: Create relationship if not exists tag, create a tag and create relationship
+        if(!is_null($slug)) {
+            $tag = Tag::where('slug', $slug)->first();
 
-        if($tag->count() > 0){
-            dd("Já existe essa tag basta associar");
-        }else {
-            $tag = new Tag;
-            $tag->name = $this->tag;
-            $tag->slug = Str::slug($this->tag);
+            dd($tag);
+        }else{
+
+            dd($this->customer);
+
+            $tag = new Tag();
+            $tag->name = $this->value;
+            $tag->slug = Str::slug($this->value);
             $tag->save();
-        }
 
-        $this->tag = "";
+            $this->value = "";
+        }
     }
 
     public function removeTag($selected): void
@@ -56,8 +66,6 @@ class TagsComponent extends Component
 
     public function render(): Application|View|Factory
     {
-        $this->tags = Tag::all();
-
         return view('livewire.backoffice.components.customers.tags-component')
             ->with(['campaigns' => Campaign::all()]);
     }
