@@ -1,55 +1,46 @@
-version: '3'
+version: '3.9'
 
 services:
     database:
-        container_name: itscrmdev-database
-        image: oxy-mysql8
+        container_name: dev.itscrm.test-dev-database
+        image: itspossible-dev-database:mysql-8.2
         ports:
             - 3306:3306
             - 33060:33060
+        command: --default-authentication-plugin=caching_sha2_password
         restart: always
         environment:
-            - MYSQL_USER=testdev
-            - MYSQL_PASSWORD=testdev123
-            - MYSQL_DATABASE=testdev
+            MYSQL_ROOT_PASSWORD: jA45j1ILD8XgjBtGh8X1NV5X
+            MYSQL_USER: itscrm_dev_user
+            MYSQL_PASSWORD: 5NdP5MKjoT9524d6QThFqL6r
+            MYSQL_DATABASE: itscrm_dev_db
+            MYSQL_ALLOW_EMPTY_PASSWORD: no
         volumes:
-            - W:/ItsPossible/06_IT/0601_Dockerfiles/060102_Data/06010201_MySQL:/var/lib/mysql
+            - W:/ItsPossible/06_IT/0601_Dockerfiles/060102_Data/06010201_MySQL/dev.itscrm.test/:/var/lib/mysql
         networks:
-            itscrmdev-network:
-                ipv4_address: 180.23.0.2
+            itspossible-network:
+                ipv4_address: 192.168.5.2
 
     web:
-        container_name: itscrmdev-web
-        image: oxy-php8.1
+        container_name: dev.itscrm.test-dev-web
+        image: itspossible-dev-web:php-8.3
         ports:
             - 80:80
-            - 9005:9005
         volumes:
             - .:/var/www/html
             - W:/ItsPossible/06_IT/0601_Dockerfiles/060101_Configurations/06010103_Configurations/0801010301_Apache:/etc/apache2/sites-available/
             - W:/ItsPossible/06_IT/0601_Dockerfiles/060101_Configurations/06010103_Configurations/0801010301_Apache:/etc/apache2/sites-enabled/
         restart: always
         environment:
-            - VIRTUAL_HOST=dev.itscrmdev.local
+            - VIRTUAL_HOST=dev.dev.itscrm.test.test
         networks:
-            itscrmdev-network:
-                ipv4_address: 180.23.0.3
-    jobs:
-        container_name: itscrmdev-jobs
-        image: redis
-        ports:
-            - 6379:6379
-        volumes:
-            - W:/ItsPossible/06_IT/0601_Dockerfiles/060102_Data/06010202_Redis:/data
-        networks:
-            itscrmdev-network:
-                ipv4_address: 180.23.0.4
-
+            itspossible-network:
+                ipv4_address: 192.168.5.3
 
 networks:
-    itscrmdev-network:
+    itspossible-network:
         driver: bridge
         ipam:
             config:
-                - subnet: "180.23.0.0/16"
-                  gateway: "180.23.0.1"
+                - subnet: "192.168.5.0/24"
+                  gateway: "192.168.5.1"
