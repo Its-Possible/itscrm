@@ -31,7 +31,13 @@
             <div id="tags" class="form-group"></div>
             <div class="form-group">
                 <label for="tag">Tags</label>
-                <section id="tags-list"></section>
+                <section id="tags-list">
+                    <ul>
+                        @foreach($tags as $tag)
+                            <li>{{ $tag->name }} <span><i class="ri-close-line"></i></span></li>
+                        @endforeach
+                    </ul>
+                </section>
                 <section id="tag-input" class="mt-4">
                     <input type="text" class="form-control" name="tag" wire:model="value" wire:keyup="searchTag" wire:keydown.enter="addTag" />
                     @if($suggestions)

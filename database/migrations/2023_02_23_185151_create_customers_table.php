@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('avatar_id')->default(1);
-            $table->string('name');
+            $table->mediumText('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('mobile')->nullable();
-            $table->string('address_line_1')->nullable();
-            $table->string('address_line_2')->nullable();
-            $table->string('location')->nullable();
-            $table->string('postcode')->nullable();
+            $table->mediumText('address_line_1')->nullable();
+            $table->mediumText('address_line_2')->nullable();
+            $table->mediumText('location')->nullable();
+            $table->mediumText('postcode')->nullable();
             $table->date('birthday')->nullable();
             $table->string('slug')->unique();
             $table->string('vat')->default('CONSUMIDOR FINAL');
