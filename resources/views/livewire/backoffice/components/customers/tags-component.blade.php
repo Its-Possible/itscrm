@@ -31,25 +31,27 @@
             <div id="tags" class="form-group"></div>
             <div class="form-group">
                 <label for="tag">Tags</label>
+                @if($customer->tags)
                 <section id="tags-list">
                     <ul>
-                        @foreach($tags as $tag)
-                            <li>{{ $tag->name }} <span><i class="ri-close-line"></i></span></li>
+                        @foreach($customer->tags as $tag)
+                            <li wire:click.prevent="findAndRemove('{{ $tag->id }}')">{{ $tag->name }} <span><i class="ri-close-line"></i></span></li>
                         @endforeach
                     </ul>
                 </section>
                 <section id="tag-input" class="mt-4">
-                    <input type="text" class="form-control" name="tag" wire:model="value" wire:keyup="searchTag" wire:keydown.enter="addTag" />
+                    <input type="text" class="form-control" name="tag" wire:model="value" wire:keyup="search" wire:keydown.enter="addOrCreate" />
                     @if($suggestions)
                         <nav id="tags-suggestions">
                             <ul>
                                 @foreach($suggestions as $suggestion)
-                                    <li wire:click.prevent="addTag('{{ $suggestion->slug }}')">{{ $suggestion->name }}</li>
+                                    <li wire:click.prevent="addOrCreate('{{ $suggestion->slug }}')">{{ $suggestion->name }}</li>
                                 @endforeach
                             </ul>
                         </nav>
                     @endif
                 </section>
+                @endif
             </div>
         </div>
     </div>

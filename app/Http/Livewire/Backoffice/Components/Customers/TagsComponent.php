@@ -21,59 +21,51 @@ class TagsComponent extends Component
     public Collection $tags;
     public Collection|null $suggestions;
 
+
+    public function mount($customer = null): void
+    {
+        if(!is_null($customer)) {
+            $this->customer = Customer::with('tags')->where('slug', $customer)->first();
+        }
+    }
+
     /**
      * Search tag from input value
      *
      * @return void
      */
-    public function searchTag(): void
+    public function search(): void
     {
         $this->suggestions = Tag::where('name', 'like', $this->value ."%")
             ->limit(8)
             ->get();
     }
 
-    /**
-     * @param string|null $slug
-     * @return void
-     */
-    public function addTag(string $slug = null): void
+    public function addOrCreate(string $slug = null): void
     {
         // TODO: Create relationship if not exists tag, create a tag and create relationship
         if(!is_null($slug)) {
-            $tag = Tag::where('slug', $slug)->first();
-            $customer = Customer::where('slug', $this->customer)->first();
-
+            // Select element to add tag
             DB::table('tag_customer')->insert([
-                'tag_id' => $tag->id,
-                'customer_id' => Str::slug($customer->id)
+                'tag_id' => Tag::where('slug', $slug)->first()->id,
+                'customer_id' => $this->customer->id
             ]);
+
         }else{
 
-            $customer = Customer::where('slug', $this->customer)->first();
-
-            $customer->tags()->create([
+            $this->customer->tags()->create([
                 'name' => $this->value,
-                'slug' => Str::slug($this->value)
+                'slug' => Str::slug($this->value) . uniqid()
             ]);
 
             $this->value = "";
         }
     }
 
-    public function removeTag($selected): void
+    public function findAndRemove($selected): void
     {
-        $tag = Tag::where('name', $selected);
-
-        if($tag->count() > 0){
-            $tag->delete();
-        }
-    }
-
-    public function mount($customer = null)
-    {
-        if(!is_null($customer)){
-            $this->tags = Customer::with('tags')->where('slug', $customer)->first()->tags;
+        if(!is_null($this->customer)){
+            $this->customer->tags->detach($selected);
         }
     }
 

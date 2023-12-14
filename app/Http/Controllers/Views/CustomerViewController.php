@@ -61,7 +61,7 @@ class CustomerViewController extends Controller
     public function edit(string $slug)
     {
         //
-        $customer = Customer::where('slug', $slug)->firstOrFail();
+        $customer = Customer::with('tags')->where('slug', $slug)->firstOrFail();
 
         return view('pages.customers.edit')
             ->with(['customer' => $customer]);
