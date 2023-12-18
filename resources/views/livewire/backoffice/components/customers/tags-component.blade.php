@@ -31,14 +31,15 @@
             <div id="tags" class="form-group"></div>
             <div class="form-group">
                 <label for="tag">Tags</label>
-                @if($customer->tags)
+                @if($tags)
                 <section id="tags-list">
                     <ul>
-                        @foreach($customer->tags as $tag)
+                        @foreach($tags as $tag)
                             <li wire:click.prevent="findAndRemove('{{ $tag->id }}')">{{ $tag->name }} <span><i class="ri-close-line"></i></span></li>
                         @endforeach
                     </ul>
                 </section>
+                @endif
                 <section id="tag-input" class="mt-4">
                     <input type="text" class="form-control" name="tag" wire:model="value" wire:keyup="search" wire:keydown.enter="addOrCreate" />
                     @if($suggestions)
@@ -51,7 +52,6 @@
                         </nav>
                     @endif
                 </section>
-                @endif
             </div>
         </div>
     </div>

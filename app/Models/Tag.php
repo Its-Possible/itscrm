@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Tag extends Model
 {
@@ -21,14 +20,14 @@ class Tag extends Model
 
     public $timestamps = false;
 
-    public function customers(): BelongsTo
+    public function customers(): BelongsToMany
     {
-        return $this->belongsToMany(Customer::class, 'tags_customers');
+        return $this->belongsToMany(Customer::class, 'tag_customer');
     }
 
-    public function campaigns(): BelongsTo
+    public function campaigns(): BelongsToMany
     {
-        return $this->belongsToMany(Campaign::class, 'tags_campaigns');
+        return $this->belongsToMany(Campaign::class, 'tag_campaign');
     }
 
 

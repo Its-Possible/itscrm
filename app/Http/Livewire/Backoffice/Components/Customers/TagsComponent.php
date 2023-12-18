@@ -2,16 +2,18 @@
 
 namespace App\Http\Livewire\Backoffice\Components\Customers;
 
-use App\Models\Customer;
 use App\Models\Tag;
-use App\Models\Campaign;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use App\Repositories\TagRepository;
 use Livewire\Component;
+use App\Models\Customer;
+use App\Models\Campaign;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Foundation\Application;
 
 class TagsComponent extends Component
 {
@@ -21,6 +23,14 @@ class TagsComponent extends Component
     public Collection $tags;
     public Collection|null $suggestions;
 
+    protected TagRepository $tagRepository;
+
+    public function __construct($id = null)
+    {
+        parent::__construct($id);
+
+        $this->tagRepository = new TagRepository();
+    }
 
     public function mount($customer = null): void
     {
@@ -30,47 +40,47 @@ class TagsComponent extends Component
     }
 
     /**
-     * Search tag from input value
+     * Search tags by name using input value
      *
      * @return void
      */
     public function search(): void
     {
-        $this->suggestions = Tag::where('name', 'like', $this->value ."%")
-            ->limit(8)
-            ->get();
+        if($this->value) {
+            $this->suggestions = $this->tagRepository->searchByNameWhereDoesntHaveCustomer($this->customer->id, $this->value);
+        }else{
+            $this->suggestions = null;
+        }
     }
 
     public function addOrCreate(string $slug = null): void
     {
         // TODO: Create relationship if not exists tag, create a tag and create relationship
         if(!is_null($slug)) {
-            // Select element to add tag
-            DB::table('tag_customer')->insert([
-                'tag_id' => Tag::where('slug', $slug)->first()->id,
-                'customer_id' => $this->customer->id
-            ]);
-
+            $this->customer->tags()->attach(Tag::where('slug', $slug)->first()->id);
         }else{
 
             $this->customer->tags()->create([
                 'name' => $this->value,
-                'slug' => Str::slug($this->value) . uniqid()
+                'slug' => uniqid()
             ]);
 
             $this->value = "";
+
+            debug("counter");
         }
     }
 
     public function findAndRemove($selected): void
     {
-        if(!is_null($this->customer)){
-            $this->customer->tags->detach($selected);
-        }
+        $this->customer->tags()->detach($selected);
+        $this->tags = $this->customer->tags;
     }
 
     public function render(): Application|View|Factory
     {
+        $this->tags = $this->customer->tags;
+
         return view('livewire.backoffice.components.customers.tags-component')
             ->with(['campaigns' => Campaign::all()]);
     }

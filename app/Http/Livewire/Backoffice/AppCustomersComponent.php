@@ -53,8 +53,8 @@ class AppCustomersComponent extends Component
     public function render()
     {
         $customersCount = Customer::count();
-        $customers = Customer::where('name', 'like', '%' . $this->search . '%')
-            ->with('tags')
+        $customers = Customer::with('tags')
+            ->where('name', 'like', '%' . $this->search . '%')
             ->paginate(30);
 
         return view('livewire.backoffice.app-customers-component')

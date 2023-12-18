@@ -46,10 +46,7 @@
                         <div><small>{{ decrypt_data($customer->email) }}</small></div>
                     </div>
                     @forelse($customer->tags as $tag)
-                        <span class="badge app-customer-tag" style="background-color: {{ $tag->color }}">
-                            {{ $tag->name }}
-                            <i class="ri ri-delete-bin-2-line" wire:click.prevent="delete({{ $tag->id }})"></i>
-                        </span>
+                        <span class="badge app-customer-tag" style="background-color: {{ $tag->color }}"></span>
                     @empty
                         <p class="text-center">Sem tags</p>
                     @endforelse
