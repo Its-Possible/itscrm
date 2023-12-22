@@ -66,8 +66,6 @@ class TagsComponent extends Component
             ]);
 
             $this->value = "";
-
-            debug("counter");
         }
     }
 
