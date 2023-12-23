@@ -18,14 +18,6 @@ class CustomerFactory extends Factory
     {
         return [
             //
-            'avatar_id' => 1,
-            'name' => encrypt_data($this->faker->name),
-            'email' => encrypt_data($this->faker->unique()->email),
-            'phone' => encrypt_data($this->faker->phoneNumber),
-            'mobile' => encrypt_data($this->faker->phoneNumber),
-            'birthday' => $this->faker->date,
-            'vat' => encrypt_data($this->faker->numberBetween(100000000, 999999999)),
-            'slug' => $this->faker->unique()->slug,
         ];
     }
 }
