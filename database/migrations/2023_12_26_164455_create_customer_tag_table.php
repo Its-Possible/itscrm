@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('customer_tag', function (Blueprint $table) {
             $table->id();
-            $table->string("value")->unique();
-            $table->timestamps();
+            $table->foreignId('customer_id');
+            $table->foreignId('tag_id');
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('customer_tag');
     }
 };

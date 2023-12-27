@@ -18,6 +18,13 @@ class CustomerFactory extends Factory
     {
         return [
             //
+            "name" => "Eduardo Bessa",
+            "email" => $this->faker->unique()->email,
+            "phone" => $this->faker->phoneNumber,
+            "city" => $this->faker->city,
+            "country" => $this->faker->country,
+            "zip" => $this->faker->postcode,
+            "slug" => $this->faker->slug()
         ];
     }
 }

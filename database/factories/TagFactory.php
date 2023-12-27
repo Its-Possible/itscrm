@@ -18,6 +18,7 @@ class TagFactory extends Factory
     {
         return [
             //
+            "value" => $this->faker->unique()->word
         ];
     }
 }
