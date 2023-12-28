@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('/customers')->name('its.api.customers.')->group(function () {
     Route::get('/', [CustomerApiController::class, 'list'])->name('list');
     Route::get('/{slug}', [CustomerApiController::class, 'show'])->name('show');
+    Route::post('/', [CustomerApiController::class, 'store'])->name('store');
     Route::patch('/{slug}', [CustomerApiController::class, 'update'])->name('update');
     Route::delete('/{slug}', [CustomerApiController::class, 'delete'])->name('delete');
 });

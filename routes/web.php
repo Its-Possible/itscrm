@@ -24,12 +24,9 @@ Route::prefix('app')->middleware('auth')->group(function () {
 
     # Customers
     Route::get('/customers', [CustomerViewController::class, 'index'])->name('customers');
-    Route::get('/customers/create', [CustomerViewController::class, 'create'])->name('customers.create');
-    Route::post('/customers', [CustomerApiController::class, 'store'])->name('customers.store');
     Route::get('/customers/{slug}', [CustomerViewController::class, 'show'])->name('customers.show');
+    Route::get('/customers/create', [CustomerViewController::class, 'create'])->name('customers.create');
     Route::get('/customers/{slug}/edit', [CustomerViewController::class, 'show'])->name('customers.edit');
-    Route::patch('/customers/{slug}', [CustomerApiController::class, 'patch'])->name('customers.update');
-
 
 })->name('its.app.');
 

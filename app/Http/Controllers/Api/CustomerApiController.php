@@ -38,7 +38,7 @@ class CustomerApiController extends Controller
             ], 200);
     }
 
-    public function create(CustomerStoreRequest $request): JsonResponse
+    public function store(CustomerStoreRequest $request): JsonResponse
     {
         $customer = new Customer();
         $customer->name = $request->input('name');

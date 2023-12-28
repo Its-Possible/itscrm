@@ -40,6 +40,20 @@ class CustomerTest extends TestCase
         $response->assertSee($customer->slug);
     }
 
+    public function test_create_customer(): void
+    {
+        $data = [
+            "name" => "Eduardo Bessa",
+            "email" => "eduubessa@gmail.com",
+            "phone" => 913946525,
+            "vat" => "PT271651245"
+        ];
+
+        $response = $this->post('/api/customers', $data);
+
+        $response->assertStatus(201);
+    }
+
     /**
      * Test attach tags to customers
      */
