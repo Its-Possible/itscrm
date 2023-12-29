@@ -30,4 +30,10 @@ Route::prefix('app')->middleware('auth')->group(function () {
 
 })->name('its.app.');
 
-
+Route::prefix('settings')->middleware('auth')->group(function () {
+    Route::prefix('account')->group(function () {
+        Route::prefix('access-tokens')->group(function () {
+            Route::get('devices', [\App\Http\Controllers\View\Settings\Account\AccessTokenViewController::class, 'index'])->name('devices');
+        })->name('access-tokens.');
+    })->name('account');
+})->name('settings.');

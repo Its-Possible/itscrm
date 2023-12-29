@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\DoctorApiController;
 use App\Http\Controllers\Api\MailApiController;
 use App\Http\Controllers\Api\MessageApiController;
 use App\Http\Controllers\Api\SettingApiController;
+use App\Http\Controllers\Api\Settings\Account\AccessTokenApiController;
 use App\Http\Controllers\Api\SpecialityApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -85,8 +86,10 @@ Route::prefix('/specialities')->name('its.api.specialities.')->group(function ()
 
 # Settings
 Route::prefix('/settings')->name('its.api.settings.')->group(function () {
-    Route::get('/general', [SettingApiController::class, 'list'])->name('list');
-    Route::get('/{slug}', [SettingApiController::class, 'show'])->name('show');
-    Route::patch('/{slug}', [SettingApiController::class, 'update'])->name('update');
-    Route::delete('/{slug}', [SettingApiController::class, 'delete'])->name('delete');
+    Route::prefix('/account')->name('account.')->group(function () {
+        # Account Access Tokens
+        Route::prefix('/access-tokens')->name('access-tokens.')->group(function () {
+            Route::post('/', [AccessTokenApiController::class, 'store'])->name('store');
+        });
+    });
 });
