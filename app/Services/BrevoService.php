@@ -10,9 +10,7 @@ use PharIo\Manifest\Email;
 
 class BrevoService
 {
-
-
-    private string $apiKey;
+    private $apiKey;
     private mixed $account;
     private mixed $apiInstance;
     private Configuration $configuration;

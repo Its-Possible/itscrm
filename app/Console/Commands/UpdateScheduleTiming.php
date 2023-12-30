@@ -28,9 +28,10 @@ class UpdateScheduleTiming extends Command
     public function handle()
     {
         // Update next time
-        $schedule = Schedule::find($this->argument("schedule-running"));
-        $schedule->last_executed_at = Carbon::now()->getTimestamp();
-        $schedule->next_executed_at = Carbon::now()->addMinutes($schedule->execution_time);
+        $schedule = Schedule::find($this->argument('schedule-running'));
+        $schedule->last_executed_at = Carbon::now()->setTimezone('UTC')->format('Y:m:d H:i:s');
+        $schedule->next_executed_at = Carbon::now()->addMinutes($schedule->execution_interval)->toDateTimeString();
         $schedule->save();
+
     }
 }

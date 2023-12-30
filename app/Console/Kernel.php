@@ -8,6 +8,7 @@ use Illuminate\Console\Scheduling\Schedule as ScheduleConsole;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
+use function Symfony\Component\String\s;
 
 class Kernel extends ConsoleKernel
 {
@@ -20,12 +21,9 @@ class Kernel extends ConsoleKernel
 
         foreach($schedules as $task) {
             $schedule->call(function () use($task) {
-                if(Carbon::now()->timestamp <= $task->next_executed_at){
-                    Artisan:call($task->command);
-                    
-                    Artisan::output();
-                    Log::info("Schedule executing command: {$task->command}");
-                }
+                Artisan::call($task->command);
+                Log::error("No execute {$task->command}");
+                Artisan::call("schedule:update-timing {$task->id}");
             })->everySecond();
         }
     }
