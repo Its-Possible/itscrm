@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+            $table->string("description");
+            $table->string("command");
+            $table->timestamp('schedule_at');
+            $table->timestamp('last_executed_at');
+            $table->timestamp('next_executed_at');
+            $table->integer('execution_interval'); // Minutes
             $table->timestamps();
         });
     }

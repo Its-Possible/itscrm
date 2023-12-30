@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\CustomerApiController;
 use App\Http\Controllers\Views\CustomerViewController;
 use App\Http\Controllers\Views\HomeViewController;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +32,7 @@ Route::prefix('app')->middleware('auth')->group(function () {
 Route::prefix('settings')->middleware('auth')->group(function () {
     Route::prefix('account')->group(function () {
         Route::prefix('access-tokens')->group(function () {
-            Route::get('devices', [\App\Http\Controllers\View\Settings\Account\AccessTokenViewController::class, 'index'])->name('devices');
+            Route::get('devices', [\App\Http\Controllers\Views\Settings\Account\AccessTokenViewController::class, 'index'])->name('devices');
         })->name('access-tokens.');
     })->name('account');
 })->name('settings.');

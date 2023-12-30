@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\View\Settings\Account;
+namespace App\Http\Controllers\Views\Settings\Account;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
