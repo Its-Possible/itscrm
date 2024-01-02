@@ -19,12 +19,14 @@ class Kernel extends ConsoleKernel
     {
         $schedules = Schedule::all();
 
-        foreach($schedules as $task) {
-            $schedule->call(function () use($task) {
-                Artisan::call($task->command);
-                Log::error("No execute {$task->command}");
-                Artisan::call("schedule:update-timing {$task->id}");
-            })->everySecond();
+        if($schedules) {
+            foreach ($schedules as $task) {
+                $schedule->call(function () use ($task) {
+                    Artisan::call($task->command);
+                    Log::error("No execute {$task->command}");
+                    Artisan::call("schedule:update-timing {$task->id}");
+                })->everySecond();
+            }
         }
     }
 
