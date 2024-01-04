@@ -33,8 +33,15 @@ class BirthdayReminderPersonalizedMail extends Mailable
      */
     public function envelope(): Envelope
     {
+
+        $subject = match($this->frequency) {
+            "month", "monthly" => "Os aniversários deste mês!",
+            "week", "weekly" => "Os aniversários desta semana",
+            default => "Os aniversários de hoje"
+        };
+
         return new Envelope(
-            subject: 'Birthday Reminder Personalized Mail',
+            subject: $subject,
         );
     }
 
@@ -44,7 +51,7 @@ class BirthdayReminderPersonalizedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.reminder.' . $this->frequency,
+            view: 'mails.birthdays.reminders.' . $this->frequency,
         );
     }
 

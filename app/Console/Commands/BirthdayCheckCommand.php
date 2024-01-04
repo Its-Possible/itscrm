@@ -2,11 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Helpers\Interfaces\MailInterface;
-use App\Helpers\Scripts\BirthdayMail;
+use App\Helpers\Scripts\Mail\BirthdayMail;
 use App\Models\Customer;
 use App\Models\Doctor;
-use App\Models\Mail;
 use Illuminate\Console\Command;
 
 class BirthdayCheckCommand extends Command
@@ -16,7 +14,7 @@ class BirthdayCheckCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'app:birthdays';
+    protected $signature = 'mail:birthday';
 
     /**
      * The console command description.
@@ -38,20 +36,20 @@ class BirthdayCheckCommand extends Command
         if($customers->count() > 0) {
             $this->info("Creating birthday email to customers");
             foreach($customers->get() as $customer) {
-                $this->info("Creating email to {decrypt_data($customer->name)} about birthday...");
-                BirthdayMail::create("customer", $customer->mail);
+                $this->info("Creating email to ". decrypt_data($customer->to) ." about birthday...");
+                BirthdayMail::create("customer", $customer->email);
             }
         }
 
-        $doctors = Doctor::where("DATE_FORMAT(birthday, '%m-%d') LIKE '{$today}'");
-
-        if($doctors->count() > 0){
-            $this->info("Creating birthday email to doctors");
-            foreach($doctors->get() as $doctor) {
-                $this->info("Creating email to {$doctor->name} about birthday...");
-                BirthdayMail::create("doctor", $doctor->mail);
-            }
-        }
+//        $doctors = Doctor::where("DATE_FORMAT(birthday, '%m-%d') LIKE '{$today}'");
+//
+//        if($doctors->count() > 0){
+//            $this->info("Creating birthday email to doctors");
+//            foreach($doctors->get() as $doctor) {
+//                $this->info("Creating email to ". decrypt_data($doctor->name) ." about birthday...");
+//                BirthdayMail::create("doctor", $doctor->mail);
+//            }
+//        }
 
     }
 }

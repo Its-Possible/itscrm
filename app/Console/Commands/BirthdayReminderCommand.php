@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Helpers\Scripts\BirthdayMail;
+use App\Helpers\Scripts\Mail\BirthdayMail;
+use App\Helpers\Scripts\Mail\BirthdayReminderMail;
 use App\Models\Customer;
 use Illuminate\Console\Command;
 
@@ -13,14 +14,14 @@ class BirthdayReminderCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'app:birthday-reminder {type?}';
+    protected $signature = 'mail:birthday-reminder {type?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate birthday reminders in the database for the upcoming week';
+    protected $description = 'Generate birthday reminders in the database for the upcoming monthly, weekly or daily';
 
     /**
      * Execute the console command.
@@ -28,15 +29,16 @@ class BirthdayReminderCommand extends Command
     public function handle(): void
     {
         //
-        $customers = match ($this->argument('type')) {
-            'montly' || 'month' => Customer::birthdayThisMonth(),
-            'weekly' || 'week' => Customer::birthdayThisWeek(),
+        $birthdays = match ($this->argument('type')) {
+            'monthly', 'month' => Customer::birthdayThisMonth(),
+            'weekly', 'week' => Customer::birthdayThisWeek(),
             default => Customer::birthdayToday(),
         };
 
-        if($customers->count() > 0){
-            foreach($customers->get() as $customer){
-                BirthdayMail::create($customer->email);
+        if($birthdays->count() > 0){
+            $customers = Customer::all();
+            foreach($customers as $customer){
+                BirthdayReminderMail::create($customer->email);
             }
         }
 
