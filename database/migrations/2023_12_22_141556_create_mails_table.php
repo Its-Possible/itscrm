@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Interfaces\MailInterface;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,14 @@ return new class extends Migration
     {
         Schema::create('mails', function (Blueprint $table) {
             $table->id();
+            $table->string('from');
+            $table->string('to');
+            $table->string('subject');
+            $table->string('body')->nullable();
+            $table->string('layout')->default(MailInterface::LAYOUT_BIRTHDAY_NORMAL);
+            $table->string('attachment')->nullable();
+            $table->string('type')->default(MailInterface::TYPE_DEFAULT);
+            $table->string('status')->default(MailInterface::STATUS_PENDING);
             $table->timestamps();
         });
     }

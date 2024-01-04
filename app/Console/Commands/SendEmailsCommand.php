@@ -2,6 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Helpers\Interfaces\MailInterface;
+use App\Mail\BirthdayPersonalizedMail;
+use App\Models\Customer;
 use App\Models\Mail;
 use Illuminate\Console\Command;
 
@@ -19,7 +22,7 @@ class SendEmailsCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Mail send emails';
 
     /**
      * Execute the console command.
@@ -31,7 +34,12 @@ class SendEmailsCommand extends Command
 
         if($mails){
             foreach($mails as $mail) {
-                dd($mail);
+                $customer = Customer::where('email', $mail->to)->first();
+                $layout = match ($mail->layout) {
+                    MailInterface::LAYOUT_BIRTHDAY_CUSTOM => \Mail::to($mail->to)->send(new BirthdayPersonalizedMail("customer", $customer)),
+                };
+
+                $this->info("ID: {$mail->id} | CUSTOMER ID: {$customer->id} | SENDING BIRTHDAY EMAIL | MAIL LAYOUT: {$mail->layout}");
             }
         }
     }

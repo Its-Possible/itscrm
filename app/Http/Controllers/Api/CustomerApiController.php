@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerPatchRequest;
 use App\Http\Requests\CustomerStoreRequest;
+use App\Mail\CampaignCustomizedMail;
 use App\Models\Customer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class CustomerApiController extends Controller
     //
     public function list(Request $request): JsonResponse
     {
-        $customers = Customer::with('tags')
+        $customers = Customer::with(['avatar', 'tags'])
             ->paginate(30);
 
         return response()
@@ -28,7 +29,7 @@ class CustomerApiController extends Controller
 
     public function show(Request $request, string $slug): JsonResponse
     {
-        $customer = Customer::with('tags')
+        $customer = Customer::with(['avatar', 'tags'])
             ->where('slug', $slug)
             ->firstOrFail();
 

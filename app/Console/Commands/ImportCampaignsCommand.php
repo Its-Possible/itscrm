@@ -36,18 +36,15 @@ class ImportCampaignsCommand extends Command
         $this->brevoService = new BrevoService();
         $notificationRepository = new NotificationRepository();
 
-        if(!is_null($this->option('user')))
-        {
-        $user = User::where('username', $this->option('user'))->firstOrFail();
-        $user->firstname = decrypt_data($user->firstname);
-        $user->lastname = decrypt_data($user->lastname);
+        if (!is_null($this->option('user'))) {
+            $user = User::where('username', $this->option('user'))->firstOrFail();
+            $user->firstname = decrypt_data($user->firstname);
+            $user->lastname = decrypt_data($user->lastname);
 
-
-
-        $notificationRepository->create("Importação de campanhas", "<strong>{$user->firstname} {$user->lastname}</strong> inicializou a importação de campanhas", $user->id);
-    }else{
-        $notificationRepository->create("Importação de campanhas", "O <strong>sistema</strong> inicializou a importação de campanhas automaticamente, pode <strong>continuar a utilizar a plataforma.</strong>", 0);
-    }
+            $notificationRepository->create("Importação de campanhas", "<strong>{$user->firstname} {$user->lastname}</strong> inicializou a importação de campanhas", $user->id);
+        } else {
+            $notificationRepository->create("Importação de campanhas", "O <strong>sistema</strong> inicializou a importação de campanhas automaticamente, pode <strong>continuar a utilizar a plataforma.</strong>", 0);
+        }
 
         $this->info("\nImporting and updating campaigns...\n");
 
@@ -69,7 +66,7 @@ class ImportCampaignsCommand extends Command
                     $this->comment("{$import_campaign->name} Campaign imported with successfully!");
                 else
                     $this->warn("\n{$import_campaign->name} Campaign not imported with successfully!\n");
-            }else {
+            } else {
 
                 $updateCampaign = $selectedCampaignByCode->first();
                 $updateCampaign->name = $campaign['name'];

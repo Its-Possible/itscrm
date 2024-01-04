@@ -25,7 +25,7 @@ class UpdateScheduleTiming extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         // Update next time
         $schedule = Schedule::find($this->argument('schedule-running'));
