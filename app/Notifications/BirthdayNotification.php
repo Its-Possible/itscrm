@@ -27,7 +27,7 @@ class BirthdayNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['vonage'];
     }
 
     /**
@@ -43,6 +43,7 @@ class BirthdayNotification extends Notification
 
     public function toVonage(object $notifiable): VonageMessage
     {
+        echo "Hello world";
         return (new VonageMessage)->content('Your SMS message content');
     }
 
