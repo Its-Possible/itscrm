@@ -1,22 +1,13 @@
 <?php
 
+use App\Models\Customer;
+
 function getUserAvatar(): string
 {
     return "link";
 }
 
-function getcustomergit add , ($id): string
+function fetchCustomer(Customer $customer, string $field): void
 {
-    return "Eduardo Bessa";
+    dd($customer);
 }
-
-function getUserNickname(): string
-{
-    return "eduubessa";
-}
-
-function getUserEmail(): string
-{
-    return "eduubessa@gmail.com";
-}
-
