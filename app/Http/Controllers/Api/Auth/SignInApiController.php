@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SpotifyApiController extends Controller
+class SignInApiController extends Controller
 {
     //
 }

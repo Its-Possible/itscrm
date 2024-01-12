@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\SignInApiController;
+use App\Http\Controllers\Api\Auth\SignUpApiController;
+use App\Http\Controllers\Views\Auth\SignInViewController;
+use App\Http\Controllers\Views\Auth\SignUpViewController;
 use App\Http\Controllers\Views\CustomerViewController;
 use App\Http\Controllers\Views\HomeViewController;
+use App\Http\Controllers\Views\Settings\Account\AccessTokenViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +21,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeViewController::class, 'index']);
+
+Route::prefix('auth')->middleware('guest')->name('auth.')->group(function () {
+    Route::get('/sign-in', [SignInViewController::class, 'show'])->name('sign-in');
+    Route::post('/sign-in', [SignInApiController::class, 'login'])->name('sign-in.submit');
+    Route::get('/sign-up', [SignUpViewController::class, 'register'])->middleware('sign_up.activated')->name('sign-up');
+    Route::post('/sign-up', [SignUpApiController::class, 'register'])->middleware('sign_up.activated')->name('sign-up.submit');
+});
 
 Route::prefix('app')->middleware('auth')->group(function () {
     Route::get('/', [HomeViewController::class, 'index'])->name('index');
@@ -32,7 +44,7 @@ Route::prefix('app')->middleware('auth')->group(function () {
 Route::prefix('settings')->middleware('auth')->group(function () {
     Route::prefix('account')->group(function () {
         Route::prefix('access-tokens')->group(function () {
-            Route::get('devices', [\App\Http\Controllers\Views\Settings\Account\AccessTokenViewController::class, 'index'])->name('devices');
+            Route::get('devices', [AccessTokenViewController::class, 'index'])->name('devices');
         })->name('access-tokens.');
     })->name('account');
 })->name('settings.');
