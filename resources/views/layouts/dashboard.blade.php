@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="app">
-        <AppComponent />
+        @yield('content')
     </div>
     @livewireScripts
     @vite('resources/js/app.js')

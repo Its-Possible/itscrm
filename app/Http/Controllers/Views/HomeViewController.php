@@ -15,11 +15,6 @@ class HomeViewController extends Controller
     public function index(Request $request): View|Factory|Application
     {
 
-        $customer = \App\Models\Customer::find(1);
-
-        $customer->notify(new BirthdayNotification());
-
-
         return view('pages.home');
     }
 }

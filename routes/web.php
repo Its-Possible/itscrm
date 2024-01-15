@@ -20,14 +20,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeViewController::class, 'index']);
-
 Route::prefix('auth')->middleware('guest')->name('auth.')->group(function () {
-    Route::get('/sign-in', [SignInViewController::class, 'show'])->name('sign-in');
+    Route::get('/sign-in', [SignInViewController::class, 'login'])->name('sign-in');
     Route::post('/sign-in', [SignInApiController::class, 'login'])->name('sign-in.submit');
     Route::get('/sign-up', [SignUpViewController::class, 'register'])->middleware('sign_up.activated')->name('sign-up');
     Route::post('/sign-up', [SignUpApiController::class, 'register'])->middleware('sign_up.activated')->name('sign-up.submit');
 });
+
+Route::get('/', [HomeViewController::class, 'index'])->middleware('auth');
 
 Route::prefix('app')->middleware('auth')->group(function () {
     Route::get('/', [HomeViewController::class, 'index'])->name('index');
