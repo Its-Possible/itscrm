@@ -16,7 +16,7 @@ class CustomerApiController extends Controller
     //
     public function list(Request $request): JsonResponse
     {
-        $customers = Customer::with(['avatar', 'tags'])
+        $customers = Customer::with(['avatar', 'tags', 'tags.campaigns'])
             ->paginate(30);
 
         return response()

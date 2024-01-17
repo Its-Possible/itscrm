@@ -13,6 +13,10 @@ class Customer extends Model
 {
     use Notifiable;
 
+    protected $hidden = [
+        "id", "vat", "website"
+    ];
+
     public function avatar(): HasOne
     {
         return $this->hasOne(Avatar::class, 'id', 'avatar_id');
