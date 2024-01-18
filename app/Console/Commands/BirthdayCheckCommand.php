@@ -41,15 +41,5 @@ class BirthdayCheckCommand extends Command
             }
         }
 
-//        $doctors = Doctor::where("DATE_FORMAT(birthday, '%m-%d') LIKE '{$today}'");
-//
-//        if($doctors->count() > 0){
-//            $this->info("Creating birthday email to doctors");
-//            foreach($doctors->get() as $doctor) {
-//                $this->info("Creating email to ". decrypt_data($doctor->name) ." about birthday...");
-//                BirthdayMail::create("doctor", $doctor->mail);
-//            }
-//        }
-
     }
 }

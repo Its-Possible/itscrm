@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Notifications\Notifiable;
 
 class Customer extends Model
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
 
     protected $hidden = [
         "id", "vat", "website"
@@ -22,10 +23,11 @@ class Customer extends Model
         return $this->hasOne(Avatar::class, 'id', 'avatar_id');
     }
 
-    public function tags(): BelongsToMany
+    public function tags(): MorphToMany
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->morphToMany(Tag::class, 'taggable');
     }
+
 
     public static function birthdayToday(): Builder
     {

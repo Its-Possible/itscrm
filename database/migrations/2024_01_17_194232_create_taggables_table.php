@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('campaign_tag', function (Blueprint $table) {
+        Schema::create('taggables', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("campaign_id");
-            $table->foreignId("tag_id");
+            $table->foreignId('tag_id')->index();
+            $table->foreignId('taggable_id')->index();
+            $table->string('taggable_type')->index();
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('campaign_tag');
+        Schema::dropIfExists('taggables');
     }
 };
