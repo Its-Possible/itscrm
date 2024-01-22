@@ -2,46 +2,78 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
-            <section id="app-auth-side-left" class="col-md-6">
+        <div id="auth" class="row">
+            <section id="auth-form" class="col col-md-5 col-lg-5">
                 <div class="container">
-                    <header id="app-auth-side-left-header">
-                        <h3>Bem-vindo de volta</h1>
-                        <p>Introduza as suas credênciais para iniciar sessão</p>
-                        <button type="button" class="btn btn-default form-control">Iniciar sessão com o Google</button>
+                    <header id="auth-header">
+                        <div id="auth-header-logo font-bold">{{ config('app.name') }}</div>
                     </header>
-                    <div class="separator">
-                        <div class="row">
-                            <div class="col-md-5 text-right">
+                    <section class="col col-md-10 col-lg-8 offset-2" id="auth-form-containet">
+                        <header>
+                            <h3>Iniciar sessão</h3>
+                            <h5>Bem-vindo de volta, preencha com as suas credenciais!</h5>
+                        </header>
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="input-group">
+                            <input type="text" name="username" form="auth-submit" class="form-control" placeholder="Utilizador ou E-mail" aria-label="Username" />
+                        </div>
+                        <div class="input-group">
+                            <input type="password" name="password" form="auth-submit" class="form-control" placeholder="Password" aria-label="Password" />
+                        </div>
+                        <div class="input-group">
+                            <button type="submit" form="auth-submit" name="auth-button" class="form-control btn btn-primary">Iniciar sessão</button>
+                        </div>
+                        <div class="row py-3 mt-2">
+                            <div class="col-md-4 offset-1">
                                 <hr />
                             </div>
-                            <div class="col-md-2 text-center">ou</div>
-                            <div class="col-md-5 text-right">
+                            <div class="col-md-1">
+                                <small>ou</small>
+                            </div>
+                            <div class="col-md-4">
                                 <hr />
                             </div>
                         </div>
-                    </div>
-                    <form method="post" action="{{ route('auth.sign-in.submit') }}">
-                        <div class="container">
-                            <div class="input-group">
-                                <label for="username">Utilizador ou email</label>
-                                <input type="text" class="form-control" name="username" placeholder="exemplo@clinicamais.pt" value="{{ old("auth.login") }}" id="username" />
+                        <section class="auth-extern">
+                            <div class="row">
+                                <div class="col-md-1 col-lg-2 offset-2">
+                                    <button class="btn btn-social">
+                                        <i class="ri ri-google-fill"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-1 col-lg-2">
+                                    <button class="btn btn-social">
+                                        <i class="ri ri-facebook-fill"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-1 col-lg-2">
+                                    <button class="btn btn-social">
+                                        <i class="ri ri-twitter-fill"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-1 col-lg-2">
+                                    <button class="btn btn-social">
+                                        <i class="ri ri-github-fill"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="input-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" name="username" placeholder="Min. 8 caracteres" value="{{ old("auth.login") }}" id="password" />
-                            </div>
-                            <div class="input-group">
-                                <button type="button" class="btn btn-secondary form-control">Iniciar sessão com o Google</button>
-                            </div>
-                        </div>
-                    </form>
+                        </section>
+                    </section>
                 </div>
             </section>
-            <aside id="app-auth-side-right" class="col-md-6">
-                <div class="content">
-                </div>
+            <aside class="col col-md-7 col-lg-7">
             </aside>
         </div>
     </div>
+    <form id="auth-submit" name="auth-submit" action="{{ route('auth.sign-in.submit') }}" method="post" autocomplete="off">
+        @csrf
+    </form>
 @endsection

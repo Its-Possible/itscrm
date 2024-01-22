@@ -15,4 +15,9 @@ class Campaign extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
+
+    public function schedules(): MorphToMany
+    {
+        return $this->morphToMany(Schedule::class, 'campaignable');
+    }
 }

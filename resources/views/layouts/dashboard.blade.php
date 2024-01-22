@@ -10,7 +10,17 @@
 </head>
 <body>
     <div id="app">
-        @yield('content')
+        <div class="row">
+            <header class="col-md-12">
+                lskdjflkajsdfjasldjf
+            </header>
+            <aside class="col-md-3">
+                @include('layouts.sidebar')
+            </aside>
+            <main class="col-md-9">
+                @yield('content')
+            </main>
+        </div>
     </div>
     @livewireScripts
     @vite('resources/js/app.js')

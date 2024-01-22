@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Customer;
+use App\Models\Schedule;
 use Illuminate\Console\Command;
 
 class CreateCampaignMailCommand extends Command
@@ -24,10 +25,12 @@ class CreateCampaignMailCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         //
-        $customersWithCampaigns = Customer::with('tags.campaigns')
-            ->whereHas('tags.campaigns');
+        $customers = Customer::with('tags.campaigns')
+            ->get();
+
+        dd($customers->tags());
     }
 }

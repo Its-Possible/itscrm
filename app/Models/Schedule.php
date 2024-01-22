@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Schedule extends Model
 {
@@ -16,4 +17,9 @@ class Schedule extends Model
     protected $hidden = [
         "id", "author_id"
     ];
+
+    public function campaigns(): MorphToMany
+    {
+        return $this->morphToMany(Campaign::class, 'campaignable');
+    }
 }
