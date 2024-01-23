@@ -8,5 +8,4 @@ interface ActivationAccountInterface {
     const STATUS_ACTIVE     = 'ACTIVATION_ACCOUNT::STATUS::ACTIVE';
     const STATUS_EXPIRED    = 'ACTIVATION_ACCOUNT::STATUS::EXPIRED';
 
-
 }

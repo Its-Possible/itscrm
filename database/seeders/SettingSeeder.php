@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Helpers\SettingInterface;
 use App\Models\Setting;
+use App\Helpers\Interfaces\SettingInterface;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

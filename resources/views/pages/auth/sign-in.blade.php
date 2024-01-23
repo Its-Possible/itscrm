@@ -31,41 +31,6 @@
                         <div class="input-group">
                             <button type="submit" form="auth-submit" name="auth-button" class="form-control btn btn-primary">Iniciar sessão</button>
                         </div>
-                        <div class="row py-3 mt-2">
-                            <div class="col-md-4 offset-1">
-                                <hr />
-                            </div>
-                            <div class="col-md-1">
-                                <small>ou</small>
-                            </div>
-                            <div class="col-md-4">
-                                <hr />
-                            </div>
-                        </div>
-                        <section class="auth-extern">
-                            <div class="row">
-                                <div class="col-md-1 col-lg-2 offset-2">
-                                    <button class="btn btn-social">
-                                        <i class="ri ri-google-fill"></i>
-                                    </button>
-                                </div>
-                                <div class="col-md-1 col-lg-2">
-                                    <button class="btn btn-social">
-                                        <i class="ri ri-facebook-fill"></i>
-                                    </button>
-                                </div>
-                                <div class="col-md-1 col-lg-2">
-                                    <button class="btn btn-social">
-                                        <i class="ri ri-twitter-fill"></i>
-                                    </button>
-                                </div>
-                                <div class="col-md-1 col-lg-2">
-                                    <button class="btn btn-social">
-                                        <i class="ri ri-github-fill"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </section>
                     </section>
                 </div>
             </section>

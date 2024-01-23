@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+
+    protected $hidden = [
+        "id"
+    ];
+
+    protected $fillable = [
+        "name", "description", "key", "value"
+    ];
 }
