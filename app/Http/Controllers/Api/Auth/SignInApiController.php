@@ -58,7 +58,7 @@ class SignInApiController extends Controller
             if ($user->count() > 0) {
                 switch ($user->first()->status) {
                     case UserInterface::STATUS_PENDING:
-                        return back()->withInput()->withErrors(['status' => 'A sua conta não está ativa, o adminstrador não aprovou a sua conta!.']);
+                        return back()->withInput()->withErrors(['status' => 'A sua conta não está ativa, o administrador não aprovou a sua conta!.']);
                     case UserInterface::STATUS_BANNED:
                         return back()->withInput()->withErrors(['status' => 'A sua conta foi banida. Contate o administrador.']);
                     case UserInterface::STATUS_SUSPENDED:

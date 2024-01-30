@@ -243,8 +243,9 @@ nav#app-main-logged-notifications-content-list li:hover {
 
 main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-notifications img.app-main-logged-notification-avatar {
     margin-top: 5px;
-    width: 62px;
-    height: 62px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
 }
 
 main#app-main > header#app-main-header > section#app-main-logged > div#app-main-logged-avatar {
@@ -271,14 +272,12 @@ main#app-main > section#app-main-content #page-title {
     font-weight: bold;
 }
 
-
 main#app-main > section#app-main-content div#app-main-home-numbers {
     grid-gap: 20px;
     grid-template-columns: 30% 30% 30%;
     grid-template-rows: auto;
     display: grid;
 }
-
 
 main#app-main > section#app-main-content div#app-main-home-numbers > section.app-main-home-card {
     padding: 23px;
@@ -288,7 +287,6 @@ main#app-main > section#app-main-content div#app-main-home-numbers > section.app
     border-radius: 8px;
     transition: all 0.4s ease;
 }
-
 
 main#app-main > section#app-main-content div#app-main-home-numbers > section.app-main-home-card:hover {
     cursor: pointer;
@@ -435,8 +433,6 @@ main#app-main > section#app-main-content #app-main-home-card-birthdays img {
     height: 15px;
     border: 0;
 }
-
-
 
 section#app-list-header {
     padding: 24px 16px;

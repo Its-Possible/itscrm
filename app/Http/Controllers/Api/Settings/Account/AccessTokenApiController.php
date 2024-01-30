@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Settings\Account;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AccessTokenStoreRequest;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -12,7 +13,7 @@ use Illuminate\Validation\ValidationException;
 class AccessTokenApiController extends Controller
 {
     //
-    public function store(AccessTokenStoreRequest $request)
+    public function store(AccessTokenStoreRequest $request): JsonResponse
     {
         $user = User::where('username', $request->input('username'))
             ->where('email', $request->input('email'))
