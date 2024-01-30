@@ -30,7 +30,7 @@ class CustomerViewController extends Controller
         return view('pages.customers.create');
     }
 
-    public function show(string $slug)
+    public function show(string $slug): View|Factory|Application
     {
         $customer = Customer::with('tags')->where('slug', $slug)->firstOrFail();
 
@@ -38,7 +38,7 @@ class CustomerViewController extends Controller
             ->withCustomer($customer);
     }
 
-    public function edit(string $slug)
+    public function edit(string $slug): View|Factory|Application
     {
         $customer = Customer::with('tags')->where('slug', $slug)->firstOrFail();
 

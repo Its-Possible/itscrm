@@ -4,7 +4,7 @@
             <h1 class="mt-3 mb-3">Clientes</h1>
         </div>
         <div class="col-md-3 text-right pt-3">
-            <a class="btn btn-filter inverter" href="{{ route('its.app.customers.create') }}">Adicionar Cliente</a>
+            <a class="btn btn-filter inverter" href="{{ route('app.customers.create') }}">Adicionar Cliente</a>
             <button class="btn btn-filter" wire:click="$set('modal', true)">Importar</button>
         </div>
     </div>

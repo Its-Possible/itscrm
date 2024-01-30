@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerPatchRequest;
 use App\Http\Requests\CustomerStoreRequest;
+use App\Http\Requests\CustomerUpdateRequest;
 use App\Mail\CampaignCustomizedMail;
 use App\Models\Customer;
+use App\Models\Doctor;
+use App\Models\Speciality;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -40,67 +44,62 @@ class CustomerApiController extends Controller
             ], 200);
     }
 
-    public function store(CustomerStoreRequest $request): JsonResponse
+    public function store(CustomerStoreRequest $request): RedirectResponse
     {
-        $customer = new Customer();
-        $customer->name = $request->input('name');
-        $customer->email = $request->input('email');
-        $customer->phone = $request->input('phone');
-        $customer->address = $request->input('address');
-        $customer->city = $request->input('city');
-        $customer->state = $request->input('state');
-        $customer->country = $request->input('country');
-        $customer->zip = $request->input('zip');
-        $customer->website = $request->input('website');
-        $customer->vat = $request->input('vat');
-        $customer->slug = Str::slug(uniqid());
-
-        if(!$customer->save()){
-            return response()
-                ->json([
-                    "status" => 500,
-                    "message" => "Customer create error, try again, please!"
-                ], 500);
+        if(!$request->validated()){
+            return back()->withErrors($request)->withInput();
         }
 
-        return response()
-            ->json([
-                "status" => 201,
-                "message" => "Customer created with success!",
-                "customer" => $customer
-            ], 201);
+        $customer = new Customer;
+
+        if($request->input('avatar')) {
+            $customer->avatar_id = $request->input('avatar');
+        }
+
+        $customer->name = encrypt_data($request->input('name'));
+        $customer->email = encrypt_data($request->input('email'));
+        $customer->birthday = $request->input('birthday');
+        $customer->address_line_1 = encrypt_data($request->input('address-line-1'));
+        $customer->address_line_2 = encrypt_data($request->input('address-line-2'));
+        $customer->postcode = encrypt_data($request->input('postcode'));
+        $customer->location = encrypt_data($request->input('location'));
+        $customer->mobile = $request->input('mobile');
+        $customer->slug = Str::slug(str_replace("-", "", microtime()));
+
+        if(!$customer->save()){
+            return back()->withErrors($request)->withInput();
+        }
+
+        if($request->input('speciality-select')) {
+            $customer->specialities()->attach([
+                ['speciality_id' => Speciality::where('slug', $request->input('speciality-select'))->firstOrFail()->id]
+            ]);
+        }
+
+        if($request->input('doctor-select')) {
+            $customer->doctors()->attach([
+                ['doctor_id' => Doctor::findOrFail($request->input('doctor->select'))->id]
+            ]);
+        }
+
+        $request->session()->flash('its.message.body', 'Cliente criado com sucesso!');
+
+        return redirect()->route('its.app.customers.index');
     }
 
-    public function patch(CustomerPatchRequest $request, $slug): JsonResponse
+    /**
+     *
+     *
+     * @param CustomerStoreRequest $request
+     * @return JsonResponse
+     */
+    public function requestStore(CustomerStoreRequest $request): JsonResponse
     {
-        $customer = Customer::where('slug', $slug)->firstOrFail();
+        return response()->status(201)->json();
+    }
 
-        $customer->name = $request->input('name');
-        $customer->email = $request->input('email');
-        $customer->phone = $request->input('phone');
-        $customer->address = $request->input('address');
-        $customer->city = $request->input('city');
-        $customer->state = $request->input('state');
-        $customer->country = $request->input('country');
-        $customer->zip = $request->input('zip');
-        $customer->website = $request->input('website');
-        $customer->vat = $request->input('vat');
-        $customer->slug = Str::slug(uniqid());
-
-        if(!$customer->save()){
-            return response()
-                ->json([
-                    "status" => 500,
-                    "message" => "Ocorreu um erro, tente novamente mais tarde"
-                ], 500);
-        }
-
-        return response()
-            ->json([
-                "status" => 201,
-                "message" => "Cliente criado com sucesso",
-                "customer" => $customer
-            ], 201);
-
+    public function requestPatch(CustomerUpdateRequest $request): JsonResponse
+    {
+        return response()->status(201)->json();
     }
 }

@@ -28,20 +28,20 @@ class Customer extends Model
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
-
-    public static function birthdayToday(): Builder
+    public static function birthdayToday(): Customer
     {
         return self::whereMonth("birthday", now()->month)
             ->whereDay("birthday", now()->day);
     }
 
-    public static function birthdayThisWeek(): Builder {
+    public static function birthdayThisWeek(): Customer
+    {
         return self::whereDay("birthday", '>=', now()->day)
             ->whereDay("birthday", '<=', now()->addWeek()->day)
             ->whereMonth("birthday", now()->month);
     }
 
-    public static function birthdayThisMonth(): Builder
+    public static function birthdayThisMonth(): Customer
     {
         return self::whereMonth("birthday", now()->month);
     }
