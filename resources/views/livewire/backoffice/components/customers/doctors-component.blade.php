@@ -12,6 +12,7 @@
     <hr/>
     <div class="row">
         <div class="col-md-12">
+            @if(count($specialities) > 0)
             <div class="form-group">
                 <label for="speciality-select">Especialidade</label>
                 <select form="customer-save" class="form-control" wire:model="selected" wire:change="updateDoctorsFromSpeciality" name="speciality-select" id="speciality-select">
@@ -21,6 +22,7 @@
                     @endforeach
                 </select>
             </div>
+            @endif
         </div>
     </div>
 
@@ -32,8 +34,7 @@
                 <select form="customer-save" class="form-control" wire:model="selected" wire:click="updateDoctorsFromSpeciality" name="doctor-select" id="doctor-select">
                     <option value="none" disabled selected>Selecionar</option>
                     @forelse($doctors as $doctor)
-                        <option
-                            value="{{ $doctor->id }}">{{ decrypt_data($doctor->user->firstname) }} {{ decrypt_data($doctor->user->lastname) }}</option>
+                        <option value="{{ $doctor->id }}">{{ decrypt_data($doctor->user->firstname) }} {{ decrypt_data($doctor->user->lastname) }}</option>
                     @empty
                         <div class="col-md-6">
                             <p class="alert alert-warning">Não há médico com essa especialidade neste momento!</p>

@@ -60,7 +60,7 @@
                         <a class="btn btn-transparent" href="{{ route('its.app.customers.show', $customer->slug) }}">
                             <i class="ri ri-eye-line"></i>
                         </a>
-                        <a class="btn btn-transparent" href="{{ route('its.app.customers.edit', $customer->slug) }}">
+                        <a class="btn btn-transparent" href="{{ route('its.app.customers.edit.blade.php', $customer->slug) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
                         <button class="btn btn-transparent text-danger" wire:click="delete('{{ $customer->slug }}')">

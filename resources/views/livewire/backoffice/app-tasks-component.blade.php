@@ -73,34 +73,34 @@
                     <div>
                         @switch($task->status)
                             @case(TaskInterface::STATUS_RUNNING)
-                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit', $task->slug) }}">
+                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit.blade.php', $task->slug) }}">
                                     <i class="ri ri-pause-line"></i>
                                 </button>
-                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit', $task->slug) }}">
+                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit.blade.php', $task->slug) }}">
                                     <i class="ri ri-stop-line"></i>
                                 </button>
                                 @break
                             @case(TaskInterface::STATUS_WAITING)
-                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit', $task->slug) }}">
+                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit.blade.php', $task->slug) }}">
                                     <i class="ri ri-pause-line"></i>
                                 </button>
-                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit', $task->slug) }}">
+                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit.blade.php', $task->slug) }}">
                                     <i class="ri ri-stop-line"></i>
                                 </button>
                                 @break
                             @case(TaskInterface::STATUS_PAUSED)
-                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit', $task->slug) }}">
+                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit.blade.php', $task->slug) }}">
                                     <i class="ri ri-play-line"></i>
                                 </button>
-                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit', $task->slug) }}">
+                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit.blade.php', $task->slug) }}">
                                     <i class="ri ri-stop-line"></i>
                                 </button>
                                 @break
                             @case(TaskInterface::STATUS_STOPPED)
-                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit', $task->slug) }}">
+                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit.blade.php', $task->slug) }}">
                                     <i class="ri ri-information-line"></i>
                                 </button>
-                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit', $task->slug) }}">
+                                <button class="btn btn-transparent" href="{{ route('its.app.customers.edit.blade.php', $task->slug) }}">
                                     <i class="ri ri-play-line"></i>
                                 </button>
                                 @break

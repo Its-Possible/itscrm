@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\Auth\SignInApiController;
 use App\Http\Controllers\Api\Auth\SignUpApiController;
 use App\Http\Controllers\Api\CustomerApiController;
+use App\Http\Controllers\Api\DoctorApiController;
+use App\Http\Controllers\Api\SpecialityApiController;
 use App\Http\Controllers\Views\Auth\SignInViewController;
 use App\Http\Controllers\Views\Auth\SignUpViewController;
 use App\Http\Controllers\Views\CustomerViewController;
@@ -10,6 +12,7 @@ use App\Http\Controllers\Views\DoctorViewController;
 use App\Http\Controllers\Views\HomeViewController;
 use App\Http\Controllers\Views\PageStaticViewController;
 use App\Http\Controllers\Views\Settings\Account\AccessTokenViewController;
+use App\Http\Controllers\Views\SpecialityViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,37 +45,39 @@ Route::prefix('app')->middleware('auth')->name('app.')->group(function () {
     Route::get('/customers/create', [CustomerViewController::class, 'create'])->name('customers.create');
     Route::post('/customers/create', [CustomerApiController::class, 'store'])->name('customers.store');
     Route::get('/customers/{slug}', [CustomerViewController::class, 'show'])->name('customers.show');
-    Route::get('/customers/{slug}/edit', [CustomerViewController::class, 'show'])->name('customers.edit');
+    Route::get('/customers/{slug}/edit', [CustomerViewController::class, 'show'])->name('customers.edit.blade.php');
     Route::get('/customers/{slug}/edit', [CustomerApiController::class, 'update'])->name('customers.update');
 
     # Campaigns
     Route::get('/campaigns', [CustomerViewController::class, 'index'])->name('campaigns');
     Route::get('/campaigns/{slug}', [CustomerViewController::class, 'show'])->name('campaigns.show');
     Route::get('/campaigns/create', [CustomerViewController::class, 'create'])->name('campaigns.create');
-    Route::get('/campaigns/{slug}/edit', [CustomerViewController::class, 'show'])->name('campaigns.edit');
+    Route::get('/campaigns/{slug}/edit', [CustomerViewController::class, 'show'])->name('campaigns.edit.blade.php');
 
     # Tags
     Route::get('/tags', [CustomerViewController::class, 'index'])->name('tags');
     Route::get('/tags/{slug}', [CustomerViewController::class, 'show'])->name('tags.show');
     Route::get('/tags/create', [CustomerViewController::class, 'create'])->name('tags.create');
-    Route::get('/tags/{slug}/edit', [CustomerViewController::class, 'show'])->name('tags.edit');
+    Route::get('/tags/{slug}/edit.blade.php', [CustomerViewController::class, 'show'])->name('tags.edit.blade.php');
 
     # Tasks
     Route::get('/tasks', [CustomerViewController::class, 'index'])->name('tasks');
     Route::get('/tasks/{slug}', [CustomerViewController::class, 'show'])->name('tasks.show');
     Route::get('/tasks/create', [CustomerViewController::class, 'create'])->name('tasks.create');
-    Route::get('/tasks/{slug}/edit', [CustomerViewController::class, 'show'])->name('tasks.edit');
+    Route::get('/tasks/{slug}/edit', [CustomerViewController::class, 'show'])->name('tasks.edit.blade.php');
 
     # Doctors
     Route::get('/doctors', [DoctorViewController::class, 'index'])->name('doctors');
     Route::get('/doctors/create', [DoctorViewController::class, 'create'])->name('doctors.create');
-    Route::get('/doctors/{slug}/edit', [DoctorViewController::class, 'show'])->name('doctors.edit');
+    Route::post('/doctors/create', [DoctorApiController::class, 'store'])->name('doctors.store');
+    Route::get('/doctors/{slug}/edit', [DoctorViewController::class, 'show'])->name('doctors.edit.blade.php');
 
     # Specialities
-    Route::get('/specialities', [CustomerViewController::class, 'index'])->name('specialities');
-    Route::get('/specialities/{slug}', [CustomerViewController::class, 'show'])->name('specialities.show');
-    Route::get('/specialities/create', [CustomerViewController::class, 'create'])->name('specialities.create');
-    Route::get('/specialities/{slug}/edit', [CustomerViewController::class, 'show'])->name('specialities.edit');
+    Route::get('/specialities', [SpecialityViewController::class, 'index'])->name('specialities');
+    Route::get('/specialities/create', [SpecialityViewController::class, 'create'])->name('specialities.create');
+    Route::post('/specialities/create', [SpecialityApiController::class, 'store'])->name('specialities.store');
+    Route::get('/specialities/{slug}', [SpecialityViewController::class, 'show'])->name('specialities.show');
+    Route::get('/specialities/{slug}/edit', [SpecialityViewController::class, 'show'])->name('specialities.edit');
 
     # Settings
     Route::get('/settings', [CustomerViewController::class, 'index'])->name('settings');

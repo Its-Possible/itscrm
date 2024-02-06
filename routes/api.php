@@ -79,7 +79,7 @@ Route::prefix('/doctors')->name('api.doctors.')->group(function () {
 });
 
 # Specialities
-Route::prefix('/specialities')->name('api.specialities.')->group(function () {
+Route::prefix('/Specialities')->name('api.Specialities.')->group(function () {
     Route::get('/', [SpecialityApiController::class, 'list'])->name('list');
     Route::get('/{slug}', [SpecialityApiController::class, 'show'])->name('show');
     Route::patch('/{slug}', [SpecialityApiController::class, 'update'])->name('update');

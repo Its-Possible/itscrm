@@ -4,7 +4,7 @@
             <h1 class="mt-3 mb-3">Especialidades</h1>
         </div>
         <div class="col-md-3 text-right pt-3">
-            <a class="btn btn-filter inverter" href="{{ route('its.app.specialities.create') }}">Adicionar especialidade</a>
+            <a class="btn btn-filter inverter" href="{{ route('app.specialities.create') }}">Adicionar especialidade</a>
         </div>
     </div>
     <div class="row mb-3">
@@ -12,7 +12,7 @@
             @if(session()->has('its.message.body'))
             <div class="row">
                 <div class="col-12">
-                    <div class="alert text-center @if(session('its.message.type') == 'warning') alert-warning @elseif('its.message.type' == 'danger') alert-danger @else alert-success @endif">{{ session('its.message.body') }}</div>
+                    <div class="alert text-center @if(session('message.type') == 'warning') alert-warning @elseif('message.type' == 'danger') alert-danger @else alert-success @endif">{{ session('its.message.body') }}</div>
                 </div>
             </div>
             @endif
@@ -48,10 +48,10 @@
                         </span>
                     </div>
                     <div>
-                        <a class="btn btn-transparent" href="{{ route('its.app.specialities.show', $speciality->slug) }}">
+                        <a class="btn btn-transparent" href="{{ route('its.app.Specialities.show', $speciality->slug) }}">
                             <i class="ri ri-eye-line"></i>
                         </a>
-                        <a class="btn btn-transparent" href="{{ route('its.app.specialities.edit', $speciality->slug) }}">
+                        <a class="btn btn-transparent" href="{{ route('its.app.Specialities.edit.blade.php', $speciality->slug) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
                         <button type="button" class="btn btn-transparent text-danger" onclick="confirm('Deseja mesmo apagar a especialidade {{ $speciality->name }}?') || event.stopImmediatePropagation()" wire:click.prevent="deleteSpeciality('{{ $speciality->slug }}')">

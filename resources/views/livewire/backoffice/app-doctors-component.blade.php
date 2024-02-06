@@ -59,7 +59,7 @@
                         <a class="btn btn-transparent" href="{{ route('app.doctors.show', $doctor->id) }}">
                             <i class="ri ri-eye-line"></i>
                         </a>
-                        <a class="btn btn-transparent" href="{{ route('app.doctors.edit', $doctor->id) }}">
+                        <a class="btn btn-transparent" href="{{ route('app.doctors.edit.blade.php', $doctor->id) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
                         <button class="btn btn-transparent text-danger">

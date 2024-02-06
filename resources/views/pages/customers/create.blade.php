@@ -35,7 +35,7 @@
                 <livewire:backoffice.components.customers.upload-image-component />
                 <livewire:backoffice.components.customers.information-component />
                 <livewire:backoffice.components.customers.doctors-component />
-{{--                <livewire:backoffice.components.tags.add-tags-component />--}}
+                <livewire:backoffice.components.tags.add-tags-component />
             </div>
         </div>
     </div>

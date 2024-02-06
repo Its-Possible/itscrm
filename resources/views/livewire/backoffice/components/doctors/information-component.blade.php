@@ -26,6 +26,6 @@
 
     <div class="form-group">
         <label for="doctor-mobile">Telemóvel</label>
-        <input class="form-control" type="text" placeholder="Telemóvel" id="doctor-mobile" name="mobile" form="doctor-create" />
+        <input class="form-control" x-mask="999 999 999" type="text" placeholder="Telemóvel" id="doctor-mobile" name="mobile" form="doctor-create" />
     </div>
 </div>

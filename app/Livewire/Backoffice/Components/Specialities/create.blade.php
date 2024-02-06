@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Médicos'])
+@extends('layouts.app.dashboard', ['title' => 'Médicos'])
 
 
 @section('content')
@@ -10,7 +10,7 @@
             <button form="doctor-create" type="submit" class="btn btn-filter inverter pull-right">Guardar</button>
         </div>
     </div>
-    @if(session()->has('message.body'))
+    @if(session()->has('its.message.body'))
         <div class="row">
             <div class="col-12">
                 <div class="alert text-center @if(session('its.message.type') == 'warning') alert-warning @elseif('its.message.type' == 'danger') alert-danger @else alert-success @endif">{{ session('its.message.body') }}</div>
@@ -49,7 +49,7 @@
     </div>
     <div class="row mb-4" x-data="customers">
         <div class="col-md-8 offset-2 text-right pt-3">
-            <form id="doctor-create" action="{{ route('app.doctors.store') }}" method="post" autocomplete="off">
+            <form id="doctor-create" action="{{ route('its.app.doctors.store') }}" method="post" autocomplete="off">
                 {{ csrf_field() }}
                 <button form="doctor-create" type="submit" class="btn btn-filter inverter pull-right">Guardar</button>
             </form>

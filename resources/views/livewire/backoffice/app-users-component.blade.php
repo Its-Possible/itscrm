@@ -47,7 +47,7 @@
                         <a class="btn btn-transparent" href="{{ route('its.app.users.show', $user->username) }}">
                             <i class="ri ri-eye-line"></i>
                         </a>
-                        <a class="btn btn-transparent" href="{{ route('its.app.users.edit', $user->username) }}">
+                        <a class="btn btn-transparent" href="{{ route('its.app.users.edit.blade.php', $user->username) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
                         <button class="btn btn-transparent text-danger">
