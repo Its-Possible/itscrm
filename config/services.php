@@ -40,5 +40,8 @@ return [
     "brevo" => [
         'key' => env('BREVO_KEY')
     ],
-
+    'ctt_postcodes' => [
+        'key' => env('CTT_POSTCODES_KEY'),
+        'url' => env('CTT_POSTCODES_URL', 'https://www.cttcodigopostal.pt/api/v1/')
+    ]
 ];

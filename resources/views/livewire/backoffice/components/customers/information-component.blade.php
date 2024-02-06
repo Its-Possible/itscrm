@@ -1,4 +1,4 @@
-<div>
+<div x-data="customers">
     <div class="row mt-3">
         <div class="col-md-9">
             <h6 class="mt-2">Informações do cliente</h6>
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
         <label for="customer-username">Morada</label>
-        <input class="form-control" type="text" placeholder="Rua, Avenida" id="customer-address-line-1" name="address-line-1" form="customer-save" autocomplete="off" @if(!is_null($customer)) value="{{ decrypt_data($customer->address_line_1) }}" @endif />
+        <input class="form-control" tcype="text" placeholder="Rua, Avenida" id="customer-address-line-1" name="address-line-1" form="customer-save" autocomplete="off" @if(!is_null($customer)) value="{{ decrypt_data($customer->address_line_1) }}" @endif />
     </div>
     <div class="form-group">
         <label for="customer-username">Porta, Andar, Letra</label>
@@ -34,18 +34,18 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label for="customer-username">Código Postal</label>
-                <input class="form-control" type="text" placeholder="Código Postal" id="customer-postcode" name="postcode" form="customer-save" autocomplete="off" @if(!is_null($customer)) value="{{ decrypt_data($customer->postcode) }}" @endif  />
+                <input x-model="customer.postcode" x-mask="9999-999" @change="setPostcodeEventHandler" class="form-control" type="text" placeholder="Código Postal" id="customer-postcode" name="postcode" form="customer-save" autocomplete="off" @if(!is_null($customer)) value="{{ decrypt_data($customer->postcode) }}" @endif  />
             </div>
         </div>
         <div class="col-md-7">
             <div class="form-group">
                 <label for="customer-username">Localidade</label>
-                <input class="form-control" type="text" placeholder="Localidade" id="customer-location" name="location" form="customer-save" autocomplete="off" @if(!is_null($customer)) value="{{ decrypt_data($customer->location) }}" @endif  />
+                <input x-model="customer.location" class="form-control" type="text" placeholder="Localidade" id="customer-location" name="location" form="customer-save" autocomplete="off" @if(!is_null($customer)) value="{{ decrypt_data($customer->location) }}" @endif  disabled />
             </div>
         </div>
     </div>
     <div class="form-group">
         <label for="customer-mobile">Telemóvel</label>
-        <input class="form-control" type="text" placeholder="Telemóvel" id="customer-mobile" name="mobile" form="customer-save" @if(!is_null($customer)) value="{{ $customer->mobile }}" @endif  />
+        <input x-mask="999 999 999" class="form-control" type="text" placeholder="Telemóvel" id="customer-mobile" name="mobile" form="customer-save" @if(!is_null($customer)) value="{{ $customer->mobile }}" @endif  />
     </div>
 </div>

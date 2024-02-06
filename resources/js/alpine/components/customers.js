@@ -17,6 +17,10 @@ export default () => ({
     tags: {
         editable: true
     },
+    customer: {
+        postcode: null,
+        location: 'Introduza o código postal'
+    },
     initialize: function () {
         this.croppie.image = new Croppie(this.$refs.croppie, {
             viewport: {
@@ -96,5 +100,14 @@ export default () => ({
 
     setAvatarClickEventHandler: function () {
         document.getElementById('customer-avatar-upload-input').click();
+    },
+
+    setPostcodeEventHandler: function  () {
+        if(this.customer != null && this.customer !== "")
+        axios.get(`/api/location/${this.customer.postcode}`).then((response) => {
+            this.customer.location = response.data.info[0].concelho
+            }).catch((err) => {
+                console.error(err);
+        });
     }
 });

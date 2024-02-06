@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Api\Auth\SignInApiController;
 use App\Http\Controllers\Api\Auth\SignUpApiController;
+use App\Http\Controllers\Api\CustomerApiController;
 use App\Http\Controllers\Views\Auth\SignInViewController;
 use App\Http\Controllers\Views\Auth\SignUpViewController;
 use App\Http\Controllers\Views\CustomerViewController;
+use App\Http\Controllers\Views\DoctorViewController;
 use App\Http\Controllers\Views\HomeViewController;
 use App\Http\Controllers\Views\PageStaticViewController;
 use App\Http\Controllers\Views\Settings\Account\AccessTokenViewController;
@@ -29,6 +31,8 @@ Route::prefix('auth')->middleware('guest')->name('auth.')->group(function () {
     Route::get('activate-account/{token}', [SignUpViewController::class, 'activationAccount'])->name('activate-account');
 });
 
+Route::get('/auth/sign-out', [SignInApiController::class, 'logout'])->middleware('auth')->name('auth.sign-out');
+
 Route::prefix('app')->middleware('auth')->name('app.')->group(function () {
     Route::get('/', [PageStaticViewController::class, 'home'])->name('index');
     Route::get('/home', [PageStaticViewController::class, 'home'])->name('home');
@@ -36,9 +40,10 @@ Route::prefix('app')->middleware('auth')->name('app.')->group(function () {
     # Customers
     Route::get('/customers', [CustomerViewController::class, 'index'])->name('customers');
     Route::get('/customers/create', [CustomerViewController::class, 'create'])->name('customers.create');
-    Route::post('/customers/create', [CustomerViewController::class, 'create'])->name('customers.store');
+    Route::post('/customers/create', [CustomerApiController::class, 'store'])->name('customers.store');
     Route::get('/customers/{slug}', [CustomerViewController::class, 'show'])->name('customers.show');
     Route::get('/customers/{slug}/edit', [CustomerViewController::class, 'show'])->name('customers.edit');
+    Route::get('/customers/{slug}/edit', [CustomerApiController::class, 'update'])->name('customers.update');
 
     # Campaigns
     Route::get('/campaigns', [CustomerViewController::class, 'index'])->name('campaigns');
@@ -59,10 +64,9 @@ Route::prefix('app')->middleware('auth')->name('app.')->group(function () {
     Route::get('/tasks/{slug}/edit', [CustomerViewController::class, 'show'])->name('tasks.edit');
 
     # Doctors
-    Route::get('/doctors', [CustomerViewController::class, 'index'])->name('doctors');
-    Route::get('/doctors/{slug}', [CustomerViewController::class, 'show'])->name('doctors.show');
-    Route::get('/doctors/create', [CustomerViewController::class, 'create'])->name('doctors.create');
-    Route::get('/doctors/{slug}/edit', [CustomerViewController::class, 'show'])->name('doctors.edit');
+    Route::get('/doctors', [DoctorViewController::class, 'index'])->name('doctors');
+    Route::get('/doctors/create', [DoctorViewController::class, 'create'])->name('doctors.create');
+    Route::get('/doctors/{slug}/edit', [DoctorViewController::class, 'show'])->name('doctors.edit');
 
     # Specialities
     Route::get('/specialities', [CustomerViewController::class, 'index'])->name('specialities');

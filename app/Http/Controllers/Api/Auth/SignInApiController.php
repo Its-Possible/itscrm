@@ -46,10 +46,10 @@ class SignInApiController extends Controller
 
                 if (auth()->user()->status === UserInterface::STATUS_ACTIVE) {
                     RateLimiter::clear(request()->ip());
-                    return (session()->has('url.intended')) ? redirect(session()->get('url.intended')) : redirect()->route('its.app.home');
+                    return (session()->has('url.intended')) ? redirect(session()->get('url.intended')) : redirect()->route('app.home');
                 }
 
-                return redirect()->route('its.auth.sign-in')->withErrors(['account' => 'A sua conta não esta ativa.']);
+                return redirect()->route('auth.sign-in')->withErrors(['account' => 'A sua conta não esta ativa.']);
             }
 
             $user = User::where('username', $request->input('username'))
@@ -72,5 +72,22 @@ class SignInApiController extends Controller
         RateLimiter::hit(request()->ip(), 60);
 
         return back()->withInput()->withErrors(['credentials' => 'As credenciais introduzidas são inválidas, tente novamente!.']);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|void
+     */
+    public function logout(Request $request)
+    {
+        if(Auth::check()) {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }else{
+            return redirect()->route('auth.sign-in');
+        }
+
+        return redirect()->route("auth.sign-in");
     }
 }

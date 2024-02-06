@@ -4,7 +4,7 @@
             <h1 class="mt-3 mb-3">Médicos</h1>
         </div>
         <div class="col-md-3 text-right pt-3">
-            <a class="btn btn-filter inverter" href="{{ route('its.app.doctors.create') }}">Adicionar médico</a>
+            <a class="btn btn-filter inverter" href="{{ route('app.doctors.create') }}">Adicionar médico</a>
             <button class="btn btn-filter" wire:click="$set('modal', true)">Importar</button>
         </div>
     </div>
@@ -56,10 +56,10 @@
                         </span>
                     </div>
                     <div>
-                        <a class="btn btn-transparent" href="{{ route('its.app.doctors.show', $doctor->id) }}">
+                        <a class="btn btn-transparent" href="{{ route('app.doctors.show', $doctor->id) }}">
                             <i class="ri ri-eye-line"></i>
                         </a>
-                        <a class="btn btn-transparent" href="{{ route('its.app.doctors.edit', $doctor->id) }}">
+                        <a class="btn btn-transparent" href="{{ route('app.doctors.edit', $doctor->id) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
                         <button class="btn btn-transparent text-danger">
@@ -71,7 +71,7 @@
                 </article>
             @empty
                 <article id="app-list-nocustomers">
-                    Não há médicos registados, <a href="{{ route('its.app.doctors.create') }}">adicione</a> o primeiro.
+                    Não há médicos registados, <a href="{{ route('app.doctors.create') }}">adicione</a> o primeiro.
                 </article>
             @endforelse
         </div>
