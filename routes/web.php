@@ -77,7 +77,8 @@ Route::prefix('app')->middleware('auth')->name('app.')->group(function () {
     Route::get('/specialities/create', [SpecialityViewController::class, 'create'])->name('specialities.create');
     Route::post('/specialities/create', [SpecialityApiController::class, 'store'])->name('specialities.store');
     Route::get('/specialities/{slug}', [SpecialityViewController::class, 'show'])->name('specialities.show');
-    Route::get('/specialities/{slug}/edit', [SpecialityViewController::class, 'show'])->name('specialities.edit');
+    Route::get('/specialities/{slug}/edit', [SpecialityViewController::class, 'edit'])->name('specialities.edit');
+    Route::put('/specialities/{slug}/edit', [SpecialityApiController::class, 'update'])->name('specialities.update');
 
     # Settings
     Route::get('/settings', [CustomerViewController::class, 'index'])->name('settings');
@@ -88,7 +89,7 @@ Route::prefix('app')->middleware('auth')->name('app.')->group(function () {
 });
 
 Route::prefix('settings')->middleware('auth')->group(function () {
-    Route::prefix('account')->group(function () {
+Route::prefix('account')->group(function () {
         Route::prefix('access-tokens')->group(function () {
             Route::get('devices', [AccessTokenViewController::class, 'index'])->name('devices');
         })->name('access-tokens.');

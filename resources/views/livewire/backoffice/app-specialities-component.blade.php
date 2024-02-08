@@ -48,10 +48,7 @@
                         </span>
                     </div>
                     <div>
-                        <a class="btn btn-transparent" href="{{ route('its.app.Specialities.show', $speciality->slug) }}">
-                            <i class="ri ri-eye-line"></i>
-                        </a>
-                        <a class="btn btn-transparent" href="{{ route('its.app.Specialities.edit.blade.php', $speciality->slug) }}">
+                        <a class="btn btn-transparent" href="{{ route('app.specialities.edit', $speciality->slug) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
                         <button type="button" class="btn btn-transparent text-danger" onclick="confirm('Deseja mesmo apagar a especialidade {{ $speciality->name }}?') || event.stopImmediatePropagation()" wire:click.prevent="deleteSpeciality('{{ $speciality->slug }}')">
@@ -74,7 +71,7 @@
 
         btnsAddTag.forEach((btnAddTag) => {
             btnAddTag.addEventListener("click", function () {
-                this.innerHTML = '<input type="text" id="app-component-tags-add-value" value="teste" />';
+                this.innerHTML = '<input type="text" id="app-component-tags-add-value" />';
             });
         });
     </script>

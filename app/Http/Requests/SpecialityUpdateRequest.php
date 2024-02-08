@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SpecialityStoreRequest extends FormRequest
+class SpecialityUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class SpecialityStoreRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required|min:3|max:50',
-            'description' => 'required|min:3|max:200'
+            'name' => 'string|min:3|max:100|required',
+            'description' => 'string|min:3|max:250'
         ];
     }
 }

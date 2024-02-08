@@ -11,6 +11,11 @@ use Livewire\Component;
 class AppSpecialitiesComponent extends Component
 {
 
+    public function deleteSpeciality(string $slug): void
+    {
+        $speciality = Speciality::where('slug', $slug)->firstOrFail();
+        $speciality->delete();
+    }
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {
