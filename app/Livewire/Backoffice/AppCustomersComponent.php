@@ -38,7 +38,7 @@ class AppCustomersComponent extends Component
 
     public function delete(string $slug): void
     {
-        $customer = Customer::with(['Specialities', 'doctors'])->where('slug', $slug)->firstOrFail();
+        $customer = Customer::with(['Specialties', 'doctors'])->where('slug', $slug)->firstOrFail();
 
         if($customer->specialities->count() > 0) {
             $customer->specialities->delete();

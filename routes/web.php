@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\Auth\SignInApiController;
 use App\Http\Controllers\Api\Auth\SignUpApiController;
 use App\Http\Controllers\Api\CustomerApiController;
 use App\Http\Controllers\Api\DoctorApiController;
-use App\Http\Controllers\Api\SpecialityApiController;
+use App\Http\Controllers\Api\SpecialtyApiController;
 use App\Http\Controllers\Views\Auth\SignInViewController;
 use App\Http\Controllers\Views\Auth\SignUpViewController;
 use App\Http\Controllers\Views\CustomerViewController;
@@ -12,7 +12,7 @@ use App\Http\Controllers\Views\DoctorViewController;
 use App\Http\Controllers\Views\HomeViewController;
 use App\Http\Controllers\Views\PageStaticViewController;
 use App\Http\Controllers\Views\Settings\Account\AccessTokenViewController;
-use App\Http\Controllers\Views\SpecialityViewController;
+use App\Http\Controllers\Views\SpecialtyViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,13 +72,13 @@ Route::prefix('app')->middleware('auth')->name('app.')->group(function () {
     Route::post('/doctors/create', [DoctorApiController::class, 'store'])->name('doctors.store');
     Route::get('/doctors/{slug}/edit', [DoctorViewController::class, 'show'])->name('doctors.edit.blade.php');
 
-    # Specialities
-    Route::get('/specialities', [SpecialityViewController::class, 'index'])->name('specialities');
-    Route::get('/specialities/create', [SpecialityViewController::class, 'create'])->name('specialities.create');
-    Route::post('/specialities/create', [SpecialityApiController::class, 'store'])->name('specialities.store');
-    Route::get('/specialities/{slug}', [SpecialityViewController::class, 'show'])->name('specialities.show');
-    Route::get('/specialities/{slug}/edit', [SpecialityViewController::class, 'edit'])->name('specialities.edit');
-    Route::put('/specialities/{slug}/edit', [SpecialityApiController::class, 'update'])->name('specialities.update');
+    # Specialties
+    Route::get('/specialties', [SpecialtyViewController::class, 'index'])->name('specialties');
+    Route::get('/specialties/create', [SpecialtyViewController::class, 'create'])->name('specialties.create');
+    Route::post('/specialties/create', [SpecialtyApiController::class, 'store'])->name('specialties.store');
+    Route::get('/specialties/{slug}', [SpecialtyViewController::class, 'show'])->name('specialties.show');
+    Route::get('/specialties/{slug}/edit', [SpecialtyViewController::class, 'edit'])->name('specialties.edit');
+    Route::put('/specialties/{slug}/edit', [SpecialtyApiController::class, 'update'])->name('specialties.update');
 
     # Settings
     Route::get('/settings', [CustomerViewController::class, 'index'])->name('settings');

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Especialidades'])
+@extends('layouts.dashboard', ['title' => 'Especialidades :: Editar '])
 
 @section('content')
     <div class="row mb-4" x-data="customers">
@@ -9,10 +9,10 @@
             <button type="submit" class="btn btn-filter inverter" form="speciality-create">Guardar</button>
         </div>
     </div>
-    @if(session()->has('its.message.body'))
+    @if(session()->has('message.body'))
         <div class="row">
-            <div class="col-12">
-                <div class="alert text-center @if(session('its.message.type') == 'warning') alert-warning @elseif('its.message.type' == 'danger') alert-danger @else alert-success @endif">{{ session('its.message.body') }}</div>
+            <div class="col-8 offset-2">
+                <div class="alert text-center @if(session('message.type') == 'warning') alert-warning @elseif('message.type' == 'danger') alert-danger @else alert-success @endif">{{ session('message.body') }}</div>
             </div>
         </div>
     @endif
@@ -36,19 +36,19 @@
                 <hr/>
                 <div class="form-group">
                     <label for="speciality-name">Nome</label>
-                    <input form="speciality-create" class="form-control" type="text" placeholder="Nome da especialidade" name="name" value="{{ $speciality->name }}"/>
+                    <input form="speciality-create" class="form-control" type="text" placeholder="Nome da especialidade" name="name" value="{{ $speciality->name }}" />
                 </div>
                 <div class="form-group">
                     <label for="speciality-description">Descrição</label>
-                    <textarea class="form-control" type="text" form="speciality-create" placeholder="Descrição da especialidade" name="description">{{ $speciality->description }}</textarea>
+                    <textarea id="speciality-description" class="form-control input-danger" form="speciality-create" placeholder="Descrição da especialidade" name="description">{{ $speciality->description }}</textarea>
                 </div>
             </div>
         </div>
     </div>
     <div class="row mb-4">
         <div class="col-md-8 offset-2 text-right pt-3">
-            <form id="speciality-create" action="{{ route('its.app.Specialities.update', $speciality->slug) }}" method="post"
-                  autocomplete="off">
+            <form id="speciality-create" action="{{ route('app.specialties.update', $speciality->slug) }}" method="post" autocomplete="off">
+                @method('PUT')
                 {{ csrf_field() }}
                 <button type="submit" class="btn btn-filter inverter">Guardar</button>
             </form>

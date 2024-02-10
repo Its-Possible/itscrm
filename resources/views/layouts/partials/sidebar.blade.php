@@ -39,7 +39,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('app.specialities') }}">
+            <a href="{{ route('app.specialties') }}">
                 <i class="ri-stethoscope-line"></i>
                 <p>Especialidades</p>
             </a>

@@ -18,10 +18,11 @@ class InformationComponent extends Component
 
         $user = User::with('doctor')->where('username', $this->username)->first();
 
-        if(is_null($user->doctor)) {
-            $this->emit('doctorSelectedUsername', $this->username);
+        if (is_null($user->doctor)) {
+            $this->dispatch('user-selected', user: $user);
         }
     }
+
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {

@@ -9,7 +9,7 @@ use App\Http\Controllers\Api\PostcodeApiController;
 use App\Http\Controllers\Api\ScheculeApiController;
 use App\Http\Controllers\Api\SettingApiController;
 use App\Http\Controllers\Api\Settings\Account\AccessTokenApiController;
-use App\Http\Controllers\Api\SpecialityApiController;
+use App\Http\Controllers\Api\SpecialtyApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -78,12 +78,12 @@ Route::prefix('/doctors')->name('api.doctors.')->group(function () {
     Route::delete('/{slug}', [DoctorApiController::class, 'delete'])->name('delete');
 });
 
-# Specialities
-Route::prefix('/Specialities')->name('api.Specialities.')->group(function () {
-    Route::get('/', [SpecialityApiController::class, 'list'])->name('list');
-    Route::get('/{slug}', [SpecialityApiController::class, 'show'])->name('show');
-    Route::patch('/{slug}', [SpecialityApiController::class, 'update'])->name('update');
-    Route::delete('/{slug}', [SpecialityApiController::class, 'delete'])->name('delete');
+# Specialties
+Route::prefix('/Specialties')->name('api.Specialties.')->group(function () {
+    Route::get('/', [SpecialtyApiController::class, 'list'])->name('list');
+    Route::get('/{slug}', [SpecialtyApiController::class, 'show'])->name('show');
+    Route::patch('/{slug}', [SpecialtyApiController::class, 'update'])->name('update');
+    Route::delete('/{slug}', [SpecialtyApiController::class, 'delete'])->name('delete');
 });
 
 # Locations

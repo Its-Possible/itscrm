@@ -48,7 +48,7 @@ class DoctorsComponent extends Component
 
         return view('livewire.backoffice.components.customers.doctors-component')
             ->with([
-                'Specialities' => $this->specialities,
+                'Specialties' => $this->specialities,
                 'doctors' => $this->doctors
             ]);
     }

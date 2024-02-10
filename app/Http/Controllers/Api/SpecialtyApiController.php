@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SpecialityStoreRequest;
 use App\Http\Requests\SpecialityUpdateRequest;
-use App\Models\Speciality;
+use App\Models\Specialty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class SpecialityApiController extends Controller
+class SpecialtyApiController extends Controller
 {
     //
     public function store(SpecialityStoreRequest $request)
@@ -19,7 +19,7 @@ class SpecialityApiController extends Controller
             return back()->withInput()->withErrors($validated);
         }
 
-        $speciality = new Speciality();
+        $speciality = new Specialty();
         $speciality->name = $request->input('name');
         $speciality->description = $request->input('description');
         $speciality->slug = Str::slug($speciality->name . microtime());
@@ -31,7 +31,7 @@ class SpecialityApiController extends Controller
 
         $request->session()->flash('message.body', 'Especialidade criada com sucesso!');
 
-        return redirect()->route('app.specialities');
+        return redirect()->route('app.specialties');
     }
 
     public function update(SpecialityUpdateRequest $request, $slug)
@@ -41,7 +41,7 @@ class SpecialityApiController extends Controller
             return back()->withInput()->withErrors($validated);
         }
 
-        $speciality = Speciality::where('slug', $slug)->firstOrFail();
+        $speciality = Specialty::where('slug', $slug)->firstOrFail();
         $speciality->name = $request->input('name');
         $speciality->description = $request->input('description');
 
@@ -52,6 +52,6 @@ class SpecialityApiController extends Controller
 
         $request->session()->flash('message.body', "Especialidade atualizada com sucesso");
 
-        return redirect()->route('app.specialities.edit', $speciality->slug);
+        return redirect()->route('app.specialties.edit', $speciality->slug);
     }
 }
