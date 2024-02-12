@@ -2,7 +2,7 @@
 
 export default () => ({
     weekday: {
-        selected: 1
+        selected: 0
     },
     schedules_select: {
         1: [],
@@ -13,13 +13,17 @@ export default () => ({
         6: [],
         7: []
     },
-    selectWeekday: function (weekday) {
+    selectWeekdayEventHandler: function (weekday) {
         this.weekday.selected = weekday;
-        console.log(this.weekday.selected);
-        debugger;
     },
-    selectSchedule: function (timer) {
-        this.schedules_select[this.weekday.selected] = timer;
-        console.log(this.schedules_select);
+    selectScheduleEventHandler: function (timer) {
+        let schedule_selected_per_weekday = this.schedules_select[this.weekday.selected];
+        if(!schedule_selected_per_weekday.includes(timer)) {
+            schedule_selected_per_weekday.push(timer);
+            console.log("A timer was added to the schedules array");
+            return false;
+        }else{
+            console.log("A timer was removed to the schedules array");
+        }
     }
 });

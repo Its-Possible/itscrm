@@ -4,7 +4,7 @@ import Axios from 'axios';
 import tags from './tags';
 import header from './header';
 import customers from './customers'
-import schedules  from './schedules.js';
+import schedules  from './schedules';
 
 window.axios = Axios.default;
 
