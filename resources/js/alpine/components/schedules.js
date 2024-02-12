@@ -4,7 +4,7 @@ export default () => ({
     weekday: {
         selected: 1
     },
-    : {
+    schedules_select: {
         1: [],
         2: [],
         3: [],
