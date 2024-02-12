@@ -42,7 +42,7 @@
         <div class="col-md-8 offset-2 bg-white row-border-radius bg-white py-2 mb-4">
             <div class="container">
                 <livewire:backoffice.components.doctors.information-component />
-                <livewire:backoffice.components.doctors.specialities-component />
+                <livewire:backoffice.components.doctors.specialties-component />
                 <livewire:backoffice.components.doctors.schedule-component />
             </div>
         </div>

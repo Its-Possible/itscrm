@@ -10,55 +10,23 @@ use Livewire\Component;
 class ScheduleComponent extends Component
 {
     public $custom = false;
-    public $daysweekSelected = [];
-    public $timerSelected = [];
-    public $timerCustom = [];
-    public $quantityTimerCustom = 1;
 
-    public function setDaysweekSelected(string $dayweek): void
+    public int $weekdaySelected = 0;
+    public array $timestampsSelected;
+
+    public function weekdaySelectEvent($weekday): void
     {
-        if(!in_array($dayweek, $this->daysweekSelected)) {
-            $this->daysweekSelected[] = $dayweek;
+        $this->weekdaySelected = $weekday;
+        if(!array_key_exists($weekday, $this->timestampsSelected)){
+            $this->timestampsSelected[$weekday] = [];
         }else{
-            $key = array_search($dayweek, $this->daysweekSelected);
-            unset($this->daysweekSelected[$key]);
+            unset($this->timestampsSelected[$weekday]);
         }
     }
 
-    public function setTimerSelected(string $timer): void
+    public function weekdayTimerSelected(string $timer): void
     {
-        if(!in_array($timer, $this->timerSelected)) {
-            $this->timerSelected[] = $timer;
-        }else{
-            $key = array_search($timer, $this->timerSelected);
-            unset($this->timerSelected[$key]);
-        }
-    }
-
-    public function setTimerCustom(string $start, string $end): void
-    {
-        $this->timerCustom[] = ['start' => $start, 'end' => $end];
-    }
-
-    public function addQuantityTimerCustom(): void
-    {
-        $this->quantityTimerCustom++;
-    }
-
-    public function removeQuantityTimerCustom(): void
-    {
-        $this->quantityTimerCustom--;
-    }
-
-    public function setCustom(): void
-    {
-        if($this->custom) $this->custom = false;
-        else $this->custom = true;
-    }
-
-    public function addSchedule(): void
-    {
-        $this->timerSelected = [];
+        array_push($this->timestampsSelected[$this->weekdaySelected], $timer);
     }
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application

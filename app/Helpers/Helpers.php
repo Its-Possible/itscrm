@@ -76,3 +76,12 @@ function notification_datetime(string $datetime): string {
         return "{$datetime->format('d-m-y H:i:s')}";
     }
 }
+
+function weekday($day): string
+{
+    $weekday = [
+        1 => "Domingo", 2 => "Segunda", 3 => "Terça", 4 => "Quarta", 5 => "Quinta", 6 => "Sexta", 7 => "Sábado"
+    ];
+
+    return $weekday[$day];
+}

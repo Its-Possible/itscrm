@@ -224,3 +224,44 @@ button.btn-tag:hover {
     color: #fff;
     background: #19202E;
 }
+
+.btn-schedule {
+    margin: 0;
+    color: #19202E;
+    padding: 18px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid #19202E;
+    background: #fff;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+.btn-schedule:hover {
+    margin: 0;
+    color: #fff;
+    background: #19202E;
+    border: 1px solid #19202E;
+}
+
+.btn-schedule.inverter {
+    margin: 0;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid #19202E;
+    background: #19202E;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+.btn-schedule.btn-delete {
+    color: rgba(200,50,50,1);
+    border-color: rgba(200,50,50,1);
+}
+
+.btn-schedule.btn-delete:hover {
+    color: rgba(255,255,255,1);
+    border-color: rgba(200,50,50,1);
+    background: rgba(200,50,50,1);
+}
