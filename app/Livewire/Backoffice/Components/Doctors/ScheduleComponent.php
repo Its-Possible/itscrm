@@ -9,23 +9,23 @@ use Livewire\Component;
 
 class ScheduleComponent extends Component
 {
-    public $custom = false;
+    public $scheduleTimerCustom = false;
 
     public int $weekdaySelected = 0;
     public array $timestampsSelected;
 
     public function setCustomEventHandler(): void
     {
-        if(!$this->custom){
-            $this->custom = false;
+        if(!$this->scheduleTimerCustom){
+            $this->scheduleTimerCustom = false;
         }else{
-            $this->custom = true;
+            $this->scheduleTimerCustom = true;
         }
     }
 
     public function selectWeekdayEventHandler($weekday): void
     {
-        $this->weekdaySelected = $weekday;
+        $this->weekdaySelectedun dve  = $weekday;
         if(!array_key_exists($weekday, $this->timestampsSelected)){
             $this->timestampsSelected[$weekday] = [];
         }else{
