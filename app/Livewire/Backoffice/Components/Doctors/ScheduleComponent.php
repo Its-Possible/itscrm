@@ -12,30 +12,41 @@ class ScheduleComponent extends Component
     public $scheduleTimerCustom = false;
 
     public int $weekdaySelected = 0;
-    public array $timestampsSelected;
+    public array $timersSelected = [];
 
-    public function setCustomEventHandler(): void
+    public array $timers = [
+        1 => '09:00 - 12:00',
+        2 => '12:00 - 14:00',
+        3 => '14:00 - 17:00',
+        4 => '17:00 - 19:00',
+        5 => '19:00 - 21:00',
+        6 => '21:00 - 23:00'
+    ];
+
+    public function changeSelectWeekdayClickEvent(int $weekday): void
     {
-        if(!$this->scheduleTimerCustom){
-            $this->scheduleTimerCustom = false;
-        }else{
-            $this->scheduleTimerCustom = true;
+        if ($weekday >= 1 && $weekday <= 7) {
+            if(!array_key_exists($weekday, $this->timersSelected)){
+                $this->weekdaySelected = $weekday;
+                $this->timersSelected[$weekday] = [];
+            }else{
+                $this->weekdaySelected = $weekday;
+            }
+        } else {
+            $this->reset('weekdaySelected');
         }
     }
 
-    public function selectWeekdayEventHandler($weekday): void
+    public function changeTimerPerWeekdayClickEvent(int $timer): void
     {
-        $this->weekdaySelectedun dve  = $weekday;
-        if(!array_key_exists($weekday, $this->timestampsSelected)){
-            $this->timestampsSelected[$weekday] = [];
-        }else{
-            unset($this->timestampsSelected[$weekday]);
+        if ($timer >= 1 && $timer <= 6) {
+            if(!in_array($this->timers[$timer], $this->timersSelected[$this->weekdaySelected])) {
+                $this->timersSelected[$this->weekdaySelected][] = $this->timers[$timer];
+            }else{
+                $key = array_search($this->timers[$timer], $this->timersSelected[$this->weekdaySelected]);
+                unset($this->timersSelected[$this->weekdaySelected][$key]);
+            }
         }
-    }
-
-    public function selectTimerPerWeekdayEventHandler(string $timer): void
-    {
-        array_push($this->timestampsSelected[$this->weekdaySelected], $timer);
     }
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application

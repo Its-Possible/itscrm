@@ -38,7 +38,7 @@ class SendEmailsCommand extends Command
 
                 $customer = Customer::where('email', $mail->to)->first();
 
-                switch($mail->layout)
+]                switch($mail->layout)
                 {
                     case MailInterface::LAYOUT_BIRTHDAY_CUSTOM:
                         \Mail::to($mail->to)->send(new BirthdayPersonalizedMail("customer", $customer));

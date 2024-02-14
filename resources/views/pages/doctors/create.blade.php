@@ -1,6 +1,5 @@
 @extends('layouts.dashboard', ['title' => 'Médicos'])
 
-
 @section('content')
     <div class="row mb-4" x-data="customers">
         <div class="col-md-5 offset-2">
