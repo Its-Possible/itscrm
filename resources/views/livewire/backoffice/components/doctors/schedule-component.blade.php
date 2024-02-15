@@ -21,6 +21,14 @@
              @endforeach
             <button @class(['btn btn-schedule' => true])>Outro</button>
         </div>
+
+        <div class="form-group pull-right">
+            <small class="text-danger"
+                   wire:click=""
+                   wire:confirm=""
+            >
+                <i class="ri ri-delete-bin-2-line"></i> Limpar a seleção</small>
+        </div>
     @endif
 
     {{ json_encode($timersSelected) }}
