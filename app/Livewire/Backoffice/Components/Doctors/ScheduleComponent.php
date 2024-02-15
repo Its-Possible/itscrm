@@ -14,6 +14,9 @@ class ScheduleComponent extends Component
     public int $weekdaySelected = 0;
     public array $timersSelected = [];
 
+    public bool $confirmModalOk = false;
+    public bool $confirmModalDelete = false;
+
     public array $timers = [
         1 => '09:00 - 12:00',
         2 => '12:00 - 14:00',
@@ -22,6 +25,16 @@ class ScheduleComponent extends Component
         5 => '19:00 - 21:00',
         6 => '21:00 - 23:00'
     ];
+
+    protected $listeners = [
+        'modal-response' => 'modalResponseEventListener'
+    ];
+
+    public function modalResponseEventListener($action): void
+    {
+        dd($action);
+        $this->confirmModalDelete = false;
+    }
 
     public function changeSelectWeekdayClickEvent(int $weekday): void
     {
@@ -47,6 +60,20 @@ class ScheduleComponent extends Component
                 unset($this->timersSelected[$this->weekdaySelected][$key]);
             }
         }
+    }
+
+    public function showConfirmModalEvent(string $name, bool $value)
+    {
+        switch($name)
+        {
+            case 'cancel-and-delete': $this->confirmModalDelete = $value; break;
+            default: $this->confirmModalOk = true;
+        }
+    }
+
+    public function clearTimersPerWeekdayClickEvent(int $weekday): void
+    {
+        $this->timersSelected[$this->weekdaySelected] = [];
     }
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application

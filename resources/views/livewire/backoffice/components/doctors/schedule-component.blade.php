@@ -11,7 +11,7 @@
     <label for="user">Defina o horário semanal do médico</label>
     <div class="form-group" id="dayweek">
         @for($weekday = 1; $weekday <= 7; $weekday++)
-            <button @class(['btn btn-schedule' => true, 'inverter' => $weekday === $weekdaySelected]) wire:click="changeSelectWeekdayClickEvent({{ $weekday }})">{{ weekday($weekday) }}</button>
+            <button @class(['btn btn-schedule' => true, 'inverter' => $weekday === $weekdaySelected, 'activated' => isset($timersSelected[$weekday])]) wire:click="changeSelectWeekdayClickEvent({{ $weekday }})">{{ weekday($weekday) }}</button>
         @endfor
     </div>
     @if($weekdaySelected >= 1 && $weekdaySelected <= 7)
@@ -23,15 +23,23 @@
         </div>
 
         <div class="form-group pull-right">
-            <small class="text-danger"
-                   wire:click=""
-                   wire:confirm=""
-            >
-                <i class="ri ri-delete-bin-2-line"></i> Limpar a seleção</small>
+            <button class="text-danger" wire:click="showConfirmModalEvent('cancel-and-delete', true)">
+                <i class="ri ri-delete-bin-2-line"></i> Limpar a seleção
+            </button>
         </div>
     @endif
-
     {{ json_encode($timersSelected) }}
+
+    @if($confirmModalDelete)
+        <div>
+            <livewire:components.modal-component
+                title="Atenção - Deseja mesmo apagar?"
+                message="A opção escolhida vai apagar todos os periodos selecionados, por si, <strong>deseja mesmo apagar</strong>?"
+                actions="cancelanddelete"
+                wire:transition.opacity
+            />
+        </div>
+    @endif
 </div>
 
 @script
