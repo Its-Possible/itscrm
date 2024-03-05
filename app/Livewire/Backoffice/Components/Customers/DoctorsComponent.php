@@ -3,7 +3,7 @@
 namespace App\Livewire\Backoffice\Components\Customers;
 
 use App\Models\Customer;
-use App\Models\Speciality;
+use App\Models\Specialty;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -13,14 +13,14 @@ class DoctorsComponent extends Component
 {
     public $customer;
     public $doctors = [];
-    public $specialities = [];
+    public $specialties = [];
 
     public $selected = "";
 
     public function updateDoctorsFromSpeciality(): void
     {
-        $speciality = Speciality::with('doctors')->where('slug', $this->selected)->firstOrFail();
-        $this->doctors = $speciality->doctors;
+        $specialty = Specialty::with('doctors')->where('slug', $this->selected)->firstOrFail();
+        $this->doctors = $specialty->doctors;
     }
 
     public function mount(string $customer = null): void
@@ -33,7 +33,7 @@ class DoctorsComponent extends Component
     public function addSpecialityAndDoctorToCustomer(): void
     {
         // TODO: Add speciality and doctor to customer on database
-        dd($request);
+        dd(request()->all());
     }
 
     public function save(): void
@@ -44,11 +44,11 @@ class DoctorsComponent extends Component
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {
 
-        $this->specialities = Speciality::all();
+        $this->specialties = Specialty::all();
 
         return view('livewire.backoffice.components.customers.doctors-component')
             ->with([
-                'Specialties' => $this->specialities,
+                'specialties' => $this->specialties,
                 'doctors' => $this->doctors
             ]);
     }

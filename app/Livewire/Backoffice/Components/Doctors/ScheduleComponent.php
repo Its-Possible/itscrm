@@ -32,7 +32,6 @@ class ScheduleComponent extends Component
 
     public function modalResponseEventListener($action): void
     {
-        dd($action);
         $this->confirmModalDelete = false;
     }
 

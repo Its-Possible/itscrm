@@ -12,13 +12,13 @@
     <hr/>
     <div class="row">
         <div class="col-md-12">
-            @if(count($specialities) > 0)
+            @if(count($specialties) > 0)
             <div class="form-group">
                 <label for="speciality-select">Especialidade</label>
                 <select form="customer-save" class="form-control" wire:model="selected" wire:change="updateDoctorsFromSpeciality" name="speciality-select" id="speciality-select">
                     <option value="" disabled selected>Selecionar</option>
-                    @foreach($specialities as $speciality)
-                        <option value="{{ $speciality->slug }}">{{ $speciality->name }}</option>
+                    @foreach($specialties as $specialty)
+                        <option value="{{ $specialty->slug }}">{{ $specialty->name }}</option>
                     @endforeach
                 </select>
             </div>
