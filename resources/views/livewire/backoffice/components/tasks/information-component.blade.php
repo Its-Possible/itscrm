@@ -11,7 +11,11 @@
     </div>
     <div class="form-group">
         <label for="automation-email">Descrição</label>
-        <textarea class="form-control" placeholder="Descrição" id="automation-description" name="email" form="automation-create" autocomplete="off"></textarea>
+        <textarea class="form-control" placeholder="Descrição" id="automation-description" name="automation-description" form="automation-create" autocomplete="off"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="automation-command">Comando</label>
+        <input class="form-control" placeholder="Comando a executar" id="automation-command" name="automation-command" form="automation-create" autocomplete="off" />
     </div>
     <div class="row mt-3">
         <div class="col-md-9">

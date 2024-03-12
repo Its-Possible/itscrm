@@ -2,19 +2,20 @@
 
 use App\Http\Controllers\Api\Auth\SignInApiController;
 use App\Http\Controllers\Api\Auth\SignUpApiController;
+use App\Http\Controllers\Api\CampaignApiController;
 use App\Http\Controllers\Api\CustomerApiController;
 use App\Http\Controllers\Api\DoctorApiController;
 use App\Http\Controllers\Api\SpecialtyApiController;
 use App\Http\Controllers\Api\TaskApiController;
-use App\Http\Controllers\View\TaskViewController;
 use App\Http\Controllers\Views\Auth\SignInViewController;
 use App\Http\Controllers\Views\Auth\SignUpViewController;
+use App\Http\Controllers\Views\CampaignViewController;
 use App\Http\Controllers\Views\CustomerViewController;
 use App\Http\Controllers\Views\DoctorViewController;
-use App\Http\Controllers\Views\HomeViewController;
 use App\Http\Controllers\Views\PageStaticViewController;
 use App\Http\Controllers\Views\Settings\Account\AccessTokenViewController;
 use App\Http\Controllers\Views\SpecialtyViewController;
+use App\Http\Controllers\Views\TaskViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,10 +52,12 @@ Route::prefix('app')->middleware('auth')->name('app.')->group(function () {
     Route::get('/customers/{slug}/edit', [CustomerApiController::class, 'update'])->name('customers.update');
 
     # Campaigns
-    Route::get('/campaigns', [CustomerViewController::class, 'index'])->name('campaigns');
-    Route::get('/campaigns/{slug}', [CustomerViewController::class, 'show'])->name('campaigns.show');
-    Route::get('/campaigns/create', [CustomerViewController::class, 'create'])->name('campaigns.create');
-    Route::get('/campaigns/{slug}/edit', [CustomerViewController::class, 'show'])->name('campaigns.edit');
+    Route::get('/campaigns', [CampaignViewController::class, 'index'])->name('campaigns');
+    Route::get('/campaigns/create', [CampaignViewController::class, 'create'])->name('campaigns.create');
+    Route::post('/campaigns/create', [CampaignApiController::class, 'store'])->name('campaigns.store');
+    Route::get('/campaigns/{slug}', [CampaignViewController::class, 'show'])->name('campaigns.show');
+    Route::get('/campaigns/{slug}/edit', [CampaignViewController::class, 'show'])->name('campaigns.edit');
+    Route::get('/campaigns/{slug}/edit', [CampaignApiController::class, 'update'])->name('campaigns.update');
 
     # Tags
     Route::get('/tags', [CustomerViewController::class, 'index'])->name('tags');

@@ -43,7 +43,7 @@ class CampaignImportStarted implements ShouldBroadcast
 
     public function broadcastAs(): string
     {
-        return "campaign-import-started.app-notification";
+        return "campaigns-import-started.app-notification";
     }
 
     public function broadcastWith(): array

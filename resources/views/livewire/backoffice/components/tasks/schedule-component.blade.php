@@ -5,11 +5,8 @@
         </div>
         <div class="col-md-3">
             <div class="btn-group" role="group" aria-label="repetitions">
-                <input type="radio" class="btn-check" name="automation-repeat" id="automation-repeat-on" autocomplete="off" value="on" wire:model="repeat" checked>
-                <label class="btn btn-primary" for="automation-repeat-on">Repetir</label>
-
-                <input type="radio" class="btn-check" name="automation-repeat" id="automation-repeat-off" autocomplete="off" value="off" wire:model="repeat">
-                <label class="btn btn-primary" for="automation-repeat-off">Não repetir</label>
+                <button class="btn btn-filter btn-schedule @if($repeat === 'on') inverter @endif" wire:click="repeatHandlerClick('on')">Repetir <i class="ri-repeat"></i></button>
+                <button class="btn btn-filter btn-schedule @if($repeat === 'off') inverter @endif" wire:click="repeatHandlerClick('off')">Não Repetir <i class="ri-repeat"></i></button>
             </div>
         </div>
     </div>

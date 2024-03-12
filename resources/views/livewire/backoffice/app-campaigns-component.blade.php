@@ -7,7 +7,7 @@
             <h1 class="mt-3 mb-3">Campanhas</h1>
         </div>
         <div class="col-md-3 text-right pt-3">
-            <button class="btn btn-filter" wire:click="import">Importar</button>
+            <button class="btn btn-filter" wire:click="importClickEventHandler">Importar</button>
         </div>
     </div>
     <div class="row">
@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-8 offset-2">
             @forelse($campaigns as $index => $campaign)
-                <article class="app-task">
+                <article class="app-task" wire:key="{{ $index }}">
                     <div>
                         <div class="text-bold">{{ $campaign->name }}</div>
                     </div>
@@ -43,7 +43,7 @@
                         @endswitch
                     </div>
                     <div>
-                        <button class="btn btn-transparent text-danger" wire:click="delete('{{ $campaign->slug }}')">
+                        <button class="btn btn-transparent text-danger" wire:click="deleteClickEventHandler({{ $campaign->id }})">
                             <i class="ri ri-delete-bin-line"></i>
                         </button>
                     </div>

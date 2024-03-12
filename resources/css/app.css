@@ -699,3 +699,8 @@ nav#tags-suggestions ul li:hover {
     background: #19202E;
     transition: color, background-color 0.4s ease;
 }
+
+#automation-description {
+    resize: none;
+    height: 180px;
+}

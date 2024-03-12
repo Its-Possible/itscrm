@@ -29,8 +29,8 @@ class CampaignApiController extends Controller
 
         return response()->json([
             'status' => 201,
-            'message' => 'Fetch one campaign',
-            'campaign' => $campaign
+            'message' => 'Fetch one campaigns',
+            'campaigns' => $campaign
         ], 201);
     }
 
@@ -56,7 +56,7 @@ class CampaignApiController extends Controller
         return response()->json([
             'status' => 201,
             'message' => "Campaign created with success!",
-            'campaign' => $campaign
+            'campaigns' => $campaign
         ], 201);
     }
 }

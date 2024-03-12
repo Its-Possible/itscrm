@@ -12,6 +12,11 @@ class ScheduleComponent extends Component
     public $repeat = "off";
     public $repetition;
 
+    public function repeatHandlerClick($value): void
+    {
+        $this->repeat = $value;
+    }
+
     public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|Factory|View|Application
     {
         return view('livewire.backoffice.components.tasks.schedule-component');
