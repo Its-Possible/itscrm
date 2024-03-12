@@ -11,15 +11,26 @@ use Livewire\Component;
 
 class InformationComponent extends Component
 {
+    protected User $user;
     public string $username;
+    public string $email;
 
     public function changeSelectUsername(): void
     {
 
-        $user = User::with('doctor')->where('username', $this->username)->first();
+        $this->user = User::with('doctor')->where('username', $this->username)->first();
 
-        if (is_null($user->doctor)) {
-            $this->dispatch('user-selected', user: $user);
+        if (is_null($this->user->doctor)) {
+            $this->dispatch('user-selected', user: $this->user);
+        }
+    }
+
+    public function emailChangeEventHandler(): void
+    {
+        $user = User::where('email', $this->email)->count();
+
+        if ($user > 0) {
+            $this->dispatch('email-unique-error', email: $this->email);
         }
     }
 

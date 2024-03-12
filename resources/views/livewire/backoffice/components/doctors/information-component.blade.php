@@ -15,13 +15,13 @@
             @forelse($users as $user)
                 <option value="{{ $user->username }}">{{ decrypt_data($user->firstname) }} {{ decrypt_data($user->lastname) }}</option>
             @empty
-
+                <option value="-">Não há utilizadores registados</option>
             @endforelse
         </select>
     </div>
     <div class="form-group">
         <label for="doctor-email">E-mail</label>
-        <input class="form-control" type="email" placeholder="E-mail" id="doctor-email" name="email" form="doctor-create" autocomplete="off" />
+        <input class="form-control" type="email" placeholder="E-mail" id="doctor-email" name="email" form="doctor-create" autocomplete="off" wire:change="emailChangeEventHandler" wire:model="email" />
     </div>
 
     <div class="form-group">
@@ -29,3 +29,11 @@
         <input class="form-control" x-mask="999 999 999" type="text" placeholder="Telemóvel" id="doctor-mobile" name="mobile" form="doctor-create" />
     </div>
 </div>
+
+@script
+<script>
+    $wire.on('email-unique-error', (email) => {
+        
+    });
+</script>
+@endscript
