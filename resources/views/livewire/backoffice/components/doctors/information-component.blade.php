@@ -29,11 +29,3 @@
         <input class="form-control" x-mask="999 999 999" type="text" placeholder="Telemóvel" id="doctor-mobile" name="mobile" form="doctor-create" />
     </div>
 </div>
-
-@script
-<script>
-    $wire.on('email-unique-error', (email) => {
-        
-    });
-</script>
-@endscript

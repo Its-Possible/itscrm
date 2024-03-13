@@ -25,7 +25,7 @@ class DoctorStoreRequest extends FormRequest
         return [
             //
             'username' => 'string|required',
-            'email' => 'email|max:45|required',
+            'email' => 'email|max:45|unique:users,email|required',
             'mobile' => 'string|max:12|required'
         ];
     }

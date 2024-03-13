@@ -1,5 +1,5 @@
 <div>
-    <div class="row mb-4" x-data="customers">
+    <div class="row mb-4">
         <div class="col-md-5 offset-2">
             <h1 class="mt-3 mb-3">Médicos</h1>
         </div>

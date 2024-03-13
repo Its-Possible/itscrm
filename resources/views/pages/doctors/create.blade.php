@@ -1,7 +1,7 @@
 @extends('layouts.dashboard', ['title' => 'Médicos'])
 
 @section('content')
-    <div class="row mb-4" x-data="customers">
+    <div class="row mb-4" x-data="doctors" x-init="initialize">
         <div class="col-md-5 offset-2">
             <h1 class="mt-3 mb-3">Criar médico</h1>
         </div>

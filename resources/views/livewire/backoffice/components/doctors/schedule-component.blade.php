@@ -41,9 +41,3 @@
         </div>
     @endif
 </div>
-
-@script
-  <script>
-      console.log("hello world");
-  </script>
-@endscript

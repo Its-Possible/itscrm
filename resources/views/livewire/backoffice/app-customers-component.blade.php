@@ -1,4 +1,4 @@
-<div x-data="customers">
+<div>
     <div class="row mb-4">
         <div class="col-md-5 offset-2">
             <h1 class="mt-3 mb-3">Clientes</h1>
