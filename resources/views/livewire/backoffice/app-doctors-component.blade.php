@@ -39,10 +39,10 @@
                     </div>
                     <div>
                         @php $xindex = 0 @endphp
-                        @forelse($doctor->specialities as $speciality)
+                        @forelse($doctor->specialties as $specialty)
                             @php $xindex++ @endphp
-                            {{ $speciality->name }}
-                            @if($xindex < count($doctor->specialities))
+                            {{ $specialty->name }}
+                            @if($xindex < count($doctor->specialties))
                                 ,
                             @endif
                         @empty
@@ -59,7 +59,7 @@
                         <a class="btn btn-transparent" href="{{ route('app.doctors.show', $doctor->id) }}">
                             <i class="ri ri-eye-line"></i>
                         </a>
-                        <a class="btn btn-transparent" href="{{ route('app.doctors.edit.blade.php', $doctor->id) }}">
+                        <a class="btn btn-transparent" href="{{ route('app.doctors.edit', $doctor->id) }}">
                             <i class="ri ri-pencil-line"></i>
                         </a>
                         <button class="btn btn-transparent text-danger">

@@ -21,4 +21,14 @@ class DoctorViewController extends Controller
 
         return view('pages.doctors.create');
     }
+
+    public function show(Request $request, $slug): View|\Illuminate\Foundation\Application|Factory|Application
+    {
+        return view('pages.doctors.show', ['slug' => $slug]);
+    }
+
+    public function edit(Request $request, $slug): View|\Illuminate\Foundation\Application|Factory|Application
+    {
+        return view('pages.doctors.edit', ['slug' => $slug]);
+    }
 }

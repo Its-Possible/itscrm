@@ -70,14 +70,17 @@ Route::prefix('app')->middleware('auth')->name('app.')->group(function () {
     Route::get('/tasks/create', [TaskViewController::class, 'create'])->name('tasks.create');
     Route::post('/tasks/create', [TaskApiController::class, 'store'])->name('tasks.store');
     Route::get('/tasks/{slug}', [TaskViewController::class, 'show'])->name('tasks.show');
-    Route::get('/tasks/{slug}/edit', [TaskViewController::class, 'show'])->name('tasks.edit');
+    Route::get('/tasks/{slug}/edit', [TaskViewController::class, 'edit'])->name('tasks.edit');
     Route::get('/tasks/{slug}/edit', [TaskApiController::class, 'update'])->name('tasks.update');
 
     # Doctors
     Route::get('/doctors', [DoctorViewController::class, 'index'])->name('doctors');
     Route::get('/doctors/create', [DoctorViewController::class, 'create'])->name('doctors.create');
     Route::post('/doctors/create', [DoctorApiController::class, 'store'])->name('doctors.store');
-    Route::get('/doctors/{slug}/edit', [DoctorViewController::class, 'show'])->name('doctors.edit');
+    Route::get('/doctors/{slug}', [DoctorViewController::class, 'show'])->name('doctors.show');
+    Route::get('/doctors/{slug}/edit', [DoctorViewController::class, 'edit'])->name('doctors.edit');
+    Route::post('/doctors/{slug}/edit', [DoctorViewController::class, 'update'])->name('doctors.update');
+    Route::delete('/doctors/{slug}', [DoctorViewController::class, 'delete'])->name('doctors.delete');
 
     # Specialties
     Route::get('/specialties', [SpecialtyViewController::class, 'index'])->name('specialties');

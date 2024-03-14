@@ -1,0 +1,34 @@
+version: '3.9'
+
+name: itscrm
+services:
+
+    app:
+        container_name: its-app-dev
+        image: laravel10dev
+        ports:
+            - "80:80"
+        volumes:
+            - .:/var/www/html
+        environment:
+            - VIRTUAL_HOST=dev.itscrm.local
+        networks:
+            - itscrm.local
+        restart: always
+
+    database:
+        container_name: its-mysql-dev
+        image: mysql8dev
+        ports:
+            - "3306:3306"
+        volumes:
+            - C:/data/mysql8dev/mysql:/var/lib/mysql
+        environment:
+            - MYSQL_DATABASE=itscrmdev
+        networks:
+            - itscrm.local
+        restart: always
+
+networks:
+    itscrm.local:
+        driver: bridge
